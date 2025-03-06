@@ -1,2 +1,2 @@
 # Internity
-Projet de développement Wed
+Projet de développement Web
