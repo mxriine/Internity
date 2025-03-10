@@ -2,37 +2,31 @@
 <html>
 
 <head>
-    <title>Internity - Home</title>
+    <title>Internity - Publisher</title>
     <link rel="stylesheet" href="/assets/styles.css">
 </head>
 
 <body>
-
     <nav class="navbar">
         <div class="logo">LOGO</div>
 
-        <div class="home-btn">
-            <img src="assets/icons/home.svg" alt="">
-        </div>
+        <i class="fi fi-rs-home"></i> <!-- home icon -->
 
         <div class="search-bar">
-            <img src="assets/icons/menu-burger.svg" alt="">
-            <img src="assets/icons/search.svg" alt="">
+
+            <i class="fi fi-br-menu-burger"></i> <!-- burger icon -->
             <input type="text" placeholder="Hinted search text">
+            <i class="fi fi-rr-search"></i> <!-- search icon -->
         </div>
 
-        <div class="user-btn">
-            <img src="assets/icons/user.svg" alt="">
-            <div>
-                <h1>NOM</h1>
-                <p>role</p>
-            </div>
+        <div>
+            <i class="fi fi-rs-circle-user"></i> <!-- user icon -->
         </div>
     </nav>
 
     </head>
     <main>
-
+        <p>PUTE</p>
     </main>
 
     <footer>
