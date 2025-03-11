@@ -10,8 +10,8 @@
 
     <nav class="navbar">
         <div class="logo">LOGO</div>
-
-        <div class="home-btn">
+        
+        <div class="home">
             <img src="assets/icons/home.svg" alt="">
         </div>
 
@@ -21,13 +21,14 @@
             <input type="text" placeholder="Hinted search text">
         </div>
 
-        <div class="user-btn">
+        <div class="user">
             <img src="assets/icons/user.svg" alt="">
             <div>
                 <h1>NOM</h1>
                 <p>role</p>
             </div>
         </div>
+
     </nav>
 
     </head>
@@ -36,7 +37,7 @@
     </main>
 
     <footer>
-        <a href="/vues/publisher.php">Mention l'égale</a>
+        <a href="/vues/Publisher.php">Mention l'égale</a>
     </footer>
 </body>
 

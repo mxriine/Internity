@@ -1,7 +1,9 @@
 :root {
-    --CWhite: rgb(238, 238, 238);
+    --CWhite: rgb(255, 255, 255);
+    --CBlack: rgba(0, 0, 0, 0.1);
     --CpBlack: rgb(34, 40, 49);
     --CsBlack: rgb(49, 54, 63);
+    --CGrey: rgba(255, 255, 255, 0.6);
     --CpBlue: rgb(118, 171, 174);
 }
 
@@ -10,18 +12,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    color: v;
 }
 
 body {
     background-color: var(--CWhite);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
 footer {
-    background-color: #222831;
+    background-color: var(--CpBlack);
     color: var(--CWhite);
     text-align: center;
     padding: 20px 0px;
@@ -37,41 +35,24 @@ footer a {
 }
 
 footer a:visited {
-    color: rgb(255, 255, 255);
+    color: var(--CWhite);
     text-decoration: none;
 }
 
-
-/* */
-
-.right {
-    float: right;
-}
-
-.left {
-    float: left;
-}
-
-.center {
-    text-align: center;
-}
-
-.white {
-    color: var(--CWhite);
-}
+/* Menu */
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* padding: 30px 20px; */
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--CGrey);
     /* Fond semi-transparent */
     backdrop-filter: blur(10px);
     /* Flou en arrière-plan */
     -webkit-backdrop-filter: blur(10px);
     /* Compatibilité Safari */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px var(--CBlack);
     /* Ombre en bas */
     position: relative;
     width: 100%;
@@ -83,7 +64,6 @@ footer a:visited {
 .logo {
     font-size: 24px;
     position: absolute;
-
 }
 
 .search-bar {
@@ -105,9 +85,7 @@ footer a:visited {
     outline: none;
 }
 
-
-
-.user-btn {
+.user {
     width: 10vw;
     height: 100%;
     display: flex;
@@ -115,7 +93,7 @@ footer a:visited {
     align-items: center;
 }
 
-.user-btn div {
+.user div {
     margin-left: 10px;
     display: flex;
     align-items: start;
@@ -123,16 +101,16 @@ footer a:visited {
     flex-direction: column;
 }
 
-.user-btn div h1 {
+.user div h1 {
     font-size: 20px;
 }
 
-.user-btn div p {
+.user div p {
     font-size: 15px;
 }
 
 /* Icons */
-.home-btn {
+.home {
     height: 100%;
     display: flex;
     align-items: end;
@@ -140,7 +118,7 @@ footer a:visited {
     flex-direction: column;
 }
 
-.home-btn img {
+.home img {
     height: 37%;
     right: 10px;
 }
@@ -157,7 +135,25 @@ footer a:visited {
     left: 10px;
 }
 
-.user-btn img {
-    height: 60%;
+.user img {
+    height: 50%;
     right: 10px;
+}
+
+/* CSS de bases */
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.white {
+    color: var(--CWhite);
 }
