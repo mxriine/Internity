@@ -157,3 +157,69 @@ footer a:visited {
 .white {
     color: var(--CWhite);
 }
+
+/*spécifiques à la page de Login.php */
+.login-page .navbar {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid #76ABAE;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.login-page .login-container {
+    border: 2px solid #76ABAE;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 100px auto 0; /* Ajuste la marge pour éviter d'être sous la navbar */
+    text-align: center;
+}
+
+.login-page h2 {
+    margin-bottom: 20px;
+}
+
+.login-page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-page input[type="email"], 
+.login-page input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #76ABAE;
+    border-radius: 5px;
+}
+
+.login-page .remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 15px;
+}
+
+.login-page .remember-me input {
+    margin-right: 5px;
+}
+
+.login-page .login-btn {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-page .login-btn:hover {
+    background-color: #333;
+}
