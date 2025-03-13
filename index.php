@@ -12,7 +12,9 @@
             <div class="logo">LOGO</div>
 
             <div class="home">
-                <img src="assets/icons/home.svg" alt="">
+                <!--<a href="/index.php">-->
+                    <img src="assets/icons/home.svg">
+                <!--</a>-->
             </div>
 
             <div class="search-bar">
@@ -36,7 +38,8 @@
     </main>
 
     <footer>
-        <a href="/vues/Publisher.php">Mention l'égale</a>
+        <a class="legal" href="/vues/publisher.php">Mention l'égale</a>
+        <p>© 2025 - Internity</p>
     </footer>
 </body>
 
