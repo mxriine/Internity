@@ -3,45 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <title>Login</title>
-    <link rel="stylesheet" href="/assets/styles2.css">
-</head>
-<body>
-    <div class="top-bar">
-        <div class="logo">
-            <!-- Remplacez "LOGO" par votre logo -->
-            LOGO
-        </div>
-        <div class="home">
-            <a href="#">Maison</a>
-        </div>
-    </div>
-    <div class="login-container">
-        <form action="login_process.php" method="post">
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="input-group">
-                <label>
-                    <input type="checkbox" name="remember_me"> Se souvenir de moi
-                </label>
-            </div>
-            <button type="submit">Login</button>
-        </form>
-    </div>
-=======
-=======
->>>>>>> Nono
     <title>Login Page</title>
     <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="/assets/stylesLogin.css">
+    <link rel="stylesheet" href="/assets/login.css">
 </head>
 <body>
     <header class="navbar">
@@ -79,9 +43,6 @@
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
-<<<<<<< HEAD
->>>>>>> Nono
-=======
->>>>>>> Nono
+
 </body>
 </html>
