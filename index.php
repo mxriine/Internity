@@ -38,7 +38,11 @@
     </main>
 
     <footer>
+<<<<<<< HEAD
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
+=======
+        <a class="legal" href="/vues/MentionsLegales.php">Mention légales</a>
+>>>>>>> Nono
         <p>© 2025 - Internity</p>
     </footer>
 </body>

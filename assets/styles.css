@@ -121,9 +121,12 @@ footer p {
 }
 
 /* Icons */
-.home {
-    height: 100%;
-    width: 26.5vw;
+.home {    
+    width: 100%;
+    height: 10vh;
+    padding: 10px;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: end;
@@ -169,6 +172,7 @@ footer p {
     color: var(--CWhite);
 }
 
+<<<<<<< HEAD
 /*spécifiques à la page de Login.php */
 .login-page .navbar {
     width: 100%;
@@ -234,3 +238,5 @@ footer p {
 .login-page .login-btn:hover {
     background-color: #333;
 }
+=======
+>>>>>>> Nono
