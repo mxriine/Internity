@@ -12,9 +12,7 @@
             <div class="logo">LOGO</div>
 
             <div class="home">
-                <!--<a href="/index.php">-->
-                    <img src="assets/icons/home.svg">
-                <!--</a>-->
+                <a href="/index.php"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
             </div>
 
             <div class="search-bar">
@@ -24,7 +22,9 @@
             </div>
 
             <div class="user">
-                <img src="assets/icons/user.svg" alt="">
+                <div class="user-icons">
+                    <a href="/vues/Login.php"><img src="assets/icons/user.svg" alt=""></a>
+                </div>
                 <div>
                     <h1>NOM</h1>
                     <p>role</p>

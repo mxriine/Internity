@@ -11,7 +11,7 @@
     <header class="navbar">
         <div class="logo">LOGO</div>
         <div class="home">
-            <a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
+            <a href="/index.php"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
         </div>
     </header>
     <main>

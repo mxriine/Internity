@@ -1,42 +1,13 @@
-/* Reset CSS */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-left: 20px;
-}
-
-.home img {
-    height: 30px;
-    width: auto;
-}
-
 /* Main */
 main {
     display: flex;
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
-    min-height: calc(100vh - 80px); /* Hauteur minimale moins la navbar */
-    margin-top: 30px;
+    min-height: calc(100vh - 100px); /* Hauteur minimale moins la navbar */
+}
+
+.home {
+    width: 100vw;
 }
 
 /* Login Container */
@@ -110,3 +81,5 @@ button[type="submit"] {
 footer {
     position: fixed;
 }
+
+/* POUR NOLAN RESPONSIVE DESIGN */
