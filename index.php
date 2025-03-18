@@ -38,7 +38,7 @@
     </main>
 
     <footer>
-        <a class="legal" href="/vues/publisher.php">Mention l'égale</a>
+        <a class="legal" href="/vues/MentionsLegales.php">Mention légales</a>
         <p>© 2025 - Internity</p>
     </footer>
 </body>
