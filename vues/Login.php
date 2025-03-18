@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <title>Login</title>
     <link rel="stylesheet" href="/assets/styles2.css">
 </head>
@@ -36,6 +37,8 @@
         </form>
     </div>
 =======
+=======
+>>>>>>> Nono
     <title>Login Page</title>
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="/assets/stylesLogin.css">
@@ -76,6 +79,9 @@
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
+<<<<<<< HEAD
+>>>>>>> Nono
+=======
 >>>>>>> Nono
 </body>
 </html>
