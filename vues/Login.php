@@ -16,10 +16,10 @@ require_once ('../src/Controllers/LoginController.php');
 
 <body>
     <header class="navbar">
-        <div class="logo">LOGO</div>
         <div class="home">
             <a href="/index.php"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
         </div>
+        <div class="logo">LOGO</div>
     </header>
     <main>
         <div class="login-container">

@@ -3,6 +3,9 @@
 
 <head>
     <title>Internity - Home</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Internity - Le meilleur de l'Internet">
+    <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/styles.css">
 </head>
 
@@ -11,30 +14,26 @@
         <nav class="navbar">
             <div class="logo">LOGO</div>
 
-            <div class="home">
-                <a href="/index.php"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
-            </div>
-
             <div class="search-bar">
-                <img src="assets/icons/menu-burger.svg" alt="">
-                <img src="assets/icons/search.svg" alt="">
+                <img src="/assets/icons/menu-burger.svg" alt="">
+                <img src="/assets/icons/search.svg" alt="">
                 <input type="text" placeholder="Hinted search text">
             </div>
 
-            <div class="user">
-                <a href="/vues/Login.php">
-                    <img src="/assets/icons/user.svg" alt="Icône utilisateur">
-                </a>
-
-                <div>
-                    <h1>{{ user_name }}</h1>
-                    <p>{{ user_role }}</p>
-                </div>
+            <div class="connect">
+                <a href="/vues/Login.php"><button>Se connecter</button></a>
             </div>
         </nav>
     </header>
 
     <main>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Internity</h1>
+                <p>Le meilleur de l'Internet</p>
+            </div>
+        </section>
 
     </main>
 
