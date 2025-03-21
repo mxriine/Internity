@@ -1,20 +1,14 @@
 {
     "name": "cesi/internity",
-    "type": "project",
-    "require": {
-        "twig/twig": "^3.16"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^11.4"
-    },
     "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
+      "psr-4": {
+        "Controllers\\": "src/Controllers/",
+        "Models\\": "src/Models/",
+        "Core\\": "src/Core/"
+      }
     },
-    "authors": [
-        {
-            "name": "Internity"
-        }
-    ]
-}
+    "require": {
+      "twig/twig": "^3.0"
+    }
+  }
+  

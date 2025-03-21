@@ -51,7 +51,7 @@ input[type="text"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -80,6 +80,11 @@ button[type="submit"] {
 
 footer {
     position: fixed;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
 }
 
 /* POUR NOLAN RESPONSIVE DESIGN */
