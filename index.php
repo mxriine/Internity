@@ -1,46 +1,40 @@
-<!DOCTYPE html>
-<html>
+<?php
+// Chargement de l'autoloader de Composer
+require_once __DIR__ . '/vendor/autoload.php';
 
-<head>
-    <title>Internity - Home</title>
-    <link rel="stylesheet" href="/assets/styles.css">
-</head>
+// Démarrage de la session
+session_start();
 
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">LOGO</div>
+// Initialisation du moteur de templates Twig pour gérer les vues.
+$loader = new \Twig\Loader\FilesystemLoader('vues'); // Définit le dossier des templates
+$twig = new \Twig\Environment($loader, [
+    'debug' => true // Active le mode debug (utile pour voir les erreurs dans les templates)
+]);
 
-            <div class="home">
-                <a href="/index.php"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
-            </div>
+// Vérifie si une URI est présente dans l'URL (paramètre GET 'uri')
+if (isset($_GET['uri'])) {
+    $uri = $_GET['uri']; // Récupère la valeur de l'URI
+} else {
+    $uri = '/'; // Valeur par défaut : page d'accueil
+}
 
-            <div class="search-bar">
-                <img src="assets/icons/menu-burger.svg" alt="">
-                <img src="assets/icons/search.svg" alt="">
-                <input type="text" placeholder="Hinted search text">
-            </div>
+// Récupérer le contrôleur et exécuter l'action appropriée
+switch ($uri) {
+    case '/':
+        // Afficher la page d'accueil
+        echo $twig->render('Home.twig.html', [
+            'user_name' => 'Mazou Marine',  // Exemple de nom d'utilisateur
+            'user_role' => 'Admin'      // Exemple de rôle de l'utilisateur
+        ]);
+        break;
 
-            <div class="user">
-                <div class="user-icons">
-                    <a href="/vues/Login.php"><img src="assets/icons/user.svg" alt=""></a>
-                </div>
-                <div>
-                    <h1>NOM</h1>
-                    <p>role</p>
-                </div>
-            </div>
-        </nav>
-    </header>
+    case '/login':
+        // Afficher la page de connexion
+        echo $twig->render('Login.twig.html');
+        break;
 
-    <main>
-
-    </main>
-
-    <footer>
-        <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
-        <p>© 2025 - Internity</p>
-    </footer>
-</body>
-
-</html>
+    // Ajouter d'autres cas ici si nécessaire, par exemple pour les autres pages
+    default:
+        echo 'Page non trouvée';
+        break;
+}
