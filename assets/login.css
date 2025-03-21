@@ -6,9 +6,7 @@ main {
     min-height: calc(100vh - 100px); /* Hauteur minimale moins la navbar */
 }
 
-.home {
-    width: 100vw;
-}
+
 
 /* Login Container */
 .login-container {
@@ -87,4 +85,21 @@ footer {
     font-size: 12px;
 }
 
-/* POUR NOLAN RESPONSIVE DESIGN */
+/* Styles spécifiques à la page de login */
+.login-page .navbar {
+    justify-content: space-between; /* Conserve l'espace entre le logo et l'icône Home */
+}
+
+.login-page .logo {
+    position : absolute;
+    left : 50%; /* Pousse le logo vers la droite */
+    transform: translateX(-50%); /* Centre le logo horizontalement */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-page .home {
+    justify-content: flex-start; /* Alignement à gauche */
+    width: auto; /* Ajuste la largeur au contenu */
+    padding: 0; /* Supprime le padding inutile */
+}
