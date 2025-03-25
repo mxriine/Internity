@@ -77,38 +77,34 @@
                         <button class="btn">Voir l'offre</button>
                     </div>
                 </div>
+    
+                
+                <!-- Potentiel boucle "foreach" pour afficher les offres, à la place du html répétitif... pour le backend :)
 
-                <div class="card">
-                    <div class="card-header">
-                        <img src="assets/icons/star.svg" alt="Favori">
-                    </div>
-                    <div class="card-body">
-                        <div class="label-container">
-                            <a href="#" class="label">Label</a>
-                        </div>
-                        <h2>Titre du stage</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis cursus tortor.
-                        </p>
-                        <button class="btn">Voir l'offre</button>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <img src="assets/icons/star.svg" alt="Favori">
-                    </div>
-                    <div class="card-body">
-                        <div class="label-container">
-                            <a href="#" class="label">Label</a>
+                <section class="cards">
+                    < ?php foreach ($offres as $offre): ?>
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="assets/icons/star.svg" alt="Favori">
+                            </div>
+                            <div class="card-body">
+                                <div class="label-container">
+                                    <a href="#" class="label">< ?php echo htmlspecialchars($offre['label']); ?></a>
+                                </div>
+                                <h2>< ?php echo htmlspecialchars($offre['titre']); ?></h2>
+                                <p>
+                                    < ?php echo htmlspecialchars($offre['description']); ?>
+                                </p>
+                                <button class="btn">Voir l'offre</button>
+                            </div>
                         </div>
-                        <h2>Titre du stage</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis cursus tortor.
-                        </p>
-                        <button class="btn">Voir l'offre</button>
-                    </div>
-                </div>
+                    < ?php endforeach; ?>
+                </section>
+
+
+                 -->
+
             </section>
         </main>
 
