@@ -8,6 +8,12 @@ main {
 
 
 
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 /* Login Container */
 .login-container {
     background-color: #76ABAE;

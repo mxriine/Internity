@@ -20,7 +20,9 @@ require_once ('../src/Controllers/LoginController.php');
             <a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
         </div>
         <div class="logo">LOGO</div>
+
             <!--<a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a> -->
+
     </header>
     <main>
         <div class="login-container">
