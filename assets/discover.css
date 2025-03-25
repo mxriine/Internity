@@ -14,8 +14,8 @@ body {
 }
 
 main {
-    padding : 20px;
-}   
+    padding: 20px;
+}
 
 /* Conteneur principal */
 .header-section {
@@ -41,7 +41,7 @@ h1 {
     align-items: center; /* Alignement vertical des étiquettes */
     flex-wrap: wrap; /* Permet aux étiquettes de passer à la ligne si nécessaire */
     margin-right: auto; /* Pousse les étiquettes vers la gauche */
-    margin-left : 1%;
+    margin-left: 1%;
 }
 
 /* Masquer les checkboxes par défaut */
@@ -87,35 +87,29 @@ h1 {
     cursor: pointer;
     font-size: 14px;
     text-decoration: none;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .btn-enterprise:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     transition-duration: 300ms;
 }
 
 /* Cartes de stages */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    gap: 40px; /* Espacement entre les cartes */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
+    max-height: 64.9vh; /* Hauteur maximale pour activer le défilement */
 }
 
 .card {
     background-color: #f4f4f4;
     border-radius: 10px;
     overflow: hidden;
-}
-
-.card-header {
-    background-color: #e9e9e9;
-    padding: 10px;
-    text-align: center;
-}
-
-.card-body {
-    padding: 20px;
+    padding: 20px; /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet visuel */
 }
 
 .label-container {
@@ -176,5 +170,15 @@ h1 {
         margin-left: 0; /* Annule la poussée vers la droite */
         width: 100%; /* Occupe toute la largeur */
         text-align: right; /* Alignement à droite */
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur les petits écrans */
+    }
+}
+
+@media (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr; /* 1 colonne sur les très petits écrans */
     }
 }
