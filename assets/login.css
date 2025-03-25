@@ -6,12 +6,10 @@ main {
     min-height: calc(100vh - 100px); /* Hauteur minimale moins la navbar */
 }
 
-
-
 .logo {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    align-items: center;
 }
 
 /* Login Container */
