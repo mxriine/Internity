@@ -94,6 +94,31 @@ footer p {
     background: var(--CpBlue);
     color: var(--CpBlack);
     outline: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0px 10px 10px var(--CoBlack);
+}
+
+.connect {
+    position: absolute;
+    right: 0%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+
+.connect button {
+    padding: 10px 10px;
+    /* Plus d'espace pour l'icône */
+    border: none;
+    border-radius: 20px;
+    background: var(--CpBlue);
+    color: var(--CpBlack);
+    outline: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0px 10px 10px var(--CoBlack);
 }
 
 .user {
@@ -140,17 +165,31 @@ footer p {
     height: 50%;
     position: absolute;
     right: 10px;
+    z-index: 100;
 }
 
 .search-bar img:nth-of-type(1) {
     height: 50%;
     position: absolute;
     left: 10px;
+    z-index: 100;
 }
 
 .user img {
     height: 40px;
     width: auto;
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 83.1vh;
+    color: var(--CBlack);
+}
+
+.hero-text {
+    text-align: center;
 }
 
 /* CSS de bases */
