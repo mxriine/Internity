@@ -8,8 +8,8 @@ require_once('Navbar.php');
 
 <head>
     <title>Internity - Mentions Légales</title>
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="/assets/mentionlegale.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/mentionlegale.css">
 </head>
 
 <body>
