@@ -6,7 +6,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : 'inconnu';
 $surname = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 
 // Vérifier la page actuelle
-$current_page = basename($_SERVER['PHP_SELF']);
+$current_page = basename(path: $_SERVER['PHP_SELF']);
 
 echo '<header>
         <nav class="navbar">

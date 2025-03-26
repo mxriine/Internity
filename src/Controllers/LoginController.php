@@ -1,6 +1,5 @@
 <?php
 
-/*
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -41,7 +40,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     // Vérification du mot de passe et connexion
     if ($row) {
         $stored_hashed_password = $row['user_password'];
-        $input_hashed = hash("sha256", $input_password);
+        $input_hashed = hash("sha512", $input_password);
 
         if ($input_hashed === $stored_hashed_password) {
             // Stocker les informations de l'utilisateur en session
@@ -51,7 +50,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $_SESSION['name'] = $row['user_name'];
 
             // Redirection en fonction du rôle
-            header('Location: ../vues/MentionsLegales.php');
+            header('Location: ../vues/Discover.php');
             exit();
         } else {
             $error_message = "❌ Mot de passe incorrect !";
@@ -69,5 +68,5 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 // Fermer la connexion
 $stmt = null;
 
-*/
+
 ?>
