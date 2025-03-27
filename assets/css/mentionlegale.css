@@ -1,3 +1,7 @@
+.header {
+    position: relative;
+}
+
 .publisher {
     display: flex;
     flex-direction: column;

@@ -1,131 +1,203 @@
-/* Réinitialisation des marges et padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Styles globaux */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-main {
-    padding: 20px;
-}
-
-/* Conteneur principal */
-.header-section {
-    margin-top: 2vh;
-    display: flex;
-    align-items: center; /* Alignement vertical des éléments */
-    justify-content: space-between; /* Espacement entre les éléments */
-    margin-bottom: 20px; /* Espacement sous le conteneur */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
-}
-
-/* Titre */
 h1 {
     font-size: 24px;
-    margin: 0; /* Supprime les marges par défaut */
-    flex-shrink: 0; /* Empêche le titre de rétrécir sur les petits écrans */
+    margin: 0;
+    flex-shrink: 0;
 }
 
-/* Barre d'étiquettes */
+/* Menu */
+
+.header-section {
+    padding: 80px 0px 20px 20px;
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+/* Section principale avec image et formulaire */
+.hero-section {
+    position: relative;
+    padding: 5px 0;
+}
+
+.background-image img {
+    display: block;
+    width: 70%;
+    height: 250px;
+    object-fit: cover;
+    margin: 50px auto 0;
+}
+
+.search-form {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--CpBlue);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1; /* Assure que le formulaire est au premier plan */
+}
+
+/*.search-form.sticky {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+}*/
+
+.form-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 200px;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.form-group input::placeholder {
+    color: #fff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border: none;
+}
+
+.btn-search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: var(--CpBlue);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-search:hover {
+    background-color: #f4f4f4;
+}
+
+/* Tags */
+
 .tags {
     display: flex;
-    gap: 10px; /* Espacement entre les étiquettes */
-    align-items: center; /* Alignement vertical des étiquettes */
-    flex-wrap: wrap; /* Permet aux étiquettes de passer à la ligne si nécessaire */
-    margin-right: auto; /* Pousse les étiquettes vers la gauche */
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: auto;
     margin-left: 1%;
 }
 
-/* Masquer les checkboxes par défaut */
 .hidden-checkbox {
-    display: none; /* Cache les checkboxes */
+    display: none;
 }
 
-/* Styles des étiquettes (labels) */
 .tag {
     display: inline-block;
     padding: 5px 10px;
     border-radius: 20px;
-    background-color: #e9f3f3; /* Couleur de fond non sélectionnée */
-    color: #76ABAE; /* Couleur du texte non sélectionnée */
-    cursor: pointer; /* Curseur en forme de main */
-    transition: all 0.3s ease; /* Animation fluide */
+    background-color: #e9f3f3;
+    color: #76ABAE;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Style lorsque la checkbox est cochée */
 .hidden-checkbox:checked + .tag {
-    background-color: #76ABAE; /* Couleur de fond sélectionnée */
-    color: #e9f3f3; /* Couleur du texte sélectionnée */
+    background-color: #76ABAE;
+    color: #e9f3f3;
 }
 
 .tag:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Ombre portée au survol */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     transition-duration: 300ms;
 }
 
-/* Bouton "Entreprises" */
-.enterprise-btn-container {
-    margin-left: auto; /* Pousse le bouton vers la droite */
-    flex-shrink: 0; /* Empêche le bouton de rétrécir sur les petits écrans */
-}
+/* Cards */
 
-.btn-enterprise {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #76ABAE;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.btn-enterprise:hover {
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    transition-duration: 300ms;
-}
-
-/* Cartes de stages */
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-    gap: 40px; /* Espacement entre les cartes */
-    overflow-y: auto; /* Ajoute une barre de défilement verticale si nécessaire */
-    max-height: 64.9vh; /* Hauteur maximale pour activer le défilement */
+    grid-template-columns: repeat(3, 450px);
+    gap: 50px;
+    max-height: 64.9vh;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .card {
     background-color: #f4f4f4;
     border-radius: 10px;
-    overflow: hidden;
-    padding: 20px; /* Espacement interne */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet visuel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.label-container {
+.card-header {
+    background-color: #AAAAAA;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-img {
+    background-color: #FFFFFF;
+    opacity: 0.5;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.card-img img {
+    max-width: 40px;
+    height: auto;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Card content */
+
+.skills-container {
+    font-size: 0.8em;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
-.label {
+.skills {
     display: inline-block;
     padding: 5px 10px;
     border-radius: 20px;
     background-color: #e9f3f3;
     color: #76ABAE;
     text-decoration: none;
+    border: 1px solid #76ABAE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .card h2 {
@@ -137,6 +209,8 @@ h1 {
     margin-bottom: 20px;
     line-height: 1.6;
 }
+
+/* Button */
 
 .btn {
     display: inline-block;
@@ -153,32 +227,31 @@ h1 {
     background-color: #76ABAE;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .header-section {
-        flex-direction: column; /* Alignement vertical sur les petits écrans */
-        align-items: flex-start; /* Alignement à gauche */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .tags {
-        margin-right: 0; /* Annule la poussée vers la gauche */
-        width: 100%; /* Occupe toute la largeur */
-        margin-bottom: 10px; /* Espacement sous les étiquettes */
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .enterprise-btn-container {
-        margin-left: 0; /* Annule la poussée vers la droite */
-        width: 100%; /* Occupe toute la largeur */
-        text-align: right; /* Alignement à droite */
+        margin-left: 0;
+        width: 100%;
+        text-align: right;
     }
 
     .cards {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur les petits écrans */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
     .cards {
-        grid-template-columns: 1fr; /* 1 colonne sur les très petits écrans */
+        grid-template-columns: 1fr;
     }
 }

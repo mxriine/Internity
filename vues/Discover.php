@@ -1,116 +1,80 @@
+<!-- FORMULAIRE DE CONNEXION (EN PHP) -->
+<?php
+require_once('../src/Controllers/LoginController.php');
+require_once('Navbar.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
+    <title>Internity - Home</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Page</title>
-    <link rel="stylesheet" href="/assets/css/discover.css">
+    <meta name="description" content="Internity - Le meilleur de l'Internet">
+    <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/discover.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">LOGO</div>
+    <!-- Barre de navigation -->
 
-            <div class="home">
-                <a href="/index.php"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
+    <main>
+        <!-- Section principale avec image et formulaire -->
+        <section class="hero-section">
+            <div class="background-image">
+                <img src="/assets/images/discover.jpg" alt="Image de fond">
             </div>
-
-            <div class="search-bar">
-                <img src="assets/icons/menu-burger.svg" alt="">
-                <img src="assets/icons/search.svg" alt="">
-                <input type="text" placeholder="Hinted search text">
-            </div>
-
-            <div class="user">
-                <a href="/vues/Login.php">
-                    <img src="/assets/icons/user.svg" alt="Icône utilisateur">
-                </a>
-            </div>
-        </nav>
-
-        <main>
-            <!-- Conteneur principal pour le titre et les étiquettes -->
-            <div class="header-section">
-                <h1>Pour vous</h1>
-
-                <!-- Barre d'étiquettes -->
-                <div class="tags">
-                    <input type="checkbox" id="category1" class="hidden-checkbox">
-                    <label class="tag" for="category1">Label 1</label>
-
-                    <input type="checkbox" id="category2" class="hidden-checkbox">
-                    <label class="tag" for="category2">Label 2</label>
-
-                    <input type="checkbox" id="category3" class="hidden-checkbox">
-                    <label class="tag" for="category3">Label 3</label>
-
-                    <input type="checkbox" id="category4" class="hidden-checkbox">
-                    <label class="tag" for="category4">Label 4</label>
-
-                    <input type="checkbox" id="category5" class="hidden-checkbox">
-                    <label class="tag" for="category5">Label 5</label>
-                </div>
-
-                <!-- Bouton "Entreprises" -->
-                <div class="enterprise-btn-container">
-                    <button class="btn-enterprise">Entreprises</button>
-                </div>
-            </div>
-
-            <!-- Section des cartes de stages -->
-            <section class="cards">
-                <div class="card">
-                    <div class="card-header">
-                        <img src="assets/icons/star.svg" alt="Favori">
+            <div class="search-form">
+                <form action="#" method="get">
+                    <div class="form-group">
+                        <label for="what">QUOI ?</label>
+                        <input type="text" id="what" placeholder="Métier, entreprise, compétence...">
                     </div>
-                    <div class="card-body">
-                        <div class="label-container">
-                            <a href="#" class="label">Label</a>
-                        </div>
-                        <h2>Titre du stage</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis cursus tortor.
-                        </p>
-                        <button class="btn">Voir l'offre</button>
+                    <div class="form-group">
+                        <label for="where">OÙ ?</label>
+                        <input type="text" id="where" placeholder="Ville, département, code postal...">
                     </div>
-                </div>
-    
-                
-                <!-- Potentiel boucle "foreach" pour afficher les offres, à la place du html répétitif... pour le backend :)
+                    <button type="submit" class="btn btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
 
+        <!-- Section des offres -->
+        <div class="header-section">
+            <h1>Pour vous</h1>
 
-                <section class="cards">
-                    < ?php foreach ($offres as $offre): ?>
-                        <div class="card">
-                            <div class="card-header">
-                                <img src="assets/icons/star.svg" alt="Favori">
-                            </div>
-                            <div class="card-body">
-                                <div class="label-container">
-                                    <a href="#" class="label">< ?php echo htmlspecialchars($offre['label']); ?></a>
-                                </div>
-                                <h2>< ?php echo htmlspecialchars($offre['titre']); ?></h2>
-                                <p>
-                                    < ?php echo htmlspecialchars($offre['description']); ?>
-                                </p>
-                                <button class="btn">Voir l'offre</button>
-                            </div>
-                        </div>
-                    < ?php endforeach; ?>
-                </section>
+            <!-- Barre d'étiquettes -->
+            <div class="tags">
+                <input type="checkbox" id="category1" class="hidden-checkbox">
+                <label class="tag" for="category1">Stage</label>
 
+                <input type="checkbox" id="category2" class="hidden-checkbox">
+                <label class="tag" for="category2">Marketing</label>
 
-                 -->
+                <input type="checkbox" id="category3" class="hidden-checkbox">
+                <label class="tag" for="category3">Data</label>
 
-            </section>
-        </main>
+                <input type="checkbox" id="category4" class="hidden-checkbox">
+                <label class="tag" for="category4">Informatique</label>
 
-        <footer>
-            <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
-            <p>© 2025 - Internity</p>
-        </footer>
-    </body>
+                <input type="checkbox" id="category5" class="hidden-checkbox">
+                <label class="tag" for="category5">Cyber-sécurité</label>
+            </div>
+        </div>
+
+        <!-- Section des cartes de stages -->
+        <?php require_once('../src/Controllers/OfferController.php'); ?>
+    </main>
+
+    <footer>
+        <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
+        <p>© 2025 - Internity</p>
+    </footer>
+
+</body>
+
 </html>

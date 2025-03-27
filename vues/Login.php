@@ -17,12 +17,11 @@ require_once ('../src/Controllers/LoginController.php');
 <body class="login-page">
     <header class="navbar">
         <div class="home">
-            <a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
+            <a href="Home.twig.html"><img src="/assets/icons/home.svg" alt="Home"></a>
         </div>
-        <div class="logo">LOGO</div>
-
-            <!--<a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a> -->
-
+        <div class="logo">
+            <h1>INTERNITY</h1>
+        </div>
     </header>
     <main>
         <div class="login-container">
