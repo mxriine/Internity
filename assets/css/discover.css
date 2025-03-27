@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Menu */
+
+.header-section {
+    padding: 80px 0px 20px 20px;
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+/* Section principale avec image et formulaire */
+.hero-section {
+    position: relative;
+    padding: 5px 0;
+}
+
+.background-image img {
+    display: block;
+    width: 70%;
+    height: 250px;
+    object-fit: cover;
+    margin: 50px auto 0;
+}
+
+.search-form {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--CpBlue);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1; /* Assure que le formulaire est au premier plan */
+}
+
+/*.search-form.sticky {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+}*/
+
+.form-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 200px;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.form-group input::placeholder {
+    color: #fff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border: none;
+}
+
+.btn-search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    color: var(--CpBlue);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-search:hover {
+    background-color: #f4f4f4;
+}
+
+/* Tags */
+
+.tags {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: 1%;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #e9f3f3;
+    color: #76ABAE;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hidden-checkbox:checked + .tag {
+    background-color: #76ABAE;
+    color: #e9f3f3;
+}
+
+.tag:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    transition-duration: 300ms;
+}
+
+/* Cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 450px);
+    gap: 50px;
+    max-height: 64.9vh;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #AAAAAA;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-img {
+    background-color: #FFFFFF;
+    opacity: 0.5;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.card-img img {
+    max-width: 40px;
+    height: auto;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Card content */
+
+.skills-container {
+    font-size: 0.8em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.skills {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #e9f3f3;
+    color: #76ABAE;
+    text-decoration: none;
+    border: 1px solid #76ABAE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Button */
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #76ABAE;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #76ABAE;
+}
+
+@media (max-width: 768px) {
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tags {
+        margin-right: 0;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .enterprise-btn-container {
+        margin-left: 0;
+        width: 100%;
+        text-align: right;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}

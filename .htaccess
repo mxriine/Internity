@@ -1,1 +1,1 @@
-Redirect /index.php http://localhost/vues/Home.twig.html
+Redirect /index.php /vues/Home.twig.html

@@ -25,7 +25,7 @@ if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $stored_hashed_password = $row['user_password'];
 
     // 🔹 Hacher l'entrée utilisateur avec SHA-256 pour comparaison
-    $input_hashed = hash("sha256", $input_password);
+    $input_hashed = hash("sha512", $input_password);
 
     // Comparer les deux hachages
     if ($input_hashed === $stored_hashed_password) {

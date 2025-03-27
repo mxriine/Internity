@@ -10,19 +10,18 @@ require_once ('../src/Controllers/LoginController.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="/assets/login.css">
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body class="login-page">
     <header class="navbar">
         <div class="home">
-            <a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a>
+            <a href="Home.twig.html"><img src="/assets/icons/home.svg" alt="Home"></a>
         </div>
-        <div class="logo">LOGO</div>
-
-            <!--<a href="#"><img src="/assets/icons/home.svg" alt="Home Icon"></a> -->
-
+        <div class="logo">
+            <h1>INTERNITY</h1>
+        </div>
     </header>
     <main>
         <div class="login-container">

@@ -1,0 +1,197 @@
+:root {
+    --CWhite: rgb(255, 255, 255);
+    --CBlack: rgba(0, 0, 0);
+    --CoBlack: rgba(0, 0, 0, 0.1);
+    --CpBlack: rgb(34, 40, 49);
+    --CsBlack: rgb(49, 54, 63);
+    --CGrey: rgba(255, 255, 255, 0.6);
+    --CpBlue: rgb(118, 171, 174);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background-color: var(--CWhite);
+}
+
+footer {
+    background-color: var(--CpBlack);
+    color: var(--CWhite);
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+footer a {
+    color: var(--CWhite);
+    text-decoration: none;
+}
+
+footer a:visited {
+    color: var(--CWhite);
+    text-decoration: none;
+}
+
+footer .legal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer p {
+    margin-right: 30px;
+    margin-left: auto;
+}
+
+/* Barre de navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.menu-left {
+    padding: 5px 80px;
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Espacement entre les liens principaux */
+}
+
+.menu-left a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.menu-left a.active {
+    color: var(--CpBlue);
+}
+
+.menu-left a:hover {
+    color: var(--CpBlue);
+}
+
+.dropdown-toggle {
+    position: relative;
+}
+
+.dropdown-toggle i {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.submenu {
+    display: none; /* Masqué par défaut */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    z-index: 10;
+}
+
+.submenu li {
+    width: 200px; /* Largeur fixe pour le sous-menu */
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    white-space: nowrap; /* Empêche le texte de se casser */
+}
+
+.submenu a:hover {
+    background-color: #f4f4f4;
+}
+
+/* Affichage du sous-menu au survol */
+.menu-right-links .dropdown-toggle:hover + .submenu,
+.menu-right-links .submenu:hover {
+    display: block;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.user-details span:first-child {
+    display: block;
+    font-weight: bold;
+}
+
+/* Style du menu déroulant */
+.user-menu {
+    display: none; /* Masqué par défaut */
+    position: absolute;
+    top: calc(100% + 10px); /* Positionné sous l'icône d'avatar */
+    right: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000; /* Assure que le menu reste au premier plan */
+}
+
+.user-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu li {
+    padding: 10px 20px;
+}
+
+.user-menu li:last-child {
+    border-bottom: none; /* Supprime la bordure inférieure du dernier élément */
+}
+
+.user-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.user-menu a:hover {
+    background-color: #f4f4f4;
+}
