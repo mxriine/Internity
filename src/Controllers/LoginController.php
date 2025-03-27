@@ -3,11 +3,11 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+// Démarrez la session
+session_start();
+
 // Inclure le fichier de connexion à la base de données
 require_once(__DIR__ . '/../Core/DataBase.php');
-
-// Démarrer la session
-session_start();
 
 // Initialiser les variables
 $error_message = "";
