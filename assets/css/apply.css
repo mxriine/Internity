@@ -3,12 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-main {
-    display: flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    min-height: calc(100vh - 100px); /* Hauteur minimale moins la navbar */
-}
 
 /* Layout en deux colonnes */
 .two-columns {
@@ -16,7 +10,7 @@ main {
     justify-content: space-between; /* Espacement entre les deux colonnes */
     align-items: flex-start; /* Alignement en haut */
     gap: 2vw; /* Espacement entre les deux colonnes */
-    padding: 20px 0 0 0; /* Ajout d'un peu de padding autour du contenu */
+    padding: 80px 20px 4px 0px;
 }
 
 .card-section {

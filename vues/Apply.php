@@ -1,7 +1,6 @@
 <!-- FORMULAIRE DE CONNEXION (EN PHP) -->
 <?php
 require_once('../src/Controllers/LoginController.php');
-require_once('Navbar.php');
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +16,10 @@ require_once('Navbar.php');
 </head>
 
 <body class="page-apply">
-    <!-- Main Content -->
+
+    <!-- Navbar -->
+    <?php require_once('Navbar.php'); ?>
+
     <main>
         <div class="two-columns">
             <!-- Form Section -->
