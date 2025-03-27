@@ -15,14 +15,9 @@
     font-family: Arial, sans-serif;
 }
 
-main {
-    flex: 1;
-}
 
 body {
     background-color: var(--CWhite);
-    display: flex;
-    flex-direction: column;
 }
 
 footer {

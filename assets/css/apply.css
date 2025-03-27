@@ -1,53 +1,14 @@
-
-.bouttons {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main {
     display: flex;
-    gap: 1vw; /* Espacement entre "Entreprises" et "Offres" */
-    align-items: center;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    min-height: calc(100vh - 100px); /* Hauteur minimale moins la navbar */
 }
-
-.btn-nav {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 20px;
-    background: var(--CpBlue);
-    color: var(--CpBlack);
-    font-size: 14px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0px 5px 10px var(--CoBlack);
-}
-
-.btn-nav:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 15px var(--CoBlack);
-}
-
-.btn-connect {
-    padding:1.5vh 1vw;
-    border: none;
-    border-radius: 20px;
-    background: var(--CpGreen);
-    color: var(--CpBlack);
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0px 10px 10px var(--CoBlack);
-}
-
-.btn-connect:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 12px 20px var(--CoBlack);
-}
-
-
-
-
-
-
-
-
-
-
 
 /* Layout en deux colonnes */
 .two-columns {
@@ -55,7 +16,7 @@
     justify-content: space-between; /* Espacement entre les deux colonnes */
     align-items: flex-start; /* Alignement en haut */
     gap: 2vw; /* Espacement entre les deux colonnes */
-    padding: 20px; /* Ajout d'un peu de padding autour du contenu */
+    padding: 20px 0 0 0; /* Ajout d'un peu de padding autour du contenu */
 }
 
 .card-section {
