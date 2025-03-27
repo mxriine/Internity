@@ -1,0 +1,197 @@
+/* Layout principal */
+.two-columns {
+    display: flex;
+    margin: 20px;
+    gap: 30px; /* Espace entre le menu et le contenu */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 25%; /* Largeur du menu */
+    background-color: var(--CpBlack);
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px var(--CoBlack);
+    max-height: 40vh;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: var(--CWhite);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-item.active {
+    background-color: var(--CpBlue);
+    color: var(--CWhite);
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px var(--CoBlack);
+}
+
+/* Contenu */
+.content {
+    width: 50%; /* Largeur du contenu */
+    padding-left: 20px;
+}
+
+.tab-content {
+    display: none;
+    color: var(--CBlack);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Titres et textes */
+.tab-content h2 {
+    color: var(--CpBlue);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.tab-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--CsBlack);
+}
+
+
+
+.bouttons {
+    display: flex;
+    gap: 1vw; /* Espacement entre "Entreprises" et "Offres" */
+    align-items: center;
+}
+
+.btn-nav {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: var(--CpBlue);
+    color: var(--CpBlack);
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0px 5px 10px var(--CoBlack);
+}
+
+.btn-nav:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px var(--CoBlack);
+}
+
+.btn-connect {
+    padding:1.5vh 1vw;
+    border: none;
+    border-radius: 20px;
+    background: var(--CpGreen);
+    color: var(--CpBlack);
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0px 10px 10px var(--CoBlack);
+}
+
+.btn-connect:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 12px 20px var(--CoBlack);
+}
+
+/* Informations personnelles */
+.account-info {
+    margin-bottom: 30px;
+}
+
+.account-info h3 {
+    margin-bottom: 15px;
+    color: var(--CpBlue); /* Bleu pour les titres */
+}
+
+.account-info .form-group {
+    margin-bottom: 15px;
+}
+
+.account-info label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--CBlack); /* Noir pour les labels */
+}
+
+.account-info input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--CpBlue); /* Bordure bleue par défaut */
+    border-radius: 4px;
+    background-color: var(--CWhite); /* Fond blanc pour les champs */
+    color: var(--CBlack); /* Texte noir dans les champs */
+    transition: border-color 0.3s ease; /* Transition fluide */
+}
+
+.account-info input:focus {
+    border-color: var(--CpBlue); /* Conserver la même couleur au focus */
+    outline: none; /* Supprimer l'outline par défaut */
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: var(--CpBlue); /* Bouton bleu */
+    color: var(--CWhite); /* Texte blanc sur le bouton */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px var(--CoBlack);
+}
+
+/* Gestion des documents */
+.account-documents {
+    margin-top: 30px;
+}
+
+.account-documents h3 {
+    margin-bottom: 15px;
+    color: var(--CpBlue); /* Bleu pour les titres */
+}
+
+.document-upload {
+    margin-bottom: 20px;
+}
+
+.document-upload label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--CBlack); /* Noir pour les labels */
+}
+
+.document-upload input[type="file"] {
+    display: none; /* Cache le champ de fichier */
+}
+
+/* Gestion des documents */
+.document-upload p {
+    margin-top: 5px;
+    color: var(--CBlack); /* Texte gris pour les noms de fichiers */
+}
+
+.document-upload button {
+    margin-top: 10px;
+}

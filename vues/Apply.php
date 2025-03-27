@@ -129,7 +129,7 @@ require_once('../src/Controllers/LoginController.php');
     </footer>
 
     <!-- Inclusion du fichier JavaScript -->
-    <script src="/assets/apply.js"></script>
+    <script src="/assets/js/apply.js"></script>
 
 </body>
 

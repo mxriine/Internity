@@ -127,9 +127,10 @@
     background-color: #6aa8a8;
 }
 
+
+
 .error-message {
     color: red;
     font-size: 0.9em;
     margin-top: 0.2vw;
-    display: none; /* Masqué par défaut */
-}
+ } 

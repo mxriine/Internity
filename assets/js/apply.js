@@ -1,131 +1,125 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("applicationForm");
 
-    // Écouter la soumission du formulaire
-    form.addEventListener("submit", (event) => {
-        event.preventDefault(); // Empêcher la soumission par défaut
+    // Validation functions
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 
-        // Réinitialiser les messages d'erreur
-        resetErrors();
+    function isValidPhone(phone) {
+        const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/;
+        return phoneRegex.test(phone);
+    }
 
-        // Récupérer les valeurs des champs
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const cv = document.getElementById("cv").files[0];
-        const coverLetter = document.getElementById("cover-letter").files[0];
-        const message = document.getElementById("message").value.trim();
+    function isSafeMessage(message) {
+        const unsafeCharsRegex = /[<>@]/g; // Block <, >, and @
+        return !unsafeCharsRegex.test(message);
+    }
 
-        // Validation des champs
+    // Error display function
+    function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+    }
+
+    function clearErrors() {
+        document.querySelectorAll(".error-message").forEach((element) => {
+            element.textContent = "";
+        });
+    }
+
+    // Success message display function
+    function showSuccessMessage() {
+        const successMessage = document.createElement("div");
+        successMessage.textContent = "Votre application a bien été soumise.";
+        successMessage.style.position = "fixed";
+        successMessage.style.top = "20px";
+        successMessage.style.left = "50%";
+        successMessage.style.transform = "translateX(-50%)";
+        successMessage.style.backgroundColor = "green";
+        successMessage.style.color = "white";
+        successMessage.style.padding = "15px 30px";
+        successMessage.style.borderRadius = "5px";
+        successMessage.style.zIndex = "1000";
+        successMessage.style.textAlign = "center";
+        document.body.appendChild(successMessage);
+
+        // Remove the success message after 5 seconds
+        setTimeout(() => {
+            successMessage.remove();
+        }, 5000);
+    }
+
+    // Form submission handler
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission until validation passes
+        clearErrors();
+
         let isValid = true;
 
-        if (!validateName(name)) {
+        // Validate Name
+        const nameInput = document.getElementById("name");
+        if (!nameInput.value.trim()) {
             showError("nameError", "Le nom et prénom sont requis.");
             isValid = false;
         }
 
-        if (!validateEmail(email)) {
-            showError("emailError", "L'adresse e-mail est invalide.");
+        // Validate Email
+        const emailInput = document.getElementById("email");
+        if (!emailInput.value.trim()) {
+            showError("emailError", "L'adresse e-mail est requise.");
+            isValid = false;
+        } else if (!isValidEmail(emailInput.value)) {
+            showError("emailError", "Veuillez entrer une adresse e-mail valide.");
             isValid = false;
         }
 
-        if (!validatePhone(phone)) {
-            showError("phoneError", "Le numéro de téléphone est invalide.");
+        // Validate Phone
+        const phoneInput = document.getElementById("phone");
+        if (!phoneInput.value.trim()) {
+            showError("phoneError", "Le numéro de téléphone est requis.");
+            isValid = false;
+        } else if (!isValidPhone(phoneInput.value)) {
+            showError("phoneError", "Veuillez entrer un numéro de téléphone valide.");
             isValid = false;
         }
 
-        if (!validateFile(cv, "cvError")) {
+        // Validate CV Upload
+        const cvInput = document.getElementById("cv");
+        if (!cvInput.files.length) {
+            showError("cvError", "Veuillez importer un fichier PDF pour votre CV.");
+            isValid = false;
+        } else if (cvInput.files[0].type !== "application/pdf") {
+            showError("cvError", "Seuls les fichiers PDF sont acceptés pour le CV.");
             isValid = false;
         }
 
-        if (!validateFile(coverLetter, "coverLetterError")) {
+        // Validate Cover Letter Upload
+        const coverLetterInput = document.getElementById("cover-letter");
+        if (!coverLetterInput.files.length) {
+            showError("coverLetterError", "Veuillez importer un fichier PDF pour votre lettre de motivation.");
+            isValid = false;
+        } else if (coverLetterInput.files[0].type !== "application/pdf") {
+            showError("coverLetterError", "Seuls les fichiers PDF sont acceptés pour la lettre de motivation.");
             isValid = false;
         }
 
-        if (!validateMessage(message)) {
-            showError("messageError", "Le message contient des caractères non autorisés.");
+        // Validate Message
+        const messageInput = document.getElementById("message");
+        if (messageInput.value.trim() && !isSafeMessage(messageInput.value)) {
+            showError("messageError", "Le message contient des caractères non autorisés (<, >, @).");
             isValid = false;
         }
 
-        // Si tout est valide, soumettre le formulaire
+        // If all validations pass, submit the form
         if (isValid) {
-            alert("Formulaire soumis avec succès !");
-            form.submit(); // Soumettre le formulaire
+            // Simulate form submission (you can replace this with actual backend logic)
+            setTimeout(() => {
+                showSuccessMessage(); // Show success message
+                form.reset(); // Reset the form fields
+                clearErrors(); // Clear any remaining error messages
+            }, 500); // Simulate a slight delay for submission
         }
     });
-
-    // Fonction pour réinitialiser les messages d'erreur
-    function resetErrors() {
-        const errorMessages = document.querySelectorAll(".error-message");
-        errorMessages.forEach((msg) => {
-            msg.textContent = "";
-            msg.style.display = "none";
-        });
-    }
-
-    // Fonction pour afficher un message d'erreur
-    function showError(elementId, message) {
-        const errorElement = document.getElementById(elementId);
-        errorElement.textContent = message;
-        errorElement.style.display = "block";
-    }
-
-    // Validation du nom et prénom
-    function validateName(name) {
-        const nameRegex = /^[a-zA-ZÀ-ÿ\s'-]{2,50}$/; // Autorise les lettres, accents, espaces, apostrophes et tirets
-        return nameRegex.test(name);
-    }
-
-    // Validation de l'email
-    function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Format standard d'une adresse email
-        return emailRegex.test(email);
-    }
-
-    // Validation du numéro de téléphone
-    function validatePhone(phone) {
-        const phoneRegex = /^[+]?[0-9\s\-().]{7,15}$/; // Autorise +, chiffres, espaces, tirets, et parenthèses
-        return phoneRegex.test(phone);
-    }
-
-    // Validation des fichiers PDF
-    function validateFile(file, errorId) {
-        if (!file) {
-            showError(errorId, "Ce fichier est requis.");
-            return false;
-        }
-        if (file.type !== "application/pdf") {
-            showError(errorId, "Seuls les fichiers PDF sont autorisés.");
-            return false;
-        }
-        return true;
-    }
-
-    // Validation du message (protection contre XSS)
-    function validateMessage(message) {
-        const sanitizedMessage = escapeHtml(message); // Échapper les caractères spéciaux
-        document.getElementById("message").value = sanitizedMessage; // Mettre à jour le champ avec la version échappée
-
-        // Vérifier si le message contient des caractères suspects
-        const suspiciousChars = /[<>{}()[\]\\/|";':]/; // Caractères potentiellement dangereux
-        return !suspiciousChars.test(sanitizedMessage);
-    }
-
-    // Échapper les caractères spéciaux pour prévenir les attaques XSS
-    function escapeHtml(str) {
-        if (!str) return ""; // Gère les chaînes vides ou null
-        return str.replace(/[&<>"'`=\/]/g, (char) => {
-            const escapeMap = {
-                "&": "&amp;",
-                "<": "<",
-                ">": ">",
-                '"': "&quot;",
-                "'": "&#39;",
-                "/": "&#x2F;",
-                "`": "&#x60;",
-                "=": "&#x3D;"
-            };
-            return escapeMap[char] || char; // Retourne le caractère original s'il n'est pas dans la liste
-        });
-    }
 });
