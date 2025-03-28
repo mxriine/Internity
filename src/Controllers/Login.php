@@ -50,8 +50,21 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $_SESSION['name'] = $row['user_name'];
 
             // Redirection en fonction du rôle
-            header('Location: ../vues/Discover.php');
-            exit();
+            switch ($_SESSION['role']) {
+                case 'admin':
+                    header('Location: /vues/Admin.php');
+                    exit();
+                case 'pilote':
+                    header('Location: /vues/Pilote.php');
+                    exit();
+                case 'student':
+                    header('Location: /vues/Discover.php');
+                    exit();
+                default:
+                    // Gérer le cas où le rôle est inconnu
+                    header('Location: /vues/Login.php');
+                    exit();
+            }
         } else {
             $error_message = "❌ Mot de passe incorrect !";
         }

@@ -1,6 +1,7 @@
-<!-- FORMULAIRE DE CONNEXION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/LoginController.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 require_once('Navbar.php');
 ?>
 
@@ -67,7 +68,8 @@ require_once('Navbar.php');
         </div>
 
         <!-- Section des cartes de stages -->
-        <?php require_once('../src/Controllers/OfferController.php'); ?>
+        <?php require_once('../src/Controllers/Offer.php'); ?>
+        
     </main>
 
     <footer>

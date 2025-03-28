@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import mysql.connector
 import requests
 import random
+import hashlib
 
 # 🔹 Configuration
 json_url = "https://static.data.gouv.fr/resources/villes-de-france/20220928-173621/cities.json"
@@ -219,6 +220,11 @@ users = [
      "cfaa06175d239e7c162a7f25fd616004c0311e9c69f6e6003728a084f8a67483f854bf765e2f33eefb897e400e09b2a0f10883ebb302a899bf7e7bdccbde298c",
      "/////", "/////")
 ]
+
+# Transformer le hash
+for user in users:
+    user = list(user)  # Convert tuple to list to allow modification
+    user[3] = hashlib.sha512(user[1].encode()).hexdigest()
 
 # 🔹 Liste des promotions à insérer
 promotions = [

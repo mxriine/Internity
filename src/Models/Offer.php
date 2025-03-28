@@ -121,5 +121,28 @@ class Offer
             throw new Exception("Erreur lors de la récupération des compétences : " . $e->getMessage());
         }
     }
+
+    public function getPaginatedOffers($limit, $offset)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM Offers LIMIT :limit OFFSET :offset");
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération des offres paginées : " . $e->getMessage());
+        }
+    }
+
+    public function getTotalOffersCount()
+    {
+        try {
+            $stmt = $this->pdo->query("SELECT COUNT(*) FROM Offers");
+            return $stmt->fetchColumn();
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors du comptage des offres : " . $e->getMessage());
+        }
+    }
 }
 

@@ -10,6 +10,31 @@ $offerModel = new Offer($conn);
 // ➤ Récupérer toutes les offres
 $offers = $offerModel->getAllOffers();
 
+// Nombre d'offres par page
+$elements_par_page = 9;
+
+// Récupérer le numéro de la page actuelle depuis l'URL
+$page_actuelle = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+if ($page_actuelle < 1) {
+    $page_actuelle = 1;
+}
+
+// Calculer l'offset
+$offset = ($page_actuelle - 1) * $elements_par_page;
+
+// Instancier le modèle Offer
+$offerModel = new Offer($conn);
+
+// Récupérer les offres paginées
+$offers = $offerModel->getPaginatedOffers($elements_par_page, $offset);
+
+// Compter le nombre total d'offres
+$total_offers = $offerModel->getTotalOffersCount();
+
+// Calculer le nombre total de pages
+$total_pages = ceil($total_offers / $elements_par_page);
+
+// Afficher les cartes d'offres
 echo '<section class="cards">';
 foreach ($offers as $offer) {
     // Récupérer les skills de l'offre
@@ -42,3 +67,27 @@ foreach ($offers as $offer) {
         </div>';
 }
 echo '</section>';
+
+// Afficher la pagination
+echo '<div class="pagination">';
+
+// Bouton "Précédent"
+if ($page_actuelle > 1) {
+    echo '<a href="?page=' . ($page_actuelle - 1) . '">Précédent</a>';
+}
+
+// Numéros de page
+for ($i = 1; $i <= $total_pages; $i++) {
+    if ($i === $page_actuelle) {
+        echo '<a href="?page=' . $i . '" class="active">' . $i . '</a>';
+    } else {
+        echo '<a href="?page=' . $i . '">' . $i . '</a>';
+    }
+}
+
+// Bouton "Suivant"
+if ($page_actuelle < $total_pages) {
+    echo '<a href="?page=' . ($page_actuelle + 1) . '">Suivant</a>';
+}
+
+echo '</div>';

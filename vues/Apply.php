@@ -1,6 +1,8 @@
-<!-- FORMULAIRE DE CONNEXION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
 require_once('../src/Controllers/LoginController.php');
+require_once('../src/Controllers/CheckAuthController.php');
+require_once('Navbar.php');
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +26,12 @@ require_once('../src/Controllers/LoginController.php');
         <div class="two-columns">
             <!-- Form Section -->
             <section class="application-form">
+                <div>
+                    <a href="#" class="back">
+                        <img src="/assets/icons/arrow.svg" alt="Retour">
+                        Retour
+                    </a>
+                </div>
                 <h1>Postuler à une offre</h1>
                 <form id="applicationForm" action="/submit-application" method="POST" enctype="multipart/form-data">
                     <!-- Nom et Prénom -->
@@ -81,7 +89,9 @@ require_once('../src/Controllers/LoginController.php');
             <section class="card-section">
                 <div class="card">
                     <div class="card-header">
-                        <img src="assets/icons/xxx.svg" alt="image">
+                        <div class="card-img">
+                            <img src="/assets/icons/star-circle.svg" alt="Favori">
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="label-container">

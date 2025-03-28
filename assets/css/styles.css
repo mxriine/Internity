@@ -194,3 +194,23 @@ footer p {
 .user-menu a:hover {
     background-color: #f4f4f4;
 }
+
+.connect {
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+
+.connect button {
+    padding:1.5vh 1vw;
+    /* Plus d'espace pour l'icône */
+    border: none;
+    border-radius: 20px;
+    background: var(--CpBlue);
+    color: var(--CpBlack);
+    outline: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0px 10px 10px var(--CoBlack);
+}

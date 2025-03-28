@@ -1,5 +1,7 @@
-<!-- FORMULAIRE DE SESSION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
+require_once('../src/Controllers/LoginController.php');
+require_once('../src/Controllers/CheckAuthController.php');
 require_once('Navbar.php');
 ?>
 
