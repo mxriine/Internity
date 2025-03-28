@@ -53,7 +53,7 @@ footer p {
 }
 
 /* Barre de navigation */
-.header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,6 +63,7 @@ footer p {
     position: fixed;
     width: 100%;
     z-index: 100;
+    position: relative;
 }
 
 .logo h1 {

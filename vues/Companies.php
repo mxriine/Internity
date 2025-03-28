@@ -1,32 +1,37 @@
 <!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/LoginController.php');
-require_once('../src/Controllers/CheckAuthController.php');
-require_once('Navbar.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-    <title>Internity - Mentions Légales</title>
+    <title>Internity - Companies</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Internity - Le meilleur de l'Internet">
+    <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/companies.css">
+    <link rel="stylesheet" href="/assets/css/discover.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+    <!-- Barre de navigation -->
+    <header class="header">
+        <?php require_once('Navbar.php'); ?>
+    </header> 
 
     <main>
-
-
+        Hello World
     </main>
 
-    <br>
-
     <footer>
-        <a class="legal" href="/vues/publisher.php">Mention légale</a>
+        <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
+
 </body>
 
 </html>

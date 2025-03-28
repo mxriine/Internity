@@ -8,10 +8,9 @@ use PDOException;
 class Companies {
     private $pdo;
 
-    public function __construct() {
-        $this->pdo = new PDO("mysql:host=localhost;dbname=Internity;charset=utf8", "admin", "mdp");
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
     }
 
     // Vérifier les identifiants
@@ -35,7 +34,7 @@ class Companies {
         }
     }
 
-        // Voir toutes les entreprises
+    // Voir toutes les entreprises
     public function getAllCompanies() {
         $stmt = $this->pdo->query("SELECT * FROM Companies");
         return $stmt->fetchAll();
@@ -73,35 +72,44 @@ class Companies {
         $stmt = $this->pdo->prepare("DELETE FROM Companies WHERE company_id = ?");
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
         return $stmt->execute();
-}
+    }
 
-// Méthode pour tester les fonctionnalités
-public function testMethods() {
-    try {
-        // Test de la méthode createCompany
-        $createResult = $this->createCompany("Nouvelle Entreprise", "123 Rue Exemple", "contact@exemple.com");
-        echo "Résultat de la création d'entreprise : " . ($createResult ? "Succès" : "Échec") . "\n";
+    // Méthode pour tester les fonctionnalités
+    public function testMethods() {
+        try {
+            // Test de la méthode createCompany
+            $createResult = $this->createCompany("Nouvelle Entreprise", "123 Rue Exemple", "contact@exemple.com");
+            echo "Résultat de la création d'entreprise : " . ($createResult ? "Succès" : "Échec") . "\n";
 
-        if ($createResult) {
-            // Récupérer l'ID de la dernière entreprise créée
-            $lastInsertId = $this->pdo->lastInsertId();
+            if ($createResult) {
+                // Récupérer l'ID de la dernière entreprise créée
+                $lastInsertId = $this->pdo->lastInsertId();
 
-            // Test de la méthode updateCompany sur cette entreprise
-            $updateResult = $this->updateCompany($lastInsertId, "Entreprise Modifiée", "456 Rue Modifiée", "modifie@exemple.com");
-            echo "Résultat de la mise à jour d'entreprise : " . ($updateResult ? "Succès" : "Échec") . "\n";
+                // Test de la méthode updateCompany sur cette entreprise
+                $updateResult = $this->updateCompany($lastInsertId, "Entreprise Modifiée", "456 Rue Modifiée", "modifie@exemple.com");
+                echo "Résultat de la mise à jour d'entreprise : " . ($updateResult ? "Succès" : "Échec") . "\n";
 
-            // Test de la méthode deleteCompany sur cette entreprise
-            $deleteResult = $this->deleteCompany($lastInsertId);
-            echo "Résultat de la suppression d'entreprise : " . ($deleteResult ? "Succès" : "Échec") . "\n";
+                // Test de la méthode deleteCompany sur cette entreprise
+                $deleteResult = $this->deleteCompany($lastInsertId);
+                echo "Résultat de la suppression d'entreprise : " . ($deleteResult ? "Succès" : "Échec") . "\n";
+            }
+
+        } catch (PDOException $e) {
+            echo "Erreur : " . $e->getMessage();
         }
-
-    } catch (PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
     }
 }
-}
+
+require_once __DIR__ ."../Core/Config.php";
 
 if (php_sapi_name() === 'cli') { // Vérifie si le script est exécuté en ligne de commande
-    $companies = new Companies(); // Instancie la classe
-    $companies->testMethods();    // Appelle la méthode testMethods
+    try {
+        $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET, DB_USER, DB_PASS);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $companies = new Companies($pdo); // Instancie la classe avec $pdo
+        $companies->testMethods();        // Appelle la méthode testMethods
+    } catch (PDOException $e) {
+        echo "Erreur de connexion à la base de données : " . $e->getMessage();
+    }
 }

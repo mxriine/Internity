@@ -9,7 +9,7 @@ require_once('Navbar.php');
 <html lang="fr">
 
 <head>
-    <title>Internity - Home</title>
+    <title>Internity - Discover</title>
     <meta charset="UTF-8">
     <meta name="description" content="Internity - Le meilleur de l'Internet">
     <meta name="author" content="Internity">

@@ -1,7 +1,7 @@
 <!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/LoginController.php');
-require_once('../src/Controllers/CheckAuthController.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 require_once('Navbar.php');
 ?>
 
@@ -18,19 +18,6 @@ require_once('Navbar.php');
 </head>
 
 <body class="page-profile">
-    <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">LOGO</div>
-            <div class="bouttons">
-                <a href="/vues/Discover.php"><button class="btn-nav">Entreprises</button></a>
-                <a href="/vues/Discover.php"><button class="btn-nav">Offres</button></a>
-            </div>
-            <div class="connect">
-                <a href="/vues/Login.php"><button class="btn-connect">Se connecter</button></a>
-            </div>
-        </nav>
-    </header>
 
     <!-- Main Content -->
     <main class="two-columns">

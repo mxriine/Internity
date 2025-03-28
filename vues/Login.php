@@ -1,7 +1,7 @@
 <!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/LoginController.php');
-require_once('../src/Controllers/CheckAuthController.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 ?>
 
 <!DOCTYPE html>
