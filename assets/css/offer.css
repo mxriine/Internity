@@ -1,0 +1,98 @@
+
+
+/* Section de l'image d'en-tête */
+.hero-section {
+    position: relative;
+    width: 100%;
+    margin-top: 80px; /* Espace pour éviter le chevauchement avec la navbar */
+}
+
+.hero-image {
+    width: 100%; /* L'image occupe toute la largeur */
+    height: auto; /* Hauteur adaptative */
+    display: block;
+}
+
+.hero-title {
+    position: absolute; /* Positionne le titre par rapport à la section parent */
+    bottom: 20px; /* Espacement depuis le bas de l'image */
+    left: 20px; /* Espacement depuis la gauche */
+    color: white; /* Couleur du texte */
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+    padding: 10px 20px;
+    border-radius: 5px; /* Coins arrondis pour un meilleur design */
+    z-index: 5; /* Assure que le titre est au-dessus de l'image */
+}
+
+/* Conteneur principal */
+.content-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+}
+
+.text-section {
+    flex: 7; /* Prend 70% de la largeur */
+    padding: 20px;
+}
+
+.card-section {
+    flex: 3; /* Prend 30% de la largeur */
+    padding: 20px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-body {
+    padding: 10px;
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-button:hover {
+    background-color: #45a049;
+}
+
+
+
+.card-header {
+    background-color: #AAAAAA;
+    text-align: center;
+    padding: 0px;
+    border-radius: 10px 10px 0px 0px;
+    height: 20% ;
+}
+
+.card-img {
+    background-color: #FFFFFF;
+    opacity: 0.5;
+    display: inline-block;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.card-img img {
+    max-width: 20px;
+    height: 20px;
+    margin-top: 6vh;
+}
