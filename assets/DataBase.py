@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import mysql.connector
 import requests
 import random
+import hashlib
 
 # 🔹 Configuration
 json_url = "https://static.data.gouv.fr/resources/villes-de-france/20220928-173621/cities.json"
@@ -75,7 +76,7 @@ companies = [
 # 🔹 Liste des utilisateurs à insérer
 users = [
     ("GOAT", "thegreatest@nasa.com", "Toto", 
-     "637120507bb9ba0c33ff8b25f97782aec85399239f19d423e33c6146f7cbc9917a7d0f5bed40a08557e7a6edefb092844e6515c3d136a2cb435bbd0c878fd426",
+     "2589480a812b6de5d733efad7d379b3b469ced031a54df0a3bb175a5bdc60f3c7120c5ff6095ff929713a99380656654ded73d8d8170e36647ea2f6abd587a31",
      "/////", "/////"),
     ("MAZOU", "mazou.marine@lego.com", "Marine", 
      "bb61c39e6b19e7326bbaacc59ac71fcff8ce01f0feee0c7d46b2c18a56f915bbd9506430adf055dd11c857cbd6192cac0e97a02600bad8e221a0f1f462f279e5",
@@ -220,6 +221,21 @@ users = [
      "/////", "/////")
 ]
 
+# # Transformer le hash
+# for user in users:
+#     user = list(user)  # Convert tuple to list to allow modification
+#     user[3] = hashlib.sha512(user[1].encode()).hexdigest()
+#     print(f"('{user[0]}', '{user[1]}', '{user[2]}', '{user[3]}', '{user[4]}', '{user[5]}'),")
+
+# # Vérifier le hash
+# for user in users:
+#     if user[3] == hashlib.sha512(user[1].encode()).hexdigest():
+#         #print(f"Hash correct : {user[3]}")
+#         pass
+#     else:
+#         print(f"Hash incorrect : {user[3]}")
+
+
 # 🔹 Liste des promotions à insérer
 promotions = [
     {
@@ -228,7 +244,7 @@ promotions = [
     },
     {
         "promotion_name" : "CPI A2 Info",
-        "promotion_desc" : "Promotion CPI A2 - 2ème Année - SPécialité Informatique"
+        "promotion_desc" : "Promotion CPI A2 - 2ème Année - Spécialité Informatique"
     },
     {
         "promotion_name" : "CPI A2 Géné",
