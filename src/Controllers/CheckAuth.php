@@ -1,15 +1,17 @@
 <?php
+/**
+ * Vérification de l'authentification de l'utilisateur
+ */
 
-// Récupérer le rôle depuis la session
+// SECTION 1 : Récupérer le rôle depuis la session
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : 'inconnu';
 
-// Récupérer la page actuelle
+// SECTION 2 : Récupérer la page actuelle
 $current_page = basename($_SERVER['PHP_SELF']);
 
-// Vérifier si le rôle est inconnu et si on n'est pas sur la page Login
+// SECTION 3 : Redirection si l'utilisateur n'est pas authentifié
 if ($role === 'inconnu' && $current_page !== 'Login.php') {
+    // Rediriger vers la page de login
     header('Location: /vues/Login.php');
-    exit();
+    exit(); // Terminer l'exécution du script
 }
-
-?>

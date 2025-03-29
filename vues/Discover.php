@@ -2,7 +2,7 @@
 <?php
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
-require_once('Navbar.php');
+require_once('../src/Controllers/Offer.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ require_once('Navbar.php');
 
 <body>
     <!-- Barre de navigation -->
+    <?php include 'Navbar.php'; ?>
 
     <main>
         <!-- Section principale avec image et formulaire -->
@@ -68,15 +69,61 @@ require_once('Navbar.php');
         </div>
 
         <!-- Section des cartes de stages -->
-        <?php require_once('../src/Controllers/Offer.php'); ?>
-        
+        <section class="cards">
+            <?php foreach ($offers as $offer): ?>
+                <?php
+                // Récupérer les skills de l'offre
+                $skills = $offerModel->getOfferSkills($offer['offer_id']);
+                $limitedSkills = array_slice($skills, 0, 3);
+
+                // Générer les labels pour chaque skill
+                $skillsLabels = '';
+                foreach ($limitedSkills as $skill) {
+                    $skillsLabels .= '<span class="skills">' . htmlspecialchars($skill['skills_name']) . '</span> ';
+                }
+
+                // Créer un slug pour le titre de l'offre
+                $offerSlug = createSlug($offer['offer_title']);
+                $offerLink = "../../vues/Offer.php?offer_id=" . urlencode($offer['offer_id']) . "&title=" . urlencode($offerSlug);
+                ?>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-img">
+                            <img src="/assets/icons/star-circle.svg" alt="Favori">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="skills-container">
+                            <?= $skillsLabels ?>
+                        </div>
+                        <h2><?= htmlspecialchars($offer['offer_title']) ?></h2>
+                        <p><?= htmlspecialchars($offer['offer_desc']) ?></p>
+                        <a href="<?= $offerLink ?>" class="btn">Voir l'offre</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </section>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <?php if ($page_actuelle > 1): ?>
+                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?= $i ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page_actuelle < $total_pages): ?>
+                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <?php endif; ?>
+        </div>
     </main>
 
     <footer>
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
-
 </body>
 
 </html>

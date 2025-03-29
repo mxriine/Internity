@@ -1,6 +1,8 @@
 <?php
 // Chargement de l'autoloader de Composer
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ .'/src/Controllers/Offer.php';
+require_once __DIR__ .'/src/Controllers/Company.php';
 
 // Démarrage de la session
 session_start();
@@ -21,6 +23,7 @@ switch ($uri) {
     case '/':
         // Afficher la page d'accueil
         echo $twig->render('Home.twig.html');
+        
         break;
 
     default:

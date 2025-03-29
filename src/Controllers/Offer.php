@@ -1,93 +1,77 @@
 <?php
-
+// Chargement des dépendances nécessaires
 require_once(__DIR__ . '/../Core/DataBase.php');
 require_once(__DIR__ . '/../Models/Offer.php');
 
 use Models\Offer;
 
+// Instanciation du modèle Offer
 $offerModel = new Offer($conn);
 
-// ➤ Récupérer toutes les offres
-$offers = $offerModel->getAllOffers();
+$current_page = basename($_SERVER['PHP_SELF']);
 
-// Nombre d'offres par page
+// SECTION 1 : Pagination des offres
+// Nombre d'offres à afficher par page
 $elements_par_page = 9;
 
 // Récupérer le numéro de la page actuelle depuis l'URL
 $page_actuelle = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 if ($page_actuelle < 1) {
-    $page_actuelle = 1;
+    $page_actuelle = 1; // Assurer que la page actuelle est au minimum 1
 }
 
-// Calculer l'offset
+// Calculer l'offset pour la pagination
 $offset = ($page_actuelle - 1) * $elements_par_page;
 
-// Instancier le modèle Offer
-$offerModel = new Offer($conn);
-
-// Récupérer les offres paginées
+// Récupérer les offres paginées depuis la base de données
 $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset);
 
-// Compter le nombre total d'offres
+// Compter le nombre total d'offres disponibles
 $total_offers = $offerModel->getTotalOffersCount();
 
-// Calculer le nombre total de pages
+// Calculer le nombre total de pages nécessaires
 $total_pages = ceil($total_offers / $elements_par_page);
 
-// Afficher les cartes d'offres
-echo '<section class="cards">';
-foreach ($offers as $offer) {
-    // Récupérer les skills de l'offre
-    $skills = $offerModel->getOfferSkills($offer['offer_id']);
+// SECTION 2 : Gestion des détails d'une offre spécifique
+// Vérifier si l'utilisateur est sur la page Offer.php et si un ID d'offre est spécifié dans l'URL
+if ($current_page == 'Offer.php' && isset($_GET['offer_id'])) {
+    $offerId = intval($_GET['offer_id']); // Convertir en entier pour éviter les injections SQL
 
-    // Limiter à 3 skills max
-    $limitedSkills = array_slice($skills, 0, 3);
+    // Charger les détails de l'offre depuis la base de données
+    $offerDetails = $offerModel->getOfferById($offerId);
 
-    // Générer les labels pour chaque skill
-    $skillsLabels = '';
-    foreach ($limitedSkills as $skill) {
-        $skillsLabels .= '<span class="skills">' . htmlspecialchars($skill['skills_name']) . '</span> ';
+    $companiesDetails = $offerModel->getOffersCompanies($offerId);
+
+    if (!$offerDetails) {
+        // Si l'offre n'existe pas, afficher un message d'erreur ou rediriger
+        die("Offre non trouvée.");
     }
 
-    echo '
-        <div class="card">
-            <div class="card-header">
-                <div class="card-img">
-                    <img src="/assets/icons/star-circle.svg" alt="Favori">
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="skills-container">
-                    ' . $skillsLabels . '
-                </div>
-                <h2>' . htmlspecialchars($offer['offer_title']) . '</h2>
-                <p>' . htmlspecialchars($offer['offer_desc']) . '</p>
-                <button class="btn">Voir l\'offre</button>
-            </div>
-        </div>';
-}
-echo '</section>';
-
-// Afficher la pagination
-echo '<div class="pagination">';
-
-// Bouton "Précédent"
-if ($page_actuelle > 1) {
-    echo '<a href="?page=' . ($page_actuelle - 1) . '">Précédent</a>';
+    // Récupérer les compétences associées à l'offre
+    $skills = $offerModel->getOfferSkills($offerId);
+} elseif ($current_page == 'Offer.php') {
+    // Si aucun ID d'offre n'est spécifié, afficher un message d'erreur ou rediriger
+    die("ID de l'offre manquant.");
 }
 
-// Numéros de page
-for ($i = 1; $i <= $total_pages; $i++) {
-    if ($i === $page_actuelle) {
-        echo '<a href="?page=' . $i . '" class="active">' . $i . '</a>';
-    } else {
-        echo '<a href="?page=' . $i . '">' . $i . '</a>';
-    }
-}
+// SECTION 3 : Fonction utilitaire pour créer des slugs URL-friendly
+/**
+ * Crée un slug à partir d'une chaîne de caractères.
+ * Exemple : "Offre de stage développeur" devient "offre-de-stage-developpeur".
+ *
+ * @param string $string La chaîne à transformer.
+ * @return string Le slug généré.
+ */
+function createSlug($string)
+{
+    // Convertir en minuscules
+    $string = strtolower($string);
 
-// Bouton "Suivant"
-if ($page_actuelle < $total_pages) {
-    echo '<a href="?page=' . ($page_actuelle + 1) . '">Suivant</a>';
-}
+    // Remplacer les espaces par des tirets
+    $string = preg_replace('/\s+/', '-', $string);
 
-echo '</div>';
+    // Supprimer les caractères spéciaux
+    $string = preg_replace('/[^a-z0-9\-]/', '', $string);
+
+    return $string;
+}
