@@ -357,35 +357,46 @@ applications = [
         "offer_id": 1,
         "apply_date": datetime.now(),
         "apply_coverletter": "I am very interested in this position.",
-        "apply_cv": "/////"
+        "apply_cv": "/////",
+        "apply_status": "En cours",
+        "apply_message": "Bonjour, je suis très intéressé par cette offre et je pense que mes compétences correspondent parfaitement aux exigences du poste. Je vous remercie de prendre en considération ma candidature."
     },
     {
         "user_id": 4,
         "offer_id": 2,
         "apply_date": datetime.now(),
         "apply_coverletter": "I believe I am a great fit for this role.",
-        "apply_cv": "/////"
+        "apply_cv": "/////",
+        "apply_status": "En cours",
+        "apply_message": "Bonjour, je suis très intéressé par cette offre et je pense que mes compétences correspondent parfaitement aux exigences du poste. Je vous remercie de prendre en considération ma candidature."
+    
     },
     {
         "user_id": 5,
         "offer_id": 3,
         "apply_date": datetime.now(),
         "apply_coverletter": "I have the skills required for this position.",
-        "apply_cv": "/////"
+        "apply_cv": "/////",
+        "apply_status": "En cours",
+        "apply_message": "Bonjour, je suis très intéressé par cette offre et je pense que mes compétences correspondent parfaitement aux exigences du poste. Je vous remercie de prendre en considération ma candidature."
     },
     {
         "user_id": 7,
         "offer_id": 4,
         "apply_date": datetime.now(),
         "apply_coverletter": "I am passionate about this field.",
-        "apply_cv": "/////"
+        "apply_cv": "/////",
+        "apply_status": "En cours",
+        "apply_message": "Bonjour, je suis très intéressé par cette offre et je pense que mes compétences correspondent parfaitement aux exigences du poste. Je vous remercie de prendre en considération ma candidature."
     },
     {
         "user_id": 8,
         "offer_id": 5,
         "apply_date": datetime.now(),
         "apply_coverletter": "I am excited about this opportunity.",
-        "apply_cv": "/////"
+        "apply_cv": "/////",
+        "apply_status": "En cours",
+        "apply_message": "Bonjour, je suis très intéressé par cette offre et je pense que mes compétences correspondent parfaitement aux exigences du poste. Je vous remercie de prendre en considération ma candidature."
     }
 ]
 
@@ -681,6 +692,8 @@ def create_tables(cursor):
             apply_date DATETIME DEFAULT CURRENT_TIMESTAMP,
             apply_coverletter VARCHAR(255),
             apply_cv VARCHAR(255),
+            apply_message VARCHAR(255),
+            apply_status VARCHAR(50) DEFAULT 'En attente',
             PRIMARY KEY(user_id, offer_id),
             FOREIGN KEY(user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
             FOREIGN KEY(offer_id) REFERENCES Offers(offer_id) ON DELETE CASCADE
@@ -1138,6 +1151,39 @@ def insert_details(cursor, conn, details):
     conn.commit()  # Valider les changements dans la base de données
     print(f"✅ {inserted_count} détails insérés dans Details.")
 
+# 🔹 Fonction pour insérer la table Located
+def insert_located(cursor, conn):
+    # Vérifier si la table Located est vide
+    cursor.execute("SELECT COUNT(*) FROM Located")
+    count = cursor.fetchone()[0]
+    
+    if count > 0:
+        print("✅ 0 localisations insérées dans Located.")
+        return  # Si la table est remplie, ne pas insérer de nouvelles données
+    
+    # Si la table est vide, réinitialiser l'auto-incrémentation à 1
+    cursor.execute("ALTER TABLE Located AUTO_INCREMENT = 1")
+
+    # Insérer les localisations dans la table Located
+    inserted_count = 0
+    for company_id in range(1, 31):  # Supposons qu'il y a 30 entreprises
+        city_id = random.randint(1, 32000)  # Générer un city_id aléatoire
+        random_days = random.randint(0, 5000)
+        random_date = datetime.now() - timedelta(days=random_days)
+
+        cursor.execute(
+            """
+            INSERT INTO Located (company_id, city_id, launch_date)
+            VALUES (%s, %s, %s)
+            """, 
+            (company_id, city_id, random_date)
+        )
+        inserted_count += cursor.rowcount  # Incrémente le nombre de lignes insérées
+
+    conn.commit()  # Valider les changements dans la base de données
+    print(f"✅ {inserted_count} localisations insérées dans Located.")
+
+
 # 🔹 Script principal
 try:
     conn = connect_db()
@@ -1161,6 +1207,7 @@ try:
     insert_wishlists(cursor, conn, wishlists)
     insert_evaluations(cursor, conn, evaluations)
     insert_details(cursor, conn, details)
+    insert_located(cursor, conn)
 
 except mysql.connector.Error as err:
     print(f"❌ Erreur MySQL : {err}")

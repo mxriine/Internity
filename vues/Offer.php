@@ -62,7 +62,13 @@ require_once('../src/Controllers/Offer.php');
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <button class="card-button">POSTULER</button>
+                        <?php
+                        $offerId = $_GET['id'] ?? null;
+                        $offerSlug = createSlug($offerDetails['offer_title'] ?? 'Offre inconnue');
+                        $offerLink = "/vues/Apply.php?offer_id=" . urlencode($offerDetails['offer_id']) . "&title=" . urlencode($offerSlug);
+                        ?>
+                        <a href="<?= $offerLink ?>" class="btn"><button class="card-button">POSTULER</button></a>
+
                     </div>
                 </div>
             </div>
@@ -70,11 +76,10 @@ require_once('../src/Controllers/Offer.php');
     </main>
 
     <!-- Footer -->
-    <footer style="position: fixed; bottom: 0;">
-        <a class="legal" href="/vues/publisher.php">Mention légale</a>
+    <footer>
+        <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
-
 </body>
 
 </html>

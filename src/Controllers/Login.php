@@ -48,6 +48,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $_SESSION['email'] = $row['user_email'];
             $_SESSION['role'] = $row['role'];
             $_SESSION['name'] = $row['user_name'];
+            $_SESSION['surname'] = $row['user_surname'];
 
             // Redirection en fonction du rôle
             switch ($_SESSION['role']) {

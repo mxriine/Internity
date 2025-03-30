@@ -84,7 +84,7 @@ require_once('../src/Controllers/Offer.php');
 
                 // Créer un slug pour le titre de l'offre
                 $offerSlug = createSlug($offer['offer_title']);
-                $offerLink = "../../vues/Offer.php?offer_id=" . urlencode($offer['offer_id']) . "&title=" . urlencode($offerSlug);
+                $offerLink = "/vues/Offer.php?offer_id=" . urlencode($offer['offer_id']) . "&title=" . urlencode($offerSlug);
                 ?>
                 <div class="card">
                     <div class="card-header">

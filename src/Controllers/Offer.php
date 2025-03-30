@@ -33,14 +33,14 @@ $total_offers = $offerModel->getTotalOffersCount();
 $total_pages = ceil($total_offers / $elements_par_page);
 
 // SECTION 2 : Gestion des détails d'une offre spécifique
-// Vérifier si l'utilisateur est sur la page Offer.php et si un ID d'offre est spécifié dans l'URL
-if ($current_page == 'Offer.php' && isset($_GET['offer_id'])) {
+// Vérifier si l'utilisateur est sur la page Offer.php ou Apply.php et si un ID d'offre est spécifié dans l'URL
+$needsOffer = in_array($current_page, ['Offer.php', 'Apply.php']);
+
+if ($needsOffer && isset($_GET['offer_id'])) {
     $offerId = intval($_GET['offer_id']); // Convertir en entier pour éviter les injections SQL
 
     // Charger les détails de l'offre depuis la base de données
     $offerDetails = $offerModel->getOfferById($offerId);
-
-    $companiesDetails = $offerModel->getOffersCompanies($offerId);
 
     if (!$offerDetails) {
         // Si l'offre n'existe pas, afficher un message d'erreur ou rediriger
@@ -49,8 +49,10 @@ if ($current_page == 'Offer.php' && isset($_GET['offer_id'])) {
 
     // Récupérer les compétences associées à l'offre
     $skills = $offerModel->getOfferSkills($offerId);
-} elseif ($current_page == 'Offer.php') {
-    // Si aucun ID d'offre n'est spécifié, afficher un message d'erreur ou rediriger
+
+    $companiesDetails = $offerModel->getOffersCompanies($offerId);
+
+} elseif ($needsOffer) {
     die("ID de l'offre manquant.");
 }
 

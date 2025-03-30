@@ -29,39 +29,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Success message display function
-    function showSuccessMessage() {
-        const successMessage = document.createElement("div");
-        successMessage.textContent = "Votre application a bien été soumise.";
-        successMessage.style.position = "fixed";
-        successMessage.style.top = "20px";
-        successMessage.style.left = "50%";
-        successMessage.style.transform = "translateX(-50%)";
-        successMessage.style.backgroundColor = "green";
-        successMessage.style.color = "white";
-        successMessage.style.padding = "15px 30px";
-        successMessage.style.borderRadius = "5px";
-        successMessage.style.zIndex = "1000";
-        successMessage.style.textAlign = "center";
-        document.body.appendChild(successMessage);
-
-        // Remove the success message after 5 seconds
-        setTimeout(() => {
-            successMessage.remove();
-        }, 5000);
-    }
-
     // Form submission handler
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent form submission until validation passes
+        event.preventDefault(); // Empêche temporairement le submit
         clearErrors();
 
         let isValid = true;
 
+        // Validate Surname
+        const surnameInput = document.getElementById("surname");
+        if (!surnameInput.value.trim()) {
+            showError("surnameError", "Le nom est requis.");
+            isValid = false;
+        }
+
         // Validate Name
         const nameInput = document.getElementById("name");
         if (!nameInput.value.trim()) {
-            showError("nameError", "Le nom et prénom sont requis.");
+            showError("nameError", "Le prénom est requis.");
             isValid = false;
         }
 
@@ -96,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Validate Cover Letter Upload
-        const coverLetterInput = document.getElementById("cover-letter");
+        const coverLetterInput = document.getElementById("coverletter");
         if (!coverLetterInput.files.length) {
             showError("coverLetterError", "Veuillez importer un fichier PDF pour votre lettre de motivation.");
             isValid = false;
@@ -112,14 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        // If all validations pass, submit the form
+        // Submit form if valid
         if (isValid) {
-            // Simulate form submission (you can replace this with actual backend logic)
-            setTimeout(() => {
-                showSuccessMessage(); // Show success message
-                form.reset(); // Reset the form fields
-                clearErrors(); // Clear any remaining error messages
-            }, 500); // Simulate a slight delay for submission
+            form.submit(); // Envoie réel vers le back (Apply.php)
         }
     });
 });
