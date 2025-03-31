@@ -1,7 +1,14 @@
-<!-- FORMULAIRE DE CONNEXION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/LoginController.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 require_once('Navbar.php');
+
+$showSuccess = isset($_GET['success']) && $_GET['success'] == 1;
+
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+$name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
+$surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
 ?>
 
 <!DOCTYPE html>
@@ -46,15 +53,15 @@ require_once('Navbar.php');
                     <form id="accountForm">
                         <div class="form-group">
                             <label for="firstName">Prénom :</label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" value="John" required>
+                            <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" value="<?php echo htmlspecialchars($name); ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Nom :</label>
-                            <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" value="Doe" required>
+                            <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" value="<?php echo htmlspecialchars($surname); ?>" required>
                         </div>
                         <div class="form-group">
                         <label for="email">Email :</label>
-                            <input type="email" id="email" name="email" placeholder="Entrez votre email" value="john.doe@example.com" required>
+                            <input type="email" id="email" name="email" placeholder="Entrez votre email" value="<?php echo htmlspecialchars($email); ?>" required>
                         </div>
                         <button type="submit" class="submit-button">Mettre à jour mes informations</button>
                     </form>

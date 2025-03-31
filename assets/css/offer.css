@@ -1,28 +1,43 @@
-
-
 /* Section de l'image d'en-tête */
 .hero-section {
     position: relative;
     width: 100%;
-    margin-top: 80px; /* Espace pour éviter le chevauchement avec la navbar */
+    height: 30%; /* Hauteur de la section */
 }
 
-.hero-image {
-    width: 100%; /* L'image occupe toute la largeur */
-    height: auto; /* Hauteur adaptative */
-    display: block;
+.hero-header {
+    background-color: #AAAAAA;
+    text-align: center;
+    padding: 0px;
+    border-radius: 10px 10px 0px 0px;
+    height: 100% ;
+}
+
+.hero-img {
+    background-color: #FFFFFF;
+    opacity: 0.5;
+    display: inline-block;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-img img {
+    max-width: 20px;
+    height: 20px;
+    margin-top: 12vh;
 }
 
 .hero-title {
     position: absolute; /* Positionne le titre par rapport à la section parent */
-    bottom: 20px; /* Espacement depuis le bas de l'image */
+    bottom: 0; /* Espacement depuis le bas de l'image */
     left: 20px; /* Espacement depuis la gauche */
     color: white; /* Couleur du texte */
     font-size: 3rem;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+    background-color: rgba(0, 0, 0, 0.178); /* Fond semi-transparent pour améliorer la lisibilité */
     padding: 10px 20px;
-    border-radius: 5px; /* Coins arrondis pour un meilleur design */
+    border-radius: 1px; /* Coins arrondis pour un meilleur design */
     z-index: 5; /* Assure que le titre est au-dessus de l'image */
 }
 
@@ -38,6 +53,8 @@
     padding: 20px;
 }
 
+/* Section de la carte entreprise */
+
 .card-section {
     flex: 3; /* Prend 30% de la largeur */
     padding: 20px;
@@ -49,50 +66,60 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-.card-body {
-    padding: 10px;
-}
-
-.card-footer {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.card-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.card-button:hover {
-    background-color: #45a049;
-}
-
-
-
 .card-header {
     background-color: #AAAAAA;
     text-align: center;
-    padding: 0px;
+    padding: 30px;
     border-radius: 10px 10px 0px 0px;
-    height: 20% ;
+    position: relative;
 }
 
-.card-img {
-    background-color: #FFFFFF;
-    opacity: 0.5;
-    display: inline-block;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
+.card-header h2 {
+    bottom: 0;
 }
 
 .card-img img {
     max-width: 20px;
     height: 20px;
-    margin-top: 6vh;
+    align-items: center;
+}
+
+.card-title {
+    bottom: 0; /* Espacement depuis le bas de l'image */
+    color: var(--CBlack); /* Couleur du texte */
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    z-index: 5; /* Assure que le titre est au-dessus de l'image */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body p {
+    margin-bottom: 2vh;
+}
+
+.card-body li {
+    margin-left: 3vw;
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.card-button {
+    background-color: var(--CpBlue);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-button:hover {
+    background-color: var(--CpBlue);
 }

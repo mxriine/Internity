@@ -29,9 +29,9 @@ echo '<header class="header">
         </div>
         <nav class="nav">
             <ul class="menu-left">
-                <li><a href="/Discover.php"' . ($current_page == 'Discover.php' ? ' class="active"' : '') . '>Offre</a></li>
-                <li><a href="/Companies.php"' . ($current_page == 'Companies.php' ? ' class="active"' : '') . '>Entreprise</a></li>
-                <li><a href="/Home.twig.html"' . ($current_page == 'Home.twig.html' ? ' class="active"' : '') . '>À propos</a></li>
+                <li><a href="Discover.php"' . ($current_page == 'Discover.php' ? ' class="active"' : '') . '>Offre</a></li>
+                <li><a href="Companies.php"' . ($current_page == 'Companies.php' ? ' class="active"' : '') . '>Entreprise</a></li>
+                <li><a href="Home.twig.html"' . ($current_page == 'Home.twig.html' ? ' class="active"' : '') . '>À propos</a></li>
             </ul>
             <div class="menu-right">
                 <div class="user-info">
@@ -41,7 +41,7 @@ echo '<header class="header">
                     <div class="user-menu" id="userMenu">
                         <ul>
                             <li><a href="/#">' . htmlspecialchars($navbar) . '</a></li>
-                            <li><a href="/login.php">Se déconnecter</a></li>
+                            <li><a href="Login.php">Se déconnecter</a></li>
                         </ul>
                     </div>
                     <div class="user-details">
