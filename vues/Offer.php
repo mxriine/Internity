@@ -3,6 +3,7 @@
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
 require_once('../src/Controllers/Offer.php');
+require_once('../src/Controllers/Wishlist.php');
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +56,17 @@ require_once('../src/Controllers/Offer.php');
                         <div class="card-title">
                             <?= htmlspecialchars($companiesDetails['company_name'] ?? 'Entreprise inconnue') ?>
                         </div>
-                        <div class="wishlist-heart-container">
-                            <img 
-                                src="/assets/images/CoeurVide.png" 
-                                alt="Ajouter à la wishlist" 
-                                class="wishlist-heart" 
-                                data-offer-id="<?= htmlspecialchars($offerDetails['offer_id'] ?? '') ?>"
-                            >
-                        </div>
+                        <form method="POST" action="/src/Controllers/Wishlist.php" class="wishlist-form">
+                            <input type="hidden" name="offer_id" value="<?= htmlspecialchars($offerDetails['offer_id'] ?? '') ?>">
+                            <input type="hidden" name="action" value="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? 'remove' : 'add' ?>">
+                            <button type="submit" class="wishlist-heart-container">
+                                <img 
+                                    src="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? '/assets/images/CoeurRemplis.png' : '/assets/images/CoeurVide.png' ?>" 
+                                    alt="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? 'Retirer de la wishlist' : 'Ajouter à la wishlist' ?>" 
+                                    class="wishlist-heart"
+                                >
+                            </button>
+                        </form>
                     </div>
             
                     <div class="card-body">
