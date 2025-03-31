@@ -1,5 +1,4 @@
 .image-enhaut {
-    background-image: url('../photo_home.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -12,11 +11,11 @@
 }
 
 .text-image-enhaut1 {
-    color: white;
+    color: black;
 }
 
 .text-image-enhaut2 {
-    color: white;
+    color: black;
 }
 
 .carrousel {
