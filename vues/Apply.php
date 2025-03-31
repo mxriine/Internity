@@ -89,6 +89,14 @@ require_once('Navbar.php');
                         <span class="error-message" id="messageError"></span>
                     </div>
 
+                    <!-- Pour sauvegarder le CV et la LM-->
+                    <div class="remember">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Sauvegarder mes informations</label>
+                    </div>
+
+
+                    
                     <!-- Submit Button -->
                     <input type="hidden" name="offer_id" value="<?= $offerDetails['offer_id'] ?>">
                     <button type="submit" class="submit-button">Soumettre ma candidature</button>
