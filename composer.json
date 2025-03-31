@@ -1,0 +1,14 @@
+{
+    "name": "cesi/internity",
+    "autoload": {
+      "psr-4": {
+        "Controllers\\": "src/Controllers/",
+        "Models\\": "src/Models/",
+        "Core\\": "src/Core/"
+      }
+    },
+    "require": {
+      "twig/twig": "^3.0"
+    }
+  }
+  

@@ -1,0 +1,50 @@
+.header {
+    position: relative;
+}
+
+.publisher {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+}
+
+.publisher h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.publisher h2::before {
+    background: var(--CpBlue);
+    content: "";
+    position: absolute;
+    bottom: -0.25em;
+    left: 0.5em;
+    width: 7%;
+    height: 0.5rem;
+    box-sizing: border-box;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.publisher h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.publisher p {
+    font-size: 1em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.publisher a {
+    text-decoration: none;
+    color: var(--CBlack);
+}
