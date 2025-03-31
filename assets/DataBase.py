@@ -234,7 +234,7 @@ promotions = [
     },
     {
         "promotion_name" : "CPI A2 Info",
-        "promotion_desc" : "Promotion CPI A2 - 2ème Année - SPécialité Informatique"
+        "promotion_desc" : "Promotion CPI A2 - 2ème Année - Spécialité Informatique"
     },
     {
         "promotion_name" : "CPI A2 Géné",
