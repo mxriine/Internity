@@ -1,0 +1,249 @@
+:root {
+    --CWhite: rgb(255, 255, 255);
+    --CBlack: rgba(0, 0, 0);
+    --CoBlack: rgba(0, 0, 0, 0.1);
+    --CpBlack: rgb(34, 40, 49);
+    --CsBlack: rgb(49, 54, 63);
+    --CGrey: rgba(255, 255, 255, 0.6);
+    --CpBlue: rgb(118, 171, 174);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--CWhite);
+}
+
+footer {
+    background-color: var(--CpBlack);
+    color: var(--CWhite);
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer a {
+    color: var(--CWhite);
+    text-decoration: none;
+}
+
+footer a:visited {
+    color: var(--CWhite);
+    text-decoration: none;
+}
+
+footer .legal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer p {
+    margin-right: 30px;
+    margin-left: auto;
+}
+
+/* Menu */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--CGrey);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px var(--CoBlack);
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    padding: 10px;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    font-size: 24px;
+    position: absolute;
+}
+
+.search-bar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+
+.search-bar input {
+    padding: 10px 300px;
+    /* Plus d'espace pour l'icône */
+    border: none;
+    border-radius: 20px;
+    background: var(--CpBlue);
+    color: var(--CpBlack);
+    outline: none;
+}
+
+.user {
+    width: 10vw;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.user div {
+    margin-left: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user div h1 {
+    font-size: 20px;
+}
+
+.user div p {
+    font-size: 15px;
+}
+
+/* Icons */
+.home {    
+    width: 27vw;
+    height: 5vh;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.home img {
+    height: 35px; /* ou une autre valeur raisonnable */
+}
+
+.search-bar img:nth-of-type(2) {
+    height: 50%;
+    position: absolute;
+    right: 10px;
+}
+
+.search-bar img:nth-of-type(1) {
+    height: 50%;
+    position: absolute;
+    left: 10px;
+}
+
+.user img {
+    height: 40px;
+    width: auto;
+}
+
+/* CSS de bases */
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.white {
+    color: var(--CWhite);
+}
+
+.stage-title {
+    background-image: url(/assets/photo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20vh;
+    position: relative;
+}
+
+.stage-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-repeat: inherit;
+    background-size: inherit;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    z-index: 1;
+}
+
+.stage-title text {
+    font-weight: bold;
+    color: var(--CBlack);
+    font-size: 40px;
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+    transform: none;
+}
+
+
+.stage-content {
+    position : relative;
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.stage-description {
+    color: var(--CBlack);
+    margin: 20px 10px;
+    border-radius: 10px; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 70vh;
+}
+
+.stage-popup {
+    color: var(--CBlack);
+    margin: 20px 10px;
+    border-radius: 10px; 
+    width: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+    flex-grow: 1;
+}
+
+
+.card {
+    display: flex;
+}
+
+.photo-popup {
+    border-radius: 10px;
+}
+
+.text-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0;
+}

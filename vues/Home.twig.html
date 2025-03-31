@@ -7,33 +7,108 @@
     <meta name="description" content="Internity - Le meilleur de l'Internet">
     <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles_home.css" />
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <div class="logo">
             <h1>INTERNITY</h1>
         </div>
         <nav class="nav">
             <ul class="menu-left">
-                <li><a href="/vues/Discover.php">Offre</a></li>
-                <li><a href="/vues/Companies.php">Entreprise</a></li>
-                <li><a href="">À propos</a></li>
+                <li><a href="/entreprise.php">Offre</a></li>
+                <li><a href="/entreprise.php">Entreprise</a></li>
+                <li><a style="color: var(--CpBlue);">À propos</a></li>
             </ul>
             <div class="connect">
                 <a href="/vues/Login.php"><button>Se connecter</button></a>
             </div>
         </nav>
     </header>
+    <!-- au dessus - marine-->
 
-    <main style="height: 100vh">
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Internity</h1>
-                <p>Le meilleur de l'Internet</p>
+    <main>
+
+
+
+        <div class="carrousel">
+            <button class="navi gauche" onclick="changerDiapositive(-1)">&#9664;</button>
+            <div class="conteneur">
+              <div id="diapositive1" class="diapositive">
+                <!-- <img src="/assets/image1.jpg" alt="Description de l'image 1"> -->
+                <div class="ctext" id="ctext-1">
+                    <h3>Entreprises</h3>
+                    <p id="enterprise-count">0</p>
+                </div>
+              </div>
+              <div id="diapositive2" class="diapositive">
+                <!-- <img src="/assets/image2.jpg" alt="Description de l'image 2"> -->
+                <div class="ctext" id="ctext-2">
+                    <h3>Offres disponibles</h3>
+                    <p id="offer-count">0</p>
+                </div>
+              </div>
+              <div id="diapositive3" class="diapositive">
+                <!-- <img src="/assets/image3.jpg" alt="Description de l'image 3"> -->
+                <div class="ctext" id="ctext-3">
+                    <h3>Utilisateurs</h3>
+                    <p id="user-count">0</p>
+                </div>
+              </div>
+              <div id="diapositive4" class="diapositive">
+                <!-- <img src="/assets/image4.jpg" alt="Description de l'image 4"> -->
+                <div class="ctext" id="ctext-4">
+                    <h3>Je sais pas mdr</h3>
+                    <p id="jsp-count">0</p>
+                </div>
+              </div>
             </div>
-        </section>
+            <button class="navi droite" onclick="changerDiapositive(1)">&#9654;</button>
+            <div class="indicateurs">
+              <span id="point1" class="point" onclick="allerADiapositive(1)"></span>
+              <span id="point2" class="point" onclick="allerADiapositive(2)"></span>
+              <span id="point3" class="point" onclick="allerADiapositive(3)"></span>
+              <span id="point4" class="point" onclick="allerADiapositive(4)"></span>
+            </div>
+        </div>
+          
+
+        
+        <div class="image-enhaut">
+            <h1 class="text-image-enhaut1">Internity</h1>
+            <h2 class="text-image-enhaut2">Le meilleur de l'Internet</h2>
+        </div>
+
+
+
     </main>
+
+
+    <section id="stats-cards" class="stats-cards">
+        <div class="card" id="card-enterprises">
+            <h3>Entreprises</h3>
+            <p id="enterprise-count">0</p>
+        </div>
+        <div class="card" id="card-offers">
+            <h3>Offres disponibles</h3>
+            <p id="offer-count">0</p>
+        </div>
+        <div class="card" id="card-users">
+            <h3>Utilisateurs</h3>
+            <p id="user-count">0</p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("enterprise-count").textContent = nb_companies;
+            document.getElementById("offer-count").textContent = offer_count;
+            document.getElementById("user-count").textContent = user_count;
+        });
+    </script>
+
+    <script src="/assets/carroussel.js"></script>
 
     <footer>
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
