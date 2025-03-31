@@ -1,5 +1,7 @@
-<!-- FORMULAIRE DE SESSION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 require_once('Navbar.php');
 ?>
 
@@ -95,7 +97,7 @@ require_once('Navbar.php');
     <br>
 
     <footer>
-        <a class="legal" href="/vues/publisher.php">Mention légale</a>
+        <a class="legal" href="">Mention légale</a>
         <p>© 2025 - Internity</p>
     </footer>
 </body>

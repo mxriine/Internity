@@ -59,7 +59,6 @@ class Offer
             throw new Exception("Erreur lors de la création de l'offre : " . $e->getMessage());
         }
     }
-
     public function updateOffer($offer_id, $data)
     {
         try {
@@ -91,7 +90,6 @@ class Offer
             throw new Exception("Erreur lors de la mise à jour de l'offre : " . $e->getMessage());
         }
     }
-
     public function deleteOffer($offer_id)
     {
         try {
@@ -106,7 +104,6 @@ class Offer
             throw new Exception("Erreur lors de la suppression de l'offre : " . $e->getMessage());
         }
     }
-
     public function getOfferSkills($offer_id)
     {
         try {
@@ -119,6 +116,68 @@ class Offer
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la récupération des compétences : " . $e->getMessage());
+        }
+    }
+
+    //récuperer l'entreprise qui a publié l'offre
+    public function getOffersCompanies($offer_id)
+    {
+        try {
+            // Requête SQL pour récupérer les informations de l'entreprise associée à une offre
+            $stmt = $this->pdo->prepare("
+                SELECT 
+                c.company_name,
+                ci.city_name AS city,
+                r.region_name AS region,
+                c.company_phone AS phone,
+                c.company_email AS email
+            FROM 
+                Offers o
+            JOIN 
+                Companies c ON o.company_id = c.company_id
+            JOIN 
+                Located l ON c.company_id = l.company_id
+            JOIN 
+                Cities ci ON l.city_id = ci.city_id
+            JOIN 
+                Regions r ON ci.region_id = r.region_id
+            WHERE 
+                o.offer_id = :offer_id
+            ");
+
+            // Liaison du paramètre :offer_id
+            $stmt->bindParam(':offer_id', $offer_id, PDO::PARAM_INT);
+
+            // Exécution de la requête
+            $stmt->execute();
+
+            // Récupération des résultats
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Gestion des erreurs
+            throw new Exception("Erreur lors de la récupération de l'entreprise : " . $e->getMessage());
+        }
+    }
+
+    public function getPaginatedOffers($limit, $offset)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM Offers LIMIT :limit OFFSET :offset");
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération des offres paginées : " . $e->getMessage());
+        }
+    }
+    public function getTotalOffersCount()
+    {
+        try {
+            $stmt = $this->pdo->query("SELECT COUNT(*) FROM Offers");
+            return $stmt->fetchColumn();
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors du comptage des offres : " . $e->getMessage());
         }
     }
 }

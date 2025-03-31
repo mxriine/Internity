@@ -1,6 +1,7 @@
-<!-- FORMULAIRE DE CONNEXION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
-require_once ('../src/Controllers/LoginController.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
 ?>
 
 <!DOCTYPE html>

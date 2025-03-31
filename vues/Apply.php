@@ -1,6 +1,8 @@
-<!-- FORMULAIRE DE CONNEXION (EN PHP) -->
+<!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/LoginController.php');
+require_once('../src/Controllers/Login.php');
+require_once('../src/Controllers/CheckAuth.php');
+require_once('../src/Controllers/Offer.php');
 require_once('Navbar.php');
 ?>
 
@@ -17,18 +19,34 @@ require_once('Navbar.php');
 </head>
 
 <body class="page-apply">
-    <!-- Main Content -->
+
+    <!-- Navbar -->
+    <?php require_once('Navbar.php'); ?>
+
     <main>
         <div class="two-columns">
             <!-- Form Section -->
             <section class="application-form">
-                <h1>Postuler à une offre</h1>
-                <form id="applicationForm" action="/submit-application" method="POST" enctype="multipart/form-data">
+                <div>
+                    <a href="#" class="back" onclick="history.back(); return false;">
+                        <img src="/assets/icons/arrow.svg" alt="Retour">
+                        Retour
+                    </a>
+                </div>
+                <h1>Postuler à l'offre</h1>
+                <form id="applicationForm" action="/src/Controllers/Application.php" method="POST" enctype="multipart/form-data">
                     <!-- Nom et Prénom -->
                     <div class="form-group">
-                        <label for="name">Nom et prénom :</label>
-                        <input type="text" id="name" name="name" placeholder="Entrez votre nom et prénom" required>
-                        <span class="error-message" id="nameError"></span>
+                        <div class="form-group-align">
+                            <label for="surname">Nom :</label>
+                            <input type="text" id="surname" name="surname" placeholder="Entrez votre nom et prénom" required onblur="this.value = this.value.toUpperCase();">
+                            <span class="error-message" id="surnameError"></span>
+
+                            <label for="name">Prénom :</label>
+                            <input type="text" id="name" name="name" placeholder="Entrez votre nom et prénom" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+
                     </div>
 
                     <!-- Email -->
@@ -48,17 +66,20 @@ require_once('Navbar.php');
 
                     <!-- CV Upload -->
                     <div class="form-group">
-                        <label for="cv">Importer votre CV (PDF uniquement) :</label>
+                        <label for="cv">Importer votre CV :</label>
                         <input type="file" id="cv" name="cv" accept=".pdf" required>
                         <span class="error-message" id="cvError"></span>
                     </div>
 
                     <!-- Lettre de Motivation Upload -->
                     <div class="form-group">
-                        <label for="cover-letter">Importer votre lettre de motivation (PDF uniquement) :</label>
-                        <input type="file" id="cover-letter" name="cover-letter" accept=".pdf" required>
+                        <label for="coverletter">Importer votre lettre de motivation :</label>
+                        <input type="file" id="coverletter" name="coverletter" accept=".pdf" required>
                         <span class="error-message" id="coverLetterError"></span>
                     </div>
+
+                    <p style="font-size: 12px; margin-bottom: 0px;">Poids max. 2Mo</p>
+                    <p style="font-size: 12px; margin: 0px;">Formats .pdf</p>
 
                     <!-- Message -->
                     <div class="form-group">
@@ -69,51 +90,33 @@ require_once('Navbar.php');
                     </div>
 
                     <!-- Submit Button -->
+                    <input type="hidden" name="offer_id" value="<?= $offerDetails['offer_id'] ?>">
                     <button type="submit" class="submit-button">Soumettre ma candidature</button>
+                    
                 </form>
             </section>
-
-
 
             <!-- Card Section -->
             <section class="card-section">
                 <div class="card">
                     <div class="card-header">
-                        <img src="assets/icons/xxx.svg" alt="image">
+                        <div class="card-img">
+                            <img src="/assets/icons/star-circle.svg" alt="Favori">
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="label-container">
-                            <a class="label">Label</a>
-                        </div>
-                        <h2>Titre du stage</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida
-                            quam. Aliquam quis cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut gravida quam. Aliquam quis
-                            cursus tortor.
+                        <?php
+                        $skills = $offerModel->getOfferSkills($offerDetails['offer_id']);
+                        $limitedSkills = array_slice($skills, 0, 3);
+                        ?>
 
-                        </p>
+                        <div class="label-container">
+                            <?php foreach ($limitedSkills as $skill): ?>
+                                <span class="label"><?= htmlspecialchars($skill['skills_name']) ?></span>
+                            <?php endforeach; ?>
+                        </div>
+                        <h2><?= htmlspecialchars($offerDetails['offer_title']) ?></h2>
+                        <p><?= htmlspecialchars($offerDetails['offer_desc']) ?></p>
                     </div>
                 </div>
             </section>
@@ -127,7 +130,7 @@ require_once('Navbar.php');
     </footer>
 
     <!-- Inclusion du fichier JavaScript -->
-    <script src="/assets/apply.js"></script>
+    <script src="/assets/js/apply.js"></script>
 
 </body>
 
