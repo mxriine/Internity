@@ -5,17 +5,17 @@ require_once(__DIR__ . '/../Models/Application.php');
 
 use Models\Application;
 
-// Vérifie si l'utilisateur est connecté
-session_start();
 if (!isset($_SESSION['id'])) {
     die("Vous devez être connecté pour postuler.");
 }
+
+$current_page = basename($_SERVER['PHP_SELF']);
 
 $user_id = $_SESSION['id'];
 $offer_id = $_POST['offer_id'] ?? null;
 $message = $_POST['message'] ?? null;
 
-if (!$offer_id) {
+if (($current_page == 'Apply.php') && !$offer_id) {
     die("Aucune offre spécifiée.");
 }
 
@@ -105,7 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["cv"]) && isset($_FIL
 
 // Initialiser le modèle
 $applicationModel = new Application($conn);
-
 $applications = $applicationModel->getApplicationsByUserId($user_id);
 
 ?>
