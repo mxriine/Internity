@@ -1,4 +1,4 @@
-# Internity Plateforme de Recherche de Stage
+# Internity : Plateforme de Recherche de Stage
 
 ## Objectif
 Faciliter la recherche de stage pour les étudiants en centralisant les offres et les informations des entreprises qui recrutent des stagiaires.
