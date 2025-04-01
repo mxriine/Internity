@@ -14,7 +14,7 @@ require_once('Navbar.php');
     <meta charset="UTF-8">
     <meta name="description" content="Créez une nouvelle entreprise chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createCompanies.css">
+    <link rel="stylesheet" href="/assets/css/create/Companies.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
