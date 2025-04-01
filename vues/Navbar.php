@@ -40,7 +40,7 @@ echo '<header class="header">
                     </div>
                     <div class="user-menu" id="userMenu">
                         <ul>
-                            <li><a href="/#">' . htmlspecialchars($navbar) . '</a></li>
+                            <li><a href="/vues/dashboard/home.php">' . htmlspecialchars($navbar) . '</a></li>
                             <li><a href="Login.php">Se déconnecter</a></li>
                         </ul>
                     </div>
