@@ -1,0 +1,109 @@
+/* Variables de couleur */
+:root {
+    --CBlack: #000000;
+    --CpBlue: #007BFF;
+    --CoBlack: rgba(0, 0, 0, 0.2);
+}
+
+/* Conteneur principal */
+.create-account-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la page */
+.create-account-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--CBlack);
+    margin-bottom: 20px;
+}
+
+/* Groupes de champs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--CpBlue);
+}
+
+/* Inputs et textarea */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Effet hover/focus sur les inputs */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--CpBlue);
+    outline: none;
+}
+
+/* Style pour le menu déroulant */
+.form-group select {
+    appearance: none; /* Supprime la flèche par défaut */
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007BFF'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 10px center / 12px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Bouton de soumission */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--CpBlue);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Un ton plus foncé pour le bleu au survol */
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px var(--CoBlack);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+
+footer .legal {
+    color: var(--CpBlue);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer .legal:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--CBlack);
+}
