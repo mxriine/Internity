@@ -209,7 +209,7 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                                 $status = strtolower($application['apply_status'] ?? 'unknown'); // Met en minuscule pour éviter les erreurs de casse
                             
                                 $statusMapping = [
-                                    'en attente' => ['offer-status pending', 'En attente'],
+                                    'en cours' => ['offer-status pending', 'En cours'],
                                     'acceptée' => ['offer-status accepted', 'Acceptée'],
                                     'rejetée' => ['offer-status rejected', 'Rejetée']
                                 ];

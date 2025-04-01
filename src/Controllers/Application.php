@@ -1,6 +1,7 @@
 <?php
 // Chargement des dépendances nécessaires
 require_once(__DIR__ . '/../Core/DataBase.php');
+require_once(__DIR__ . '/../Controllers/Login.php');
 require_once(__DIR__ . '/../Models/Application.php');
 
 use Models\Application;
@@ -15,7 +16,7 @@ $user_id = $_SESSION['id'];
 $offer_id = $_POST['offer_id'] ?? null;
 $message = $_POST['message'] ?? null;
 
-if (($current_page == 'Apply.php') && !$offer_id) {
+if ($current_page === 'Apply.php' && !$offer_id) {
     die("Aucune offre spécifiée.");
 }
 
@@ -99,8 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["cv"]) && isset($_FIL
     } catch (Exception $e) {
         echo "Erreur : " . $e->getMessage();
     }
-} else {
-    echo "Aucun fichier reçu.";
+} elseif ($current_page === 'Apply.php') {
+    // Si la page est "Apply.php" mais que le formulaire n'est pas soumis
+    echo "Veuillez soumettre le formulaire.";
 }
 
 // Initialiser le modèle

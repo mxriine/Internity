@@ -2,15 +2,20 @@
 <html lang="fr">
 
 <head>
+    <!-- Métadonnées -->
     <title>Internity - Home</title>
     <meta charset="UTF-8">
     <meta name="description" content="Internity - Le meilleur de l'Internet">
     <meta name="author" content="Internity">
+
+    <!-- Feuilles de style -->
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
 </head>
 
 <body>
-    <header>
+    <!-- En-tête -->
+    <header class="header">
         <div class="logo">
             <h1>INTERNITY</h1>
         </div>
@@ -18,7 +23,7 @@
             <ul class="menu-left">
                 <li><a href="/vues/Discover.php">Offre</a></li>
                 <li><a href="/vues/Companies.php">Entreprise</a></li>
-                <li><a href="">À propos</a></li>
+                <li><a style="color: var(--CpBlue);">À propos</a></li>
             </ul>
             <div class="connect">
                 <a href="/vues/Login.php"><button>Se connecter</button></a>
@@ -26,15 +31,129 @@
         </nav>
     </header>
 
-    <main style="height: 100vh">
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Internity</h1>
-                <p>Le meilleur de l'Internet</p>
+    <!-- Contenu principal -->
+    <main>
+        <!-- Carrousel -->
+        <div class="carrousel">
+            <!-- Boutons de navigation -->
+            <button class="arrow gauche" onclick="changer(-1)">&#9664;</button>
+            <button class="arrow droite" onclick="changer(1)">&#9654;</button>
+
+            <!-- Conteneur des diapositives -->
+            <div class="conteneur">
+                <!-- Diapositive 1 -->
+                <div id="diapositive1" class="diapositive">
+                    <div class="image-container">
+                        <img src="/assets/images/Companies.png" alt="Entreprise">
+                        <div class="overlay-companies">
+                            <h3>Partenariat</h3>
+                            <p>Plus de x entreprises</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diapositive 2 -->
+                <div id="diapositive2" class="diapositive">
+                    <div class="image-container">
+                        <img src="/assets/images/Offer.png" alt="Offer">
+                        <div class="overlay-offer">
+                            <h3>Nos offres</h3>
+                            <p>Plus de x offres</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diapositive 3 -->
+                <div id="diapositive3" class="diapositive">
+                    <div class="image-container">
+                        <img src="/assets/images/User.png" alt="User">
+                        <div class="overlay-user">
+                            <h3>Nos utilisateurs</h3>
+                            <p>Plus de x personnes ont testé</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicateurs de navigation -->
+            <div class="indicateurs">
+                <span id="point1" class="point" onclick="diapo(1)"></span>
+                <span id="point2" class="point" onclick="diapo(2)"></span>
+                <span id="point3" class="point" onclick="diapo(3)"></span>
+            </div>
+        </div>
+
+
+        <!-- Section d'information -->
+
+        <section class="about-section">
+            <div class="about-container">
+                <!-- Bloc 1 : Notre projet -->
+                <div class="about-block">
+                    <h2>Notre projet</h2>
+                    <p>Internity est une plateforme qui vous permet de découvrir le meilleur de l'Internet. Que vous
+                        soyez une entreprise ou un particulier, nous avons quelque chose à vous offrir.</p>
+                </div>
+
+                <!-- Bloc 2 : Notre mission -->
+                <div class="about-block">
+                    <h2>Notre mission</h2>
+                    <p>Notre mission est de vous fournir les outils et les ressources nécessaires pour naviguer sur
+                        Internet en toute sécurité et efficacité. Nous croyons que l'Internet doit être accessible à
+                        tous, et nous travaillons dur pour y parvenir.</p>
+                </div>
+
+                <!-- Bloc 3 : Notre équipe -->
+                <div class="about-block">
+                    <h2>Notre équipe</h2>
+                    <p>Notre équipe est composée de professionnels passionnés par la technologie et l'Internet. Nous
+                        sommes là pour vous aider à tirer le meilleur parti de votre expérience en ligne.</p>
+                </div>
+
+                <!-- Diagrammes Git -->
+                <div class="git-stats">
+                    <h2>Statistiques du projet</h2>
+                    <p>Voici un aperçu des contributions et des activités sur notre dépôt Git :</p>
+                    <div class="chart-container">
+                        <canvas id="commitsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Formulaire de contact -->
+                <div class="contact-form">
+                    <h2>Nous rejoindre</h2>
+                    <p>Pour nous rejoindre ou poser vos questions, remplissez le formulaire ci-dessous :</p>
+                    <form action="/submit" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail</label>
+                            <input type="email" id="email" name="email" placeholder="Entrez votre e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Écrivez votre message ici..." rows="4"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Phrase finale -->
+            <div class="welcome-message">
+                <h3>Bienvenue sur Internity</h3>
+                <p>Découvrez toutes les possibilités qu'offre notre plateforme et rejoignez notre communauté dès
+                    aujourd'hui !</p>
             </div>
         </section>
+        <!-- Script JavaScript -->
+        <script src="/assets/js/home.js"></script>
     </main>
 
+    <!-- Pied de page -->
     <footer>
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
@@ -42,3 +161,4 @@
 </body>
 
 </html>
+

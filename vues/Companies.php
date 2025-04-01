@@ -18,10 +18,7 @@ require_once('../src/Controllers/CheckAuth.php');
 </head>
 
 <body>
-    <!-- Barre de navigation -->
-    <header class="header">
-        <?php require_once('Navbar.php'); ?>
-    </header> 
+    <?php require_once('Navbar.php'); ?>
 
     <main>
         Hello World
