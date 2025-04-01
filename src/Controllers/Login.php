@@ -50,10 +50,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             // Redirection en fonction du rôle
             switch ($_SESSION['role']) {
                 case 'admin':
-                    header('Location: /vues/Admin.php');
+                    header('Location: /vues/Discover.php');
                     exit();
                 case 'pilote':
-                    header('Location: /vues/Pilote.php');
+                    header('Location: /vues/Discover.php');
                     exit();
                 case 'student':
                     header('Location: /vues/Discover.php');

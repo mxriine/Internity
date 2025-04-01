@@ -3,7 +3,7 @@
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
 require_once('../src/Controllers/Offer.php');
-
+require_once('Navbar.php');
 ?>
 
 <!DOCTYPE html>

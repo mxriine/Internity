@@ -3,6 +3,7 @@
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
 require_once('../src/Controllers/Application.php');
+require_once('../src/Controllers/Wishlist.php');
 require_once('Navbar.php');
 
 $showSuccess = isset($_GET['success']) && $_GET['success'] == 1;
@@ -39,13 +40,16 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
         </aside>
 
         <!-- Dynamic Content -->
-        <section class="content">
+        <?php
+        $page = $_GET['page'] ?? 'password'; // Par défaut, afficher "Mon compte"
+        ?>
 
+        <section class="content">
 
             <!-- Mon compte -->
 
 
-            <div id="account" class="tab-content active">
+            <div id="account" class="tab-content <?= $page === 'account' ? 'active' : '' ?>">
                 <h2>Mon compte</h2>
 
                 <!-- Informations personnelles -->
@@ -96,7 +100,7 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
 
 
             <!-- Sécurité et Confidentialité -->
-            <div id="password" class="tab-content">
+            <div id="password" class="tab-content <?= $page === 'password' ? 'active' : '' ?>">
                 <h2>Sécurité et Confidentialité</h2>
 
                 <!-- Informations actuelles -->
@@ -145,60 +149,57 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
             </div>
 
             <!-- Wishlist -->
-            <div id="wishlist" class="tab-content">
+            <div id="wishlist" class="tab-content <?= $page === 'wishlist' ? 'active' : '' ?>">
                 <h2>Ma wishlist</h2>
 
                 <!-- Liste des offres -->
                 <div class="wishlist-container">
-                    <!-- Offre 1 -->
-                    <div class="wishlist-item">
-                        <div class="wishlist-header">
-                            <h3>Stage Développeur Web</h3>
-                            <img src="/assets/images/CoeurRemplis.png" alt="Cœur rempli" class="wishlist-heart active"
-                                data-offer-id="1">
-                        </div>
-                        <p><strong>Entreprise :</strong> Internity</p>
-                        <p><strong>Durée :</strong> 6 mois</p>
-                        <p><strong>Lieu :</strong> Paris, France</p>
-                        <p><strong>Date limite :</strong> 30/11/2023</p>
-                        <button class="wishlist-button">Voir plus</button>
-                    </div>
+                    <?php foreach ($wishlist as $item): ?>
+                        <div class="wishlist-item">
+                            <div class="wishlist-header">
+                                <h3><?= htmlspecialchars($item['offer_title'] ?? 'Offre inconnue') ?></h3>
 
-                    <!-- Offre 2 -->
-                    <div class="wishlist-item">
-                        <div class="wishlist-header">
-                            <h3>Stage Designer UX/UI</h3>
-                            <img src="/assets/images/CoeurVide.png" alt="Cœur vide" class="wishlist-heart"
-                                data-offer-id="2">
+                                <form method="POST" action="/src/Controllers/Wishlist.php" class="wishlist-form">
+                                    <input type="hidden" name="offer_id" value="<?= htmlspecialchars($item['offer_id'] ?? '') ?>">
+                                    <input type="hidden" name="action" value="<?= in_array($item['offer_id'], array_column($wishlist, 'offer_id')) ? 'remove' : '' ?>">
+                                    <button type="submit" class="wishlist-heart-container">
+                                        <img 
+                                            src="<?= in_array($item['offer_id'], array_column($wishlist, 'offer_id')) ? '/assets/images/CoeurRemplis.png' : '' ?>" 
+                                            alt="<?= in_array($item['offer_id'], array_column($wishlist, 'offer_id')) ? 'Retirer de la wishlist' : '' ?>" 
+                                            class="wishlist-heart"
+                                        >
+                                    </button>
+                                </form>
+                            </div>
+                            <p><strong>Entreprise :</strong> <?= htmlspecialchars($item['company_name'] ?? 'Entreprise inconnue') ?></p>
+                            <p><strong>Durée :</strong>
+                                <?php
+                                if (!empty($item['offer_start']) && !empty($item['offer_end'])) {
+                                    $startDate = new DateTime($item['offer_start']);
+                                    $endDate = new DateTime($item['offer_end']);
+                                    $interval = $startDate->diff($endDate);
+                                    echo htmlspecialchars($interval->m . ' mois et ' . $interval->d . ' jours');
+                                } else {
+                                    echo "Durée inconnue";
+                                }
+                                ?>
+                            </p>
+                            </p>
+                            <p><strong>Lieu :</strong>
+                                <?= htmlspecialchars($item['city_name'] ?? 'Ville inconnue') . ', ' . htmlspecialchars($item['region_name'] ?? 'Region inconnue') ?>
+                            </p>
+                            <button class="wishlist-button">Voir plus</button>
                         </div>
-                        <p><strong>Entreprise :</strong> CréaTech</p>
-                        <p><strong>Durée :</strong> 4 mois</p>
-                        <p><strong>Lieu :</strong> Lyon, France</p>
-                        <p><strong>Date limite :</strong> 15/12/2023</p>
-                        <button class="wishlist-button">Voir plus</button>
-                    </div>
-
-                    <!-- Offre 3 -->
-                    <div class="wishlist-item">
-                        <div class="wishlist-header">
-                            <h3>Stage Marketing Digital</h3>
-                            <img src="/assets/images/CoeurRemplis.png" alt="Cœur rempli" class="wishlist-heart active"
-                                data-offer-id="3">
-                        </div>
-                        <p><strong>Entreprise :</strong> MarketPro</p>
-                        <p><strong>Durée :</strong> 3 mois</p>
-                        <p><strong>Lieu :</strong> Toulouse, France</p>
-                        <p><strong>Date limite :</strong> 01/01/2024</p>
-                        <button class="wishlist-button">Voir plus</button>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
             <!-- Mes offres -->
             <!-- Offres -->
-            <div id="offers" class="tab-content">
+            <div id="offers" class="tab-content <?= $page === 'offers' ? 'active' : '' ?>">
                 <h2>Mes offres</h2>
 
+                <!-- Liste des offres -->
                 <!-- Liste des offres -->
                 <div class="offers-container">
                     <?php foreach ($applications as $application): ?>
