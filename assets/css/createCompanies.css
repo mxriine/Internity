@@ -1,0 +1,68 @@
+/* Conteneur principal */
+.create-company-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la page */
+.create-company-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--CBlack);
+    margin-bottom: 20px;
+}
+
+/* Groupes de champs */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--CpBlue);
+}
+
+/* Inputs et textarea */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Effet hover/focus sur les inputs */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--CpBlue);
+    outline: none;
+}
+
+/* Bouton de soumission */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--CpBlue);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px var(--CoBlack);
+}   
