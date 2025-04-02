@@ -97,7 +97,7 @@ require_once('../src/Controllers/Wishlist.php');
         </div>
     </main>
     <!-- Footer -->
-    <footer>
+    <footer style="position: fixed;">
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
