@@ -10,11 +10,11 @@ require_once('Navbar.php');
 <html lang="fr">
 
 <head>
-    <title>Internity - Créer un compte</title>
+    <title>Internity - Modifier un compte</title>
     <meta charset="UTF-8">
     <meta name="description" content="Créer un compte chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createUser.css">
+    <link rel="stylesheet" href="/assets/css/manage/user.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -23,7 +23,7 @@ require_once('Navbar.php');
     <main>
         <!-- Formulaire pour créer un compte -->
         <div class="create-account-container">
-            <h1>Créer un nouveau compte</h1>
+            <h1>Modifier ce compte</h1>
             <form action="/api/create-account" method="POST" class="create-account-form">
                 <!-- Nom de l'utilisateur -->
                 <div class="form-group">
@@ -62,13 +62,13 @@ require_once('Navbar.php');
 
                 <!-- Bouton de soumission -->
                 <div class="form-group">
-                    <button type="submit" class="submit-button">Créer le compte</button>
+                    <button type="submit" class="submit-button">Modifier le compte</button>
                 </div>
             </form>
         </div>
     </main>
 
-    <script src="/assets/js/createUser.js" defer></script>
+    <script src="/assets/js/manage/user.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'utilisateurs -->
 
 </body>
 

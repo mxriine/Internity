@@ -12,11 +12,11 @@ require_once('../src/Controllers/Offer.php');
 <html lang="fr">
 
 <head>
-    <title>Internity - Profil</title>
+    <title>Internity - Modifier cette une offre</title>
     <meta charset="UTF-8">
     <meta name="description" content="Gérez votre profil chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createOffer.css">
+    <link rel="stylesheet" href="/assets/css/manage/offer.css">  <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -25,7 +25,7 @@ require_once('../src/Controllers/Offer.php');
     <main>
         <!-- Formulaire pour créer une offre -->
         <div class="create-offer-container">
-            <h1>Créer une nouvelle offre</h1>
+            <h1>Modifier cette Offre</h1>
             <h3>Nom entreprise</h3>
             <form action="/api/create-offer" method="POST" class="create-offer-form">
                 <!-- Titre de l'offre -->
@@ -60,13 +60,13 @@ require_once('../src/Controllers/Offer.php');
     
                 <!-- Bouton de soumission -->
                 <div class="form-group">
-                    <button type="submit" class="submit-button">Créer l'offre</button>
+                    <button type="submit" class="submit-button">Modifier l'offre</button>
                 </div>
             </form>
         </div>
     </main>
 
-    <script src="/assets/js/createOffer.js" defer></script>
+    <script src="/assets/js/manage/offer.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'offre -->
 
 </body>
 

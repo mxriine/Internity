@@ -14,7 +14,7 @@ require_once('Navbar.php');
     <meta charset="UTF-8">
     <meta name="description" content="Supprimer une offre chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createOffer.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
+    <link rel="stylesheet" href="/assets/css/manage/offer.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -73,7 +73,7 @@ require_once('Navbar.php');
         </div>
     </main>
 
-    <script src="/assets/js/createOffer.js" defer></script> <!-- Fichier JS personnalisé pour ce formulaire -->
+    <script src="/assets/js/manage/offer.js" defer></script> <!-- Fichier JS personnalisé pour ce formulaire -->
 
 </body>
 

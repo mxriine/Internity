@@ -38,12 +38,21 @@ class Application
     public function getApplicationsByUserId($user_id)
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM Applications WHERE user_id = :user_id");
+            $stmt = $this->pdo->prepare("
+            SELECT a.*, o.*, c.*, l.*, ci.*, r.*
+            FROM Applications a
+            INNER JOIN Offers o ON a.offer_id = o.offer_id
+            INNER JOIN Companies c ON o.company_id = c.company_id
+            INNER JOIN Located l ON c.company_id = l.company_id
+            INNER JOIN Cities ci ON l.city_id = ci.city_id
+            INNER JOIN Regions r ON ci.region_id = r.region_id
+            WHERE a.user_id = :user_id
+            ");
             $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            throw new Exception("Erreur lors de la récupération des candidatures : " . $e->getMessage());
+            throw new Exception("Erreur lors de la récupération des candidatures, des offres et des entreprises : " . $e->getMessage());
         }
     }
 

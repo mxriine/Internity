@@ -76,7 +76,7 @@ companies = [
 # 🔹 Liste des utilisateurs à insérer
 users = [
     ("GOAT", "thegreatest@nasa.com", "Toto", 
-     "637120507bb9ba0c33ff8b25f97782aec85399239f19d423e33c6146f7cbc9917a7d0f5bed40a08557e7a6edefb092844e6515c3d136a2cb435bbd0c878fd426",
+     "2589480a812b6de5d733efad7d379b3b469ced031a54df0a3bb175a5bdc60f3c7120c5ff6095ff929713a99380656654ded73d8d8170e36647ea2f6abd587a31",
      "/////", "/////"),
     ("MAZOU", "mazou.marine@lego.com", "Marine", 
      "bb61c39e6b19e7326bbaacc59ac71fcff8ce01f0feee0c7d46b2c18a56f915bbd9506430adf055dd11c857cbd6192cac0e97a02600bad8e221a0f1f462f279e5",

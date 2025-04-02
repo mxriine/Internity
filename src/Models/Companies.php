@@ -40,6 +40,26 @@ class Companies {
         return $stmt->fetchAll();
     }
 
+
+    public function getTotalCompaniesCount() {
+        $stmt = $this->pdo->query("SELECT COUNT(*) FROM Companies");
+        return $stmt->fetchColumn();
+    }
+
+
+    public function getPaginatedCompanies($limit, $offset)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM Companies LIMIT :limit OFFSET :offset");
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération des entreprises paginées : " . $e->getMessage());
+        }
+    }
+
     // Voir une entreprise selon son ID
     public function getCompanyById($id) {
         $stmt = $this->pdo->prepare("SELECT * FROM Companies WHERE company_id = ?");
@@ -100,16 +120,16 @@ class Companies {
     }
 }
 
-require_once __DIR__ ."../Core/Config.php";
+// require_once __DIR__ ."../Core/Config.php";
 
-if (php_sapi_name() === 'cli') { // Vérifie si le script est exécuté en ligne de commande
-    try {
-        $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET, DB_USER, DB_PASS);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// if (php_sapi_name() === 'cli') { // Vérifie si le script est exécuté en ligne de commande
+//     try {
+//         $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET, DB_USER, DB_PASS);
+//         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $companies = new Companies($pdo); // Instancie la classe avec $pdo
-        $companies->testMethods();        // Appelle la méthode testMethods
-    } catch (PDOException $e) {
-        echo "Erreur de connexion à la base de données : " . $e->getMessage();
-    }
-}
+//         $companies = new Companies($pdo); // Instancie la classe avec $pdo
+//         $companies->testMethods();        // Appelle la méthode testMethods
+//     } catch (PDOException $e) {
+//         echo "Erreur de connexion à la base de données : " . $e->getMessage();
+//     }
+// }
