@@ -4,9 +4,12 @@
 $role = $_SESSION['role'] ?? 'inconnu';
 $surname = $_SESSION['name'] ?? '';
 
-// Déterminer le contenu de la navbar en fonction du rôle
-$navbar = ($role === 'admin' || $role === 'pilote') ? 'Dashboard' : 'Mon compte';
-
+// Déterminer le contenu de la navbar en fonction du rôle et définir le lien correspondant
+if ($role === 'admin' || $role === 'pilote') {
+    $navbar = '<a href="Dashboard.php">Dashboard</a>';
+} else {
+    $navbar = '<a href="Profil.php">Mon compte</a>';
+}
 // Vérifier la page actuelle
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
@@ -31,7 +34,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </div>
                 <div class="user-menu" id="userMenu">
                     <ul>
-                        <li><a href="/#"><?= htmlspecialchars($navbar) ?></a></li>
+                        <li><?= $navbar ?></li>
                         <li><a href="Login.php">Se déconnecter</a></li>
                     </ul>
                 </div>
