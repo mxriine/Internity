@@ -29,9 +29,9 @@ echo '<header class="header">
         </div>
         <nav class="nav">
             <ul class="menu-left">
-                <li><a href="Discover.php"' . ($current_page == 'Discover.php' ? ' class="active"' : '') . '>Offre</a></li>
-                <li><a href="Companies.php"' . ($current_page == 'Companies.php' ? ' class="active"' : '') . '>Entreprise</a></li>
-                <li><a href="Home.twig.html"' . ($current_page == 'Home.twig.html' ? ' class="active"' : '') . '>À propos</a></li>
+                <li><a href="/vues/Discover.php"' . ($current_page == 'Discover.php' ? ' class="active"' : '') . '>Offre</a></li>
+                <li><a href="/vues/Companies.php"' . ($current_page == 'Companies.php' ? ' class="active"' : '') . '>Entreprise</a></li>
+                <li><a href="/vues/Home.twig.html"' . ($current_page == 'Home.twig.html' ? ' class="active"' : '') . '>À propos</a></li>
             </ul>
             <div class="menu-right">
                 <div class="user-info">
