@@ -133,9 +133,11 @@ if (in_array($current_file, ['Discover.php', 'Offers.php'])) {
     $page_actuelle = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
     $offset = ($page_actuelle - 1) * $elements_par_page;
 
-    $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset);
-    $total_offers = $offerModel->getTotalOffersCount();
-    $total_pages = ceil($total_offers / $elements_par_page);
+    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+    $location = isset($_GET['location']) ? trim($_GET['location']) : '';
+    $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
+    $total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
+    $total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages
 
     $offerss = $offerModel->getAllOffers(); // ou getPaginatedOffers si pagination
 }

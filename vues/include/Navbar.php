@@ -2,13 +2,13 @@
 
 // Récupérer le rôle et le nom depuis la session
 $role = $_SESSION['role'] ?? 'inconnu';
-$surname = $_SESSION['name'] ?? '';
+$name = $_SESSION['name'] ?? '';
 
 // Déterminer le contenu de la navbar en fonction du rôle et définir le lien correspondant
 if ($role === 'admin' || $role === 'pilote') {
     $navbar = '<a href="/vues/dashboard/Home.php">Dashboard</a>';
 } else {
-    $navbar = '<a href="Profil.php">Mon compte</a>';
+    $navbar = '<a href="Profil.php?page=account">Mon compte</a>';
 }
 // Vérifier la page actuelle
 $current_page = basename($_SERVER['PHP_SELF']);
@@ -20,11 +20,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </div>
     <nav class="nav">
         <ul class="menu-left">
-            <li><a href="Discover.php" <?= ($current_page == 'Discover.php') ? 'class="active"' : '' ?>>Offre</a>
+            <li><a href="/vues/Discover.php" <?= ($current_page == 'Discover.php') ? 'class="active"' : '' ?>>Offre</a>
             </li>
-            <li><a href="Companies.php" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>Entreprise</a>
+            <li><a href="/vues/Companies.php" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>Entreprise</a>
             </li>
-            <li><a href="Home.twig.html" <?= ($current_page == 'Home.twig.html') ? 'class="active"' : '' ?>>À propos</a>
+            <li><a href="/" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>À propos</a></li>
             </li>
         </ul>
         <div class="menu-right">
@@ -35,11 +35,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <div class="user-menu" id="userMenu">
                     <ul>
                         <li><?= $navbar ?></li>
-                        <li><a href="Login.php">Se déconnecter</a></li>
+                        <li><a href="../../src/Controllers/Logout.php">Se déconnecter</a></li>
                     </ul>
                 </div>
                 <div class="user-details">
-                    <span><?= htmlspecialchars($surname) ?></span>
+                    <span><?= htmlspecialchars($name) ?></span>
                     <span><?= htmlspecialchars($role) ?></span>
                 </div>
 
