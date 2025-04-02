@@ -24,6 +24,10 @@ require_once('../../src/Controllers/CheckAuth.php');
     <main>
         <!-- Formulaire pour créer une offre -->
         <div class="create-offer-container">
+            <a href="#" class="back" onclick="history.back(); return false;">
+                <img src="/assets/icons/arrow.svg" alt="Retour">
+                Retour
+            </a>
             <h1>Créer une nouvelle offre</h1>
             <form action="../../src/Controllers/Offer.php" method="POST" class="create-offer-form">
                 <!-- Titre de l'offre -->

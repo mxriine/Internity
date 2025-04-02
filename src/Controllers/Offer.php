@@ -1,12 +1,9 @@
 <?php
 require_once(__DIR__ . '/../Core/DataBase.php');
+require_once(__DIR__ . '/../Controllers/Login.php');
 require_once(__DIR__ . '/../Models/Offer.php');
 
 use Models\Offer;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 $offerModel = new Offer($conn);
 
@@ -66,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // =========================================
 // SECTION 2 : Pagination des offres (/Discover.php)
 // =========================================
-if ($current_file === 'Discover.php') {
+if (in_array($current_file, ['Discover.php', 'Offers.php'])) {
     $elements_par_page = 9;
     $page_actuelle = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
     $offset = ($page_actuelle - 1) * $elements_par_page;
@@ -74,6 +71,8 @@ if ($current_file === 'Discover.php') {
     $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset);
     $total_offers = $offerModel->getTotalOffersCount();
     $total_pages = ceil($total_offers / $elements_par_page);
+
+    $offerss = $offerModel->getAllOffers();
 }
 
 // =========================================

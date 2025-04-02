@@ -20,17 +20,13 @@ require_once('../../src/Controllers/CheckAuth.php');
 
 <body>
     <!-- Barre de navigation -->
-    <?php include '../Navbar.php'; ?>
+    <?php include '../include/Navbar.php'; ?>
 
-
-    
     <?php include 'includes/menu.php'; ?>
-
-    
 
     <main>
 
-        <h3>Etudiants</h3>
+        <h3>Pilotes</h3>
 
         <div class="options">
             <a href=""><button>Ajouter</button></a>
@@ -53,10 +49,6 @@ require_once('../../src/Controllers/CheckAuth.php');
                 <h4>Promotion</h4>
             </div>
 
-            <div class="pilote">
-                <h4>Pilote</h4>
-            </div>
-
             <div class="action">
                 <h4>Action</h4>
             </div>
@@ -66,25 +58,21 @@ require_once('../../src/Controllers/CheckAuth.php');
 
         <div class="container">
             <div class="name">
-                <p>Guerton</p>
+                <p>Raynaud</p>
             </div>
 
             <div class="second-name">
-                <p>Nathan</p>
+                <p>Muriel</p>
             </div>
 
             <div class="email">
-                <p>nathan.guerton@viacesi.fr</p>
+                <p>muriel.raynaud@cesi.fr</p>
             </div>
 
             <div class="promo">
                 <p>CPI A2 Informatique</p>
             </div>
 
-            <div class="pilote">
-                <p>Muriel RAYNAUD</p>
-            </div>
-            
             <div class="action">
                 <a href="" class="Modify">Modifier</a>
                 <a href="" class="delete">Supprimer</a>
@@ -92,18 +80,20 @@ require_once('../../src/Controllers/CheckAuth.php');
         </div>
 
     </main>
-    
+
 </body>
 
-    <style>
-        .dashboard-menu > ul > li:nth-child(2)::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: var(--widthslect);
-            background-color: var(--CpBlue);
-        }
-    </style>
+
+<style>
+    .dashboard-menu>ul>li:nth-child(3)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: var(--widthslect);
+        background-color: var(--CpBlue);
+    }
+</style>
+
 </html>

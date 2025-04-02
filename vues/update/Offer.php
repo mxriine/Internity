@@ -1,10 +1,8 @@
 <!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/Login.php');
-require_once('../src/Controllers/CheckAuth.php');
-require_once('../src/Controllers/Offer.php');
-
-require_once('Navbar.php');
+require_once('../../src/Controllers/Login.php');
+require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/Offer.php');
 ?>
 
 
@@ -23,44 +21,53 @@ require_once('Navbar.php');
 
 <body>
 
+    <!-- Navbar -->
+    <?php require_once('../include/Navbar.php'); ?>
+
     <main>
         <!-- Formulaire pour créer une offre -->
         <div class="create-offer-container">
-            <h1>Modifier cette Offre</h1>
-            <h3>Nom entreprise</h3>
+            <h1>Modifier l'offre</h1>
+            <h2><?= htmlspecialchars($offerDetails['offer_title']) ?></h2>
+            <h3>Entreprise : <?= htmlspecialchars($companiesDetails['company_name']) ?></h3>
+
             <form action="../../src/Controllers/Offer.php" method="POST" class="create-offer-form">
                 <input type="hidden" name="offer_id" value="<?= $offerDetails['offer_id'] ?>">
-                <input type="text" name="offer_title" value="<?= htmlspecialchars($offerDetails['offer_title']) ?>">
+
                 <!-- Titre de l'offre -->
                 <div class="form-group">
                     <label for="offer_title">Titre de l'offre :</label>
-                    <input type="text" id="offer_title" name="offer_title" placeholder="Ex: Développeur Web" required>
+                    <input type="text" id="offer_title" name="offer_title"
+                        placeholder="<?= htmlspecialchars($offerDetails['offer_title']) ?>" required>
                 </div>
 
                 <!-- Description de l'offre -->
                 <div class="form-group">
                     <label for="offer_desc">Description de l'offre :</label>
-                    <textarea id="offer_desc" name="offer_desc" placeholder="Décrivez l'offre en détail..." rows="5"
-                        required></textarea>
+                    <textarea id="offer_desc" name="offer_desc"
+                        placeholder="<?= htmlspecialchars($offerDetails['offer_desc']) ?>" rows="5" required></textarea>
                 </div>
 
                 <!-- Salaire proposé -->
                 <div class="form-group">
                     <label for="offer_salary">Salaire proposé (€) :</label>
-                    <input type="number" id="offer_salary" name="offer_salary" step="0.01" placeholder="Ex: 3000.00"
-                        value="0.00">
+                    <input type="number" id="offer_salary" name="offer_salary" step="0.01"
+                        value="<?= htmlspecialchars($offerDetails['offer_salary']) ?>">
                 </div>
 
                 <!-- Date de début -->
                 <div class="form-group">
                     <label for="offer_start">Date de début :</label>
-                    <input type="date" id="offer_start" name="offer_start" required>
+                    <input type="date" id="offer_start" name="offer_start"
+                        value="<?= htmlspecialchars(date('Y-m-d', strtotime($offerDetails['offer_start']))) ?>"
+                        required>
                 </div>
 
                 <!-- Date de fin -->
                 <div class="form-group">
                     <label for="offer_end">Date de fin :</label>
-                    <input type="date" id="offer_end" name="offer_end" required>
+                    <input type="date" id="offer_end" name="offer_end"
+                        value="<?= htmlspecialchars(date('Y-m-d', strtotime($offerDetails['offer_end']))) ?>" required>
                 </div>
 
                 <!-- Bouton de soumission -->
