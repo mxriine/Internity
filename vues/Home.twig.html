@@ -15,21 +15,8 @@
 
 <body>
     <!-- En-tête -->
-    <header class="header">
-        <div class="logo">
-            <h1>INTERNITY</h1>
-        </div>
-        <nav class="nav">
-            <ul class="menu-left">
-                <li><a href="/vues/Discover.php">Offre</a></li>
-                <li><a href="/vues/Companies.php">Entreprise</a></li>
-                <li><a style="color: var(--CpBlue);">À propos</a></li>
-            </ul>
-            <div class="connect">
-                <a href="/vues/Login.php"><button>Se connecter</button></a>
-            </div>
-        </nav>
-    </header>
+    {% include 'include/Navbar.twig.html' %}
+
 
     <!-- Contenu principal -->
     <main>
