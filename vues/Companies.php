@@ -25,11 +25,13 @@ $total_pages = isset($total_pages) ? $total_pages : 1; // Replace with actual lo
 
 <body>
     <!-- Barre de navigation -->
-    <?php include 'Navbar.php'; ?>
+    <header class="header">
+        <?php require_once('include/Navbar.php'); ?>
+    </header> 
 
     <main>
     
-        <?php include 'FilterDiscovery.php'; ?>
+        <?php include 'include/FilterDiscovery.php'; ?>
 
         <!-- Section des entreprises -->
         <div class="header-section">

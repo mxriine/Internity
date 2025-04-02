@@ -4,7 +4,6 @@ require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
 require_once('../src/Controllers/Application.php');
 require_once('../src/Controllers/Wishlist.php');
-require_once('Navbar.php');
 
 $showSuccess = isset($_GET['success']) && $_GET['success'] == 1;
 
@@ -26,6 +25,9 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
 </head>
 
 <body class="page-profile">
+
+    <!-- Barre de navigation -->
+    <?php include 'include/Navbar.php'; ?>
 
     <!-- Main Content -->
     <main class="two-columns">
@@ -155,23 +157,22 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                 <!-- Liste des offres -->
                 <div class="wishlist-container">
                     <?php foreach ($wishlist as $item): ?>
-                        <div class="wishlist-item">
+                        <div class="wishlist-item" data-offer-id="<?= htmlspecialchars($item['offer_id']) ?>">
                             <div class="wishlist-header">
                                 <h3><?= htmlspecialchars($item['offer_title'] ?? 'Offre inconnue') ?></h3>
 
-                                <form method="POST" action="/src/Controllers/Wishlist.php" class="wishlist-form">
-                                    <input type="hidden" name="offer_id" value="<?= htmlspecialchars($item['offer_id'] ?? '') ?>">
-                                    <input type="hidden" name="action" value="<?= in_array($item['offer_id'], array_column($wishlist, 'offer_id')) ? 'remove' : '' ?>">
-                                    <button type="submit" class="wishlist-heart-container">
-                                        <img 
-                                            src="<?= in_array($item['offer_id'], array_column($wishlist, 'offer_id')) ? '/assets/images/CoeurRemplis.png' : '' ?>" 
-                                            alt="<?= in_array($item['offer_id'], array_column($wishlist, 'offer_id')) ? 'Retirer de la wishlist' : '' ?>" 
-                                            class="wishlist-heart"
-                                        >
-                                    </button>
-                                </form>
+                                <!-- Bouton pour retirer l'offre -->
+                                <button class="remove-offer" data-offer-id="<?= htmlspecialchars($item['offer_id']) ?>"
+                                    title="Retirer de la wishlist">
+                                    <img src="/assets/images/CoeurRemplis.png" alt="Retirer de la wishlist"
+                                        class="wishlist-heart">
+                                </button>
                             </div>
-                            <p><strong>Entreprise :</strong> <?= htmlspecialchars($item['company_name'] ?? 'Entreprise inconnue') ?></p>
+
+                            <p><strong>Entreprise :</strong>
+                                <?= htmlspecialchars($item['company_name'] ?? 'Entreprise inconnue') ?>
+                            </p>
+
                             <p><strong>Durée :</strong>
                                 <?php
                                 if (!empty($item['offer_start']) && !empty($item['offer_end'])) {
@@ -184,10 +185,11 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                                 }
                                 ?>
                             </p>
-                            </p>
+
                             <p><strong>Lieu :</strong>
-                                <?= htmlspecialchars($item['city_name'] ?? 'Ville inconnue') . ', ' . htmlspecialchars($item['region_name'] ?? 'Region inconnue') ?>
+                                <?= htmlspecialchars($item['city_name'] ?? 'Ville inconnue') . ', ' . htmlspecialchars($item['region_name'] ?? 'Région inconnue') ?>
                             </p>
+
                             <button class="wishlist-button">Voir plus</button>
                         </div>
                     <?php endforeach; ?>

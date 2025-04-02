@@ -20,7 +20,7 @@ require_once('../src/Controllers/Offer.php');
 <body class="page-apply">
 
     <!-- Navbar -->
-    <?php require_once('Navbar.php'); ?>
+    <?php require_once('include/Navbar.php'); ?>
 
     <main>
         <div class="two-columns">
@@ -38,7 +38,8 @@ require_once('../src/Controllers/Offer.php');
                     <div class="form-group">
                         <div class="form-group-align">
                             <label for="surname">Nom :</label>
-                            <input type="text" id="surname" name="surname" placeholder="Entrez votre nom et prénom" required onblur="this.value = this.value.toUpperCase();">
+                            <input type="text" id="surname" name="surname" placeholder="Entrez votre nom et prénom"
+                                required onblur="this.value = this.value.toUpperCase();">
                             <span class="error-message" id="surnameError"></span>
 
                             <label for="name">Prénom :</label>
@@ -95,11 +96,11 @@ require_once('../src/Controllers/Offer.php');
                     </div>
 
 
-                    
+
                     <!-- Submit Button -->
                     <input type="hidden" name="offer_id" value="<?= $offerDetails['offer_id'] ?>">
                     <button type="submit" class="submit-button">Soumettre ma candidature</button>
-                    
+
                 </form>
             </section>
 
@@ -140,7 +141,5 @@ require_once('../src/Controllers/Offer.php');
     <script src="/assets/js/apply.js"></script>
 
 </body>
-
-
 
 </html>

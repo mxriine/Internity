@@ -1,8 +1,7 @@
-/* Section de l'image d'en-tête */
 .hero-section {
     position: relative;
     width: 100%;
-    height: 30%; /* Hauteur de la section */
+    height: 30%;
 }
 
 .hero-header {
@@ -29,19 +28,18 @@
 }
 
 .hero-title {
-    position: absolute; /* Positionne le titre par rapport à la section parent */
-    bottom: 0; /* Espacement depuis le bas de l'image */
-    left: 20px; /* Espacement depuis la gauche */
-    color: white; /* Couleur du texte */
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    color: white;
     font-size: 3rem;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.178); /* Fond semi-transparent pour améliorer la lisibilité */
+    background-color: rgba(0, 0, 0, 0.178);
     padding: 10px 20px;
-    border-radius: 1px; /* Coins arrondis pour un meilleur design */
-    z-index: 5; /* Assure que le titre est au-dessus de l'image */
+    border-radius: 1px;
+    z-index: 5;
 }
 
-/* Conteneur principal */
 .content-container {
     display: flex;
     gap: 20px;
@@ -49,13 +47,12 @@
 }
 
 .text-section {
-    flex: 7; /* Prend 70% de la largeur */
+    flex: 7;
     padding: 20px;
 }
 
-/* Section de la carte entreprise */
 .card-section {
-    flex: 3; /* Prend 30% de la largeur */
+    flex: 3;
     padding: 20px;
 }
 
@@ -79,29 +76,32 @@
     align-items: center;
 }
 
-/* Nouveau conteneur pour le titre et le cœur */
 .title-container {
-    display: flex; /* Active Flexbox */
-    align-items: center; /* Alignement vertical des éléments */
-    justify-content: space-between; /* Espacement entre le titre et le cœur */
-    padding: 10px 20px; /* Ajoute un peu d'espace autour du titre et du cœur */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
 }
 
 .card-title {
-    font-size: 1.5rem; /* Taille du texte du titre */
-    font-weight: bold; /* Texte en gras */
-    color: var(--CBlack); /* Couleur du texte */
-    margin: 0; /* Supprime les marges par défaut */
-    flex: 1; /* Le titre prend tout l'espace disponible à gauche */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--CBlack);
+    margin: 0;
+    flex: 1;
 }
 
-/* Styles pour le cœur */
+.wishlist-toggle {
+    border: none;
+    background: none;
+}
+
 .wishlist-heart-container {
-    margin-left: 10px; /* Espace entre le titre et le cœur */
+    margin-left: 10px;
 }
 
 .wishlist-heart {
-    width: 24px; /* Taille du cœur */
+    width: 24px;
     height: 24px;
     color: var(--CpBlue);
     cursor: pointer;
@@ -109,7 +109,7 @@
 }
 
 .wishlist-heart:hover {
-    opacity: 0.8; /* Effet hover : légèrement transparent */
+    opacity: 0.8;
 }
 
 .card-body {
