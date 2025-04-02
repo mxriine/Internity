@@ -73,3 +73,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+
+//Spécial à DeleteUser.php
+
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteForm = document.querySelector('.delete-account-form');
+    const modal = document.getElementById('confirmationModal');
+    const confirmButton = document.getElementById('confirmDelete');
+    const cancelButton = document.getElementById('cancelDelete');
+
+    // Afficher le modal lors du clic sur le bouton de suppression
+    deleteForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Empêcher la soumission immédiate
+        modal.style.display = 'flex'; // Afficher le modal
+    });
+
+    // Confirmer la suppression
+    confirmButton.addEventListener('click', function () {
+        deleteForm.submit(); // Soumettre le formulaire pour supprimer le compte
+    });
+
+    // Annuler la suppression
+    cancelButton.addEventListener('click', function () {
+        modal.style.display = 'none'; // Masquer le modal
+    });
+
+    // Fermer le modal en cliquant en dehors
+    modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
