@@ -30,12 +30,12 @@ function createSlug($string) {
 <body>
     <!-- Barre de navigation -->
     <header class="header">
-        <?php require_once('Navbar.php'); ?>
+        <?php require_once('include/Navbar.php'); ?>
     </header> 
 
     <main>
     
-        <?php include 'FilterDiscovery.php'; ?>
+        <?php include 'include/FilterDiscovery.php'; ?>
 
         <!-- Section des entreprises -->
         <div class="header-section">

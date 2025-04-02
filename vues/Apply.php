@@ -3,7 +3,6 @@
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
 require_once('../src/Controllers/Offer.php');
-require_once('Navbar.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +20,7 @@ require_once('Navbar.php');
 <body class="page-apply">
 
     <!-- Navbar -->
-    <?php require_once('Navbar.php'); ?>
+    <?php require_once('include/Navbar.php'); ?>
 
     <main>
         <div class="two-columns">

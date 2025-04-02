@@ -36,81 +36,94 @@ document.getElementById('saveDocuments').addEventListener('click', function () {
 
 // WHISHLIST
 
-// Gestion de l'argument "page"
 document.addEventListener('DOMContentLoaded', () => {
     const menuItems = document.querySelectorAll('.menu-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Gestion des onglets
     menuItems.forEach(item => {
         item.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêcher toute action par défaut
+            event.preventDefault();
             const tab = item.getAttribute('data-tab');
             if (tab) {
-                // Mettre à jour l'affichage dynamique des onglets
                 window.history.pushState({}, '', `Profil.php?page=${tab}`);
                 updateTabContent(tab);
             }
         });
     });
 
-    // Fonction pour mettre à jour le contenu des onglets
     function updateTabContent(tab) {
         menuItems.forEach(i => i.classList.remove('active'));
         tabContents.forEach(content => content.classList.remove('active'));
 
         const selectedItem = document.querySelector(`.menu-item[data-tab="${tab}"]`);
-        if (selectedItem) {
-            selectedItem.classList.add('active');
-        }
+        if (selectedItem) selectedItem.classList.add('active');
 
         const selectedContent = document.getElementById(tab);
-        if (selectedContent) {
-            selectedContent.classList.add('active');
-        }
+        if (selectedContent) selectedContent.classList.add('active');
     }
 
-    // Vérifier l'URL lors du chargement initial pour activer l'onglet correct
     const urlParams = new URLSearchParams(window.location.search);
-    const activeTab = urlParams.get('page') || 'mon-compte'; // Définir un onglet par défaut
+    const activeTab = urlParams.get('page') || 'mon-compte';
     updateTabContent(activeTab);
 
-    // Gestion de la suppression des offres de la wishlist
+    // Gestion suppression AJAX d'une offre
     const removeButtons = document.querySelectorAll('.remove-offer');
     removeButtons.forEach(button => {
         button.addEventListener('click', async (event) => {
-            event.preventDefault(); // Empêcher toute action par défaut
+            event.preventDefault();
 
-            // Récupérer l'ID de l'offre à partir de l'attribut data-offer-id
             const offerId = button.getAttribute('data-offer-id');
-            const offerElement = button.closest('.offer-item'); // Sélectionner l'élément parent de l'offre
-
+            const offerElement = button.closest('.wishlist-item'); // <- attention, bien ".wishlist-item"
             if (!offerId || !offerElement) {
-                console.error('ID de l\'offre non trouvé ou élément parent manquant.');
+                showNotification('Erreur : offre introuvable.', 'error');
                 return;
             }
 
             try {
-                // Simuler une requête backend avec fetch pour supprimer l'offre
-                const response = await fetch(`/wishlist/remove/${offerId}`, {
+                const response = await fetch('/src/Controllers/Wishlist.php', {
                     method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ offer_id: offerId }) // ← envoyer offer_id dans le corps JSON
                 });
 
                 if (response.ok) {
-                    // Supprimer visuellement l'offre de la liste
-                    offerElement.remove();
+                    offerElement.style.transition = 'opacity 0.4s ease';
+                    offerElement.style.opacity = '0';
+                    setTimeout(() => offerElement.remove(), 400);
 
-                    // Afficher un message de confirmation
-                    alert('Offre supprimée avec succès.');
+                    updateWishlistCounter(-1);
+                    showNotification('Offre supprimée avec succès.', 'success');
                 } else {
-                    // Gérer les erreurs du backend
                     const errorData = await response.json();
-                    alert(`Erreur lors de la suppression de l'offre : ${errorData.message}`);
+                    showNotification(`Erreur : ${errorData.message}`, 'error');
                 }
-            } catch (error) {
-                console.error('Erreur réseau :', error);
-                alert('Une erreur est survenue. Veuillez réessayer.');
+            } catch (err) {
+                console.error(err);
+                showNotification('Erreur réseau. Veuillez réessayer.', 'error');
             }
         });
     });
+
+    // Fonction pour afficher une notification temporaire
+    function showNotification(message, type = 'success') {
+        const notif = document.createElement('div');
+        notif.textContent = message;
+        notif.className = `notification ${type}`;
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 3000);
+    }
+
+    // Fonction pour mettre à jour un compteur s’il existe
+    function updateWishlistCounter(delta) {
+        const counter = document.querySelector('#wishlist-counter');
+        if (counter) {
+            const newValue = Math.max(0, parseInt(counter.textContent) + delta);
+            counter.textContent = newValue;
+        }
+    }
 });
 
 // SECURITY

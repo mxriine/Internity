@@ -20,11 +20,11 @@ require_once('../src/Controllers/Offer.php');
 
 <body>
     <!-- Barre de navigation -->
-    <?php include 'Navbar.php'; ?>
+    <?php include 'include/Navbar.php'; ?>
 
     <main>
     
-        <?php include 'FilterDiscovery.php'; ?>
+        <?php include 'include/FilterDiscovery.php'; ?>
 
         <!-- Section des offres -->
         <div class="header-section">
