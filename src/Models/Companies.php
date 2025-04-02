@@ -48,16 +48,102 @@ class Companies {
     }
 
 
-    public function getPaginatedCompanies($limit, $offset)
+    public function getPaginatedCompanies($limit, $offset, $search, $location)
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM Companies LIMIT :limit OFFSET :offset");
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $sql = "SELECT DISTINCT c.*, ci.city_name, ci.city_code, r.region_name
+                    FROM Companies c
+                    JOIN Located l ON c.company_id = l.company_id
+                    JOIN Cities ci ON l.city_id = ci.city_id
+                    JOIN Regions r ON ci.region_id = r.region_id";
+
+            $whereClauses = [];
+            $params = [];
+
+            // Search by company name
+            if (!empty($search)) {
+                $whereClauses[] = "c.company_name LIKE :search";
+                $params[':search'] = '%' . $search . '%';
+            }
+
+            // Filter by location (city name, city code, region name, company address)
+            if (!empty($location)) {
+                $whereClauses[] = "(ci.city_name LIKE :location OR ci.city_code LIKE :location OR r.region_name LIKE :location OR c.company_address LIKE :location)";
+                $params[':location'] = '%' . $location . '%';
+            }
+
+            if (!empty($whereClauses)) {
+                $sql .= ' WHERE ' . implode(' AND ', $whereClauses);
+            }
+
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $this->pdo->prepare($sql);
+
+            foreach ($params as $key => $val) {
+                $stmt->bindValue($key, $val);
+            }
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la récupération des entreprises paginées : " . $e->getMessage());
+        }
+    }
+
+    public function getTotalPaginatedCompaniesCount($search, $location)
+    {
+        try {
+            $sql = "SELECT COUNT(DISTINCT c.company_id)
+                    FROM Companies c
+                    JOIN Located l ON c.company_id = l.company_id
+                    JOIN Cities ci ON l.city_id = ci.city_id
+                    JOIN Regions r ON ci.region_id = r.region_id";
+
+            $whereClauses = [];
+            $params = [];
+
+            // Handle search
+            $keywords = array_filter(array_map('trim', explode(' ', $search)));
+            if (!empty($keywords)) {
+                if (count($keywords) === 1) {
+                    $whereClauses[] = "c.company_name LIKE :word";
+                    $params[':word'] = '%' . $keywords[0] . '%';
+                } else {
+                    $companyName = array_shift($keywords);
+                    $whereClauses[] = "c.company_name LIKE :companyName";
+                    $params[':companyName'] = '%' . $companyName . '%';
+                    $otherParts = [];
+                    foreach ($keywords as $index => $word) {
+                        $key = ':otherName' . $index;
+                        $otherParts[] = "c.company_name LIKE $key";
+                        $params[$key] = '%' . $word . '%';
+                    }
+                    if (!empty($otherParts)) {
+                        $whereClauses[] = '(' . implode(' OR ', $otherParts) . ')';
+                    }
+                }
+            }
+
+            // Handle location (city name, city code, region name, company address)
+            if (!empty($location)) {
+                $whereClauses[] = "(ci.city_name LIKE :location OR ci.city_code LIKE :location OR r.region_name LIKE :location OR c.company_address LIKE :location)";
+                $params[':location'] = '%' . $location . '%';
+            }
+
+            if (!empty($whereClauses)) {
+                $sql .= ' WHERE ' . implode(' AND ', $whereClauses);
+            }
+
+            $stmt = $this->pdo->prepare($sql);
+            foreach ($params as $key => $val) {
+                $stmt->bindValue($key, $val);
+            }
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors du comptage des entreprises : " . $e->getMessage());
         }
     }
 

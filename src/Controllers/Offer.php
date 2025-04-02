@@ -71,8 +71,8 @@ if ($current_file === 'Discover.php') {
     $page_actuelle = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
     $offset = ($page_actuelle - 1) * $elements_par_page;
 
-    $search = isset($_GET['search']) ? trim($_GET['search']) : null;
-    $location = isset($_GET['location']) ? trim($_GET['location']) : null;
+    $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+    $location = isset($_GET['location']) ? trim($_GET['location']) : '';
     $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
     $total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
     $total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages

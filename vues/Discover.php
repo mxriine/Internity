@@ -32,22 +32,17 @@ require_once('../src/Controllers/Offer.php');
 
             <!-- Barre d'étiquettes -->
             <div class="tags">
-                <input type="checkbox" id="category1" class="hidden-checkbox">
-                <label class="tag" for="category1">Stage</label>
-
-                <input type="checkbox" id="category2" class="hidden-checkbox">
-                <label class="tag" for="category2">Marketing</label>
-
-                <input type="checkbox" id="category3" class="hidden-checkbox">
-                <label class="tag" for="category3">Data</label>
-
-                <input type="checkbox" id="category4" class="hidden-checkbox">
-                <label class="tag" for="category4">Informatique</label>
-
-                <input type="checkbox" id="category5" class="hidden-checkbox">
-                <label class="tag" for="category5">Cyber-sécurité</label>
+            <?php 
+            $categories = ['Stage', 'Marketing', 'Data', 'Informatique', 'Cyber-sécurité'];
+            foreach ($categories as $index => $category): 
+            ?>
+                <input type="checkbox" id="category<?= $index + 1 ?>" class="hidden-checkbox" data-skill="<?= $category ?>">
+                <label class="tag" for="category<?= $index + 1 ?>"><?= $category ?></label>
+            <?php endforeach; ?>
             </div>
         </div>
+
+        
 
         <!-- Section des cartes de stages -->
         <section class="cards">

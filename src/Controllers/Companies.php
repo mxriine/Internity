@@ -20,11 +20,14 @@ if ($page_actuelle < 1) {
 
 // Calculer l'offset pour la pagination
 $offset = ($page_actuelle - 1) * $elements_par_page;
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$location = isset($_GET['location']) ? trim($_GET['location']) : '';
 
-$companies = $companiesModel->getPaginatedCompanies($elements_par_page, $offset);
+$companies = $companiesModel->getPaginatedCompanies($elements_par_page, $offset, $search, $location);
 
 // Compter le nombre total d'entreprises disponibles
-$total_companies = $companiesModel->getTotalCompaniesCount();
+$total_companies = $companiesModel->getTotalPaginatedCompaniesCount($search, $location);
+
 
 // Calculer le nombre total de pages nécessaires
 $total_pages = ceil($total_companies / $elements_par_page);
