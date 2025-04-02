@@ -23,7 +23,7 @@ require_once('../../src/Controllers/Offer.php');
     <!-- Barre de navigation -->
     <?php include '../include/Navbar.php'; ?>
 
-    <?php include 'includes/menu.php'; ?>
+    <?php include 'includes/Menu.php'; ?>
 
     <main>
         <h3>Offres</h3>

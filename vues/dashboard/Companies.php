@@ -2,6 +2,7 @@
 <?php
 require_once('../../src/Controllers/Login.php');
 require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/Companies.php');
 ?>
 
 <!doctype html>
@@ -22,7 +23,7 @@ require_once('../../src/Controllers/CheckAuth.php');
     <!-- Barre de navigation -->
     <?php include '../include/Navbar.php'; ?>
 
-    <?php include 'includes/menu.php'; ?>
+    <?php include 'includes/Menu.php'; ?>
 
     <main>
 
@@ -44,17 +45,43 @@ require_once('../../src/Controllers/CheckAuth.php');
 
 
 
-        <div class="container">
+        <?php foreach ($companies as $company): ?>
+            <?php
+            ?>
+            <div class="container">
 
-            <div class="name">
-                <p>SpaceX</p>
-            </div>
+                <div class="name">
+                    <p><?= htmlspecialchars($company['company_name']) ?></p>
+                </div>
 
-            <div class="action">
-                <a href="" class="Modify">Modifier</a>
-                <a href="" class="delete">Supprimer</a>
+                <div class="desc">
+                    <p><?= htmlspecialchars($company['company_business']) ?></p>
+                </div>
+
+                <div class="company">
+                    <p><?= htmlspecialchars($companyDetails['company_name']) ?></p>
+                    <p><strong>Lieu :</strong> <?= htmlspecialchars($companyDetails['city']) ?>,
+                        <?= htmlspecialchars($companyDetails['region']) ?>
+                    </p>
+                </div>
+
+                <div class="date">
+                    <p><?= date('d/m/Y', strtotime($offer['offer_start'])) ?> -
+                        <?= date('d/m/Y', strtotime($offer['offer_end'])) ?>
+                    </p>
+                </div>
+
+                <div class="salaire">
+                    <p><?= htmlspecialchars($offer['offer_salary']) ?> €</p>
+                </div>
+
+                <div class="action">
+                    <a href="/vues/update/Offer.php?offer_id=<?= $offer['offer_id'] ?>" class="update">Modifier</a>
+                    <a href="/vues/delete/Offer.php?offer_id=<?= $offer['offer_id'] ?>" class="delete">Supprimer</a>
+                </div>
+
             </div>
-        </div>
+        <?php endforeach; ?>
 
     </main>
 

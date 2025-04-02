@@ -6,7 +6,7 @@ $surname = $_SESSION['name'] ?? '';
 
 // Déterminer le contenu de la navbar en fonction du rôle et définir le lien correspondant
 if ($role === 'admin' || $role === 'pilote') {
-    $navbar = '<a href="dashboard/Home.php">Dashboard</a>';
+    $navbar = '<a href="/vues/dashboard/Home.php">Dashboard</a>';
 } else {
     $navbar = '<a href="Profil.php">Mon compte</a>';
 }
