@@ -18,8 +18,10 @@ $page_actuelle = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1; // Num�
 $offset = ($page_actuelle - 1) * $elements_par_page; // Calcul de l'offset
 
 // Récupération des offres paginées et du nombre total d'offres
-$offers = $offerModel->getPaginatedOffers($elements_par_page, $offset);
-$total_offers = $offerModel->getTotalOffersCount();
+$search = isset($_GET['search']) ? trim($_GET['search']) : null;
+$location = isset($_GET['location']) ? trim($_GET['location']) : null;
+$offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
+$total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
 $total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages
 
 // SECTION 2 : Gestion des détails d'une offre spécifique

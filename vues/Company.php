@@ -64,7 +64,7 @@ require_once('../src/Controllers/Companies.php');
                         ?>
             
                         <!-- Bouton VOIR LES OFFRES -->
-                        <a href="<?= $companyLink ?>" class="btn-offer">
+                        <a href="/vues/Discover.php?search=<?= urlencode($companyDetails['company_name']) ?>" class="btn-offer">
                             <button class="card-button">VOIR LES OFFRES</button>
                         </a>
                         <a href="<?= $companyLink ?>" class="btn-evaluer">
