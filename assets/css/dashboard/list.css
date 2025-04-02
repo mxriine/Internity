@@ -1,0 +1,30 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: start;
+    flex-direction: row;
+
+    width: 100%;
+
+    border: 2px solid #000000;
+
+    border-bottom: none;
+}
+
+
+.container > div {
+    width: 20%;
+    /* border-left: 2px solid #000000; */
+    padding: 2px;
+}
+
+.container > div 
+
+
+.action {
+    right: 0;
+    position: absolute;
+    text-align: center;
+}
+

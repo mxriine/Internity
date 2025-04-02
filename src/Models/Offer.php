@@ -119,7 +119,6 @@ class Offer
         }
     }
 
-    //récuperer l'entreprise qui a publié l'offre
     public function getOffersCompanies($offer_id)
     {
         try {
