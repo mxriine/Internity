@@ -1,19 +1,16 @@
-<!-- FORMULAIRE EN PHP -->
 <?php
-require_once('../src/Controllers/Login.php');
-require_once('../src/Controllers/CheckAuth.php');
-require_once('../src/Controllers/Offer.php');
-require_once('Navbar.php');
+// Chargement des dépendances nécessaires
+require_once('../../src/Controllers/Login.php');
+require_once('../../src/Controllers/CheckAuth.php');
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <title>Internity - Profil</title>
+    <title>Internity - Créer une offre</title>
     <meta charset="UTF-8">
-    <meta name="description" content="Gérez votre profil chez Internity">
+    <meta name="description" content="Créez une nouvelle offre chez Internity">
     <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/css/manage/offer.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
@@ -21,12 +18,14 @@ require_once('Navbar.php');
 
 <body>
 
+    <!-- Navbar -->
+    <?php require_once('../include/Navbar.php'); ?>
+
     <main>
         <!-- Formulaire pour créer une offre -->
         <div class="create-offer-container">
             <h1>Créer une nouvelle offre</h1>
-            <h3>Nom entreprise</h3>
-            <form action="/api/create-offer" method="POST" class="create-offer-form">
+            <form action="../../src/Controllers/Offer.php" method="POST" class="create-offer-form">
                 <!-- Titre de l'offre -->
                 <div class="form-group">
                     <label for="offer_title">Titre de l'offre :</label>
@@ -59,6 +58,11 @@ require_once('Navbar.php');
                     <input type="date" id="offer_end" name="offer_end" required>
                 </div>
 
+                <!-- Champ caché pour company_id -->
+                <div class="form-group">
+                    <input type="hidden" name="company_id" value="1"> <!-- Remplacez "1" par l'ID réel -->
+                </div>
+
                 <!-- Bouton de soumission -->
                 <div class="form-group">
                     <button type="submit" class="submit-button">Créer l'offre</button>
@@ -71,7 +75,9 @@ require_once('Navbar.php');
 
 </body>
 
-<footer>
+<footer style="position: fixed;">
     <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
     <p>© 2025 - Internity</p>
 </footer>
+
+</html>

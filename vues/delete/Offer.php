@@ -52,8 +52,8 @@ require_once('Navbar.php');
             </div>
 
             <!-- Formulaire de suppression -->
-            <form action="#" method="POST" class="delete-offer-form">
-                <input type="hidden" name="offer_id" value="<?php echo $offerData['id']; ?>">
+            <form action="../../src/Controllers/Offer.php?delete=1" method="POST" class="delete-offer-form">
+            <input type="hidden" name="offer_id" value="<?php echo $offerDetails['offer_id']; ?>">
                 <div class="form-group">
                     <button type="submit" class="submit-button">Supprimer cette offre</button>
                 </div>

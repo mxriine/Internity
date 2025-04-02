@@ -1,7 +1,7 @@
 <?php
-require_once('../src/Controllers/Login.php');
-require_once('../src/Controllers/CheckAuth.php');
-require_once('../src/Controllers/Offer.php');
+require_once('../../src/Controllers/Login.php');
+require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/Offer.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,12 +14,15 @@ require_once('../src/Controllers/Offer.php');
     <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/css/manage/companies.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <?php require_once('include/Navbar.php'); ?>
+    <?php require_once('../include/Navbar.php'); ?>
 
     <main>
         <!-- Formulaire pour créer une entreprise -->
@@ -56,32 +59,24 @@ require_once('../src/Controllers/Offer.php');
                 <!-- Téléphone de l'entreprise -->
                 <div class="form-group">
                     <label for="company_phone">Téléphone de l'entreprise :</label>
-                    <input type="tel" id="company_phone" name="company_phone" placeholder="Ex: +33612345678"
-                        pattern="[0-9+]{10,15}">
+                    <div class="phone-input-wrapper">
+                        <select id="phone_prefix" name="phone_prefix"></select>
+                        <input type="tel" id="company_phone" name="company_phone" placeholder="612345678"
+                            pattern="[0-9]{9}" required>
+                    </div>
                 </div>
 
-                <!-- Adresse de l'entreprise -->
-                <div class="form-group">
-                    <label for="company_street_number">Numéro de rue :</label>
-                    <input type="text" id="company_street_number" name="company_street_number" placeholder="Ex: 123"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="company_street_name">Nom de la rue :</label>
-                    <input type="text" id="company_street_name" name="company_street_name"
-                        placeholder="Ex: Rue de la République" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="company_postal_code">Code postal :</label>
-                    <input type="text" id="company_postal_code" name="company_postal_code" placeholder="Ex: 75000"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="company_city">Ville :</label>
-                    <input type="text" id="company_city" name="company_city" placeholder="Ex: Paris" required>
+                <!-- Code postal + Ville -->
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label for="company_city">Ville :</label>
+                        <input type="text" id="company_city" name="company_city" placeholder="Ex: Paris" required>
+                    </div>
+                    <div class="form-group small">
+                        <label for="company_postal_code">Code postal :</label>
+                        <input type="text" id="company_postal_code" name="company_postal_code" placeholder="Ex: 75000"
+                            required>
+                    </div>
                 </div>
 
                 <!-- Bouton de soumission -->

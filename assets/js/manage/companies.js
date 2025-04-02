@@ -119,3 +119,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const prefixSelect = document.getElementById("phone_prefix");
+
+    const countries = [
+        { code: "fr", name: "France", dial: "+33", flag: "🇫🇷" },
+        { code: "es", name: "Espagne", dial: "+34", flag: "🇪🇸" },
+        { code: "it", name: "Italie", dial: "+39", flag: "🇮🇹" },
+        { code: "uk", name: "Royaume-Uni", dial: "+44", flag: "🇬🇧" },
+        { code: "de", name: "Allemagne", dial: "+49", flag: "🇩🇪" },
+        { code: "us", name: "États-Unis", dial: "+1", flag: "🇺🇸" },
+        { code: "be", name: "Belgique", dial: "+32", flag: "🇧🇪" },
+        { code: "ch", name: "Suisse", dial: "+41", flag: "🇨🇭" }
+
+    ];
+
+    countries.forEach(country => {
+        const option = document.createElement("option");
+        option.value = country.dial;
+        option.textContent = `${country.flag} ${country.name} (${country.dial})`;
+        prefixSelect.appendChild(option);
+    });
+
+    // Optionnel : définir France comme valeur par défaut
+    prefixSelect.value = "+33";
+});
