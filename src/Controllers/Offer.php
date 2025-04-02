@@ -1,95 +1,164 @@
 <?php
-// Chargement des dépendances nécessaires
 require_once(__DIR__ . '/../Core/DataBase.php');
 require_once(__DIR__ . '/../Controllers/Login.php');
 require_once(__DIR__ . '/../Models/Offer.php');
 
 use Models\Offer;
 
-// Instanciation du modèle Offer
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $offerModel = new Offer($conn);
 
-// Récupération de la page actuelle
-$current_page = basename($_SERVER['PHP_SELF']);
+// Chemins utiles
+$current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+$current_file = basename($current_path);
 
-// SECTION 1 : Pagination des offres
-$elements_par_page = 9; // Nombre d'offres à afficher par page
-$page_actuelle = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1; // Numéro de la page actuelle
-$offset = ($page_actuelle - 1) * $elements_par_page; // Calcul de l'offset
-
-// Récupération des offres paginées et du nombre total d'offres
-$search = isset($_GET['search']) ? trim($_GET['search']) : null;
-$location = isset($_GET['location']) ? trim($_GET['location']) : null;
-$offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
-$total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
-$total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages
-
-// SECTION 2 : Gestion des détails d'une offre spécifique
-$needsOffer = in_array($current_page, ['Offer.php', 'Apply.php']);
-
-if ($needsOffer) {
-    if (isset($_GET['offer_id'])) {
-        $offerId = intval($_GET['offer_id']); // Conversion en entier pour éviter les injections SQL
-
-        // Chargement des détails de l'offre
-        $offerDetails = $offerModel->getOfferById($offerId);
-        if (!$offerDetails) {
-            die("Offre non trouvée."); // Gestion d'erreur si l'offre n'existe pas
-        }
-
-        // Récupération des compétences et des détails des entreprises associés à l'offre
-        $skills = $offerModel->getOfferSkills($offerId);
-        $companiesDetails = $offerModel->getOffersCompanies($offerId);
-    } else {
-        die("ID de l'offre manquant."); // Gestion d'erreur si l'ID de l'offre est absent
-    }
-}
-
-// SECTION 3 : Fonction utilitaire pour créer des slugs URL-friendly
-/**
- * Crée un slug à partir d'une chaîne de caractères.
- *
- * @param string $string La chaîne à transformer.
- * @return string Le slug généré.
- */
+// Fonction utilitaire
 function createSlug($string)
 {
-    $string = strtolower($string); // Convertir en minuscules
-    $string = preg_replace('/\s+/', '-', $string); // Remplacer les espaces par des tirets
-    $string = preg_replace('/[^a-z0-9\-]/', '', $string); // Supprimer les caractères spéciaux
+    $string = strtolower($string);
+    $string = preg_replace('/\s+/', '-', $string);
+    $string = preg_replace('/[^a-z0-9\-]/', '', $string);
     return $string;
 }
 
-// SECTION 4 : Création d'une nouvelle offre
-if ($current_page === 'create/Offer.php' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Vérification des données POST
-    if (isset($_POST['title'], $_POST['description'], $_POST['company_id'], $_POST['skills'])) {
-        $title = trim($_POST['title']);
-        $description = trim($_POST['description']);
-        $companyId = intval($_POST['company_id']);
-        $skills = array_map('trim', $_POST['skills']); // Supposons que les compétences sont envoyées sous forme de tableau
+// =========================================
+// SECTION 1 : Création d'une offre (POST)
+// =========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = trim($_POST['offer_title'] ?? '');
+    $description = trim($_POST['offer_desc'] ?? '');
+    $salary = floatval($_POST['offer_salary'] ?? 0.00);
+    $start = $_POST['offer_start'] ?? '';
+    $end = $_POST['offer_end'] ?? '';
+    $count = intval($_POST['offer_countapply'] ?? 0);
+    $companyId = intval($_POST['company_id'] ?? 1);
 
-        // Validation des données
-        if (!empty($title) && !empty($description) && $companyId > 0 && !empty($skills)) {
-            // Création de l'offre
-            $offerId = $offerModel->createOffer($title, $description, $companyId);
+    if ($title && $description && $start && $end && $companyId > 0) {
+        try {
+            $offerData = [
+                'offer_title' => $title,
+                'offer_desc' => $description,
+                'offer_salary' => $salary,
+                'offer_start' => $start,
+                'offer_end' => $end,
+                'offer_countapply' => $count,
+                'company_id' => $companyId,
+            ];
+
+            $offerId = $offerModel->createOffer($offerData);
 
             if ($offerId) {
-                // Ajout des compétences associées à l'offre
-                foreach ($skills as $skill) {
-                    $offerModel->addSkillToOffer($offerId, $skill);
-                }
-
-                // Redirection ou message de succès
-                header('Location: /offers?success=1');
+                header('Location: /vues/Offer.php?offer_id=' . $offerId . '&title=' . createSlug($title));
                 exit;
             } else {
                 die("Erreur lors de la création de l'offre.");
             }
-        } else {
-            die("Données invalides.");
+        } catch (Exception $e) {
+            die("Erreur serveur : " . $e->getMessage());
         }
     } else {
-        die("Données POST manquantes.");
+        die("Tous les champs requis doivent être remplis.");
+    }
+}
+
+// =========================================
+// SECTION 2 : Pagination des offres (/Discover.php)
+// =========================================
+if ($current_file === 'Discover.php') {
+    $elements_par_page = 9;
+    $page_actuelle = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
+    $offset = ($page_actuelle - 1) * $elements_par_page;
+
+    $search = isset($_GET['search']) ? trim($_GET['search']) : null;
+    $location = isset($_GET['location']) ? trim($_GET['location']) : null;
+    $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
+    $total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
+    $total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages
+}
+
+// =========================================
+// SECTION 3 : Détails d'une offre (/Offer.php ou /Apply.php)
+// =========================================
+if (in_array($current_file, ['Offer.php', 'Apply.php'])) {
+    if (isset($_GET['offer_id'])) {
+        $offerId = intval($_GET['offer_id']);
+
+        $offerDetails = $offerModel->getOfferById($offerId);
+        if (!$offerDetails) {
+            die("Offre non trouvée.");
+        }
+
+        $skills = $offerModel->getOfferSkills($offerId);
+        $companiesDetails = $offerModel->getOffersCompanies($offerId);
+    } else {
+        die("ID de l'offre manquant.");
+    }
+}
+
+// =========================================
+// SECTION 4 : Modification d'une offre (POST + ?edit=1)
+// =========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['edit']) && isset($_POST['offer_id'])) {
+    $offerId = intval($_POST['offer_id']);
+    $title = trim($_POST['offer_title'] ?? '');
+    $description = trim($_POST['offer_desc'] ?? '');
+    $salary = floatval($_POST['offer_salary'] ?? 0.00);
+    $start = $_POST['offer_start'] ?? '';
+    $end = $_POST['offer_end'] ?? '';
+    $count = intval($_POST['offer_countapply'] ?? 0);
+    $companyId = intval($_POST['company_id'] ?? 1);
+
+    if ($offerId > 0 && $title && $description && $start && $end && $companyId > 0) {
+        try {
+            $offerData = [
+                'offer_title' => $title,
+                'offer_desc' => $description,
+                'offer_salary' => $salary,
+                'offer_start' => $start,
+                'offer_end' => $end,
+                'offer_countapply' => $count,
+                'company_id' => $companyId,
+            ];
+
+            $success = $offerModel->updateOffer($offerId, $offerData);
+
+            if ($success) {
+                header('Location: /vues/Offer.php?offer_id=' . $offerId . '&title=' . createSlug($title));
+                exit;
+            } else {
+                die("Échec de la mise à jour de l'offre.");
+            }
+        } catch (Exception $e) {
+            die("Erreur serveur : " . $e->getMessage());
+        }
+    } else {
+        die("Tous les champs sont obligatoires pour modifier l'offre.");
+    }
+}
+
+// =========================================
+// SECTION 5 : Suppression d'une offre (POST)
+// =========================================
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['delete']) && isset($_POST['offer_id'])) {
+    $offerId = intval($_POST['offer_id']);
+
+    if ($offerId > 0) {
+        try {
+            $deleted = $offerModel->deleteOffer($offerId);
+
+            if ($deleted) {
+                header('Location: /vues/Offers.php?deleted=1');
+                exit;
+            } else {
+                die("Échec de la suppression de l'offre.");
+            }
+        } catch (Exception $e) {
+            die("Erreur serveur : " . $e->getMessage());
+        }
+    } else {
+        die("ID d'offre invalide.");
     }
 }
