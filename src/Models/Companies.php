@@ -3,6 +3,7 @@
 namespace Models;
 
 use PDO;
+use Exception;
 use PDOException;
 
 class Companies {
