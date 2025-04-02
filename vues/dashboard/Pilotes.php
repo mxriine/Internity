@@ -20,13 +20,9 @@ require_once('../../src/Controllers/CheckAuth.php');
 
 <body>
     <!-- Barre de navigation -->
-    <?php include '../Navbar.php'; ?>
+    <?php include '../include/Navbar.php'; ?>
 
-
-    
-    <?php include 'includes/menu.php'; ?>
-
-    
+    <?php include 'includes/Menu.php'; ?>
 
     <main>
 
@@ -76,7 +72,7 @@ require_once('../../src/Controllers/CheckAuth.php');
             <div class="promo">
                 <p>CPI A2 Informatique</p>
             </div>
-            
+
             <div class="action">
                 <a href="" class="Modify">Modifier</a>
                 <a href="" class="delete">Supprimer</a>
@@ -84,20 +80,20 @@ require_once('../../src/Controllers/CheckAuth.php');
         </div>
 
     </main>
-    
+
 </body>
 
 
-    <style>
-        .dashboard-menu > ul > li:nth-child(3)::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: var(--widthslect);
-            background-color: var(--CpBlue);
-        }
-    </style>
+<style>
+    .dashboard-menu>ul>li:nth-child(3)::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: var(--widthslect);
+        background-color: var(--CpBlue);
+    }
+</style>
 
 </html>

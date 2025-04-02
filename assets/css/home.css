@@ -1,0 +1,332 @@
+.carrousel {
+    width: 100vw;
+    height: 50vh;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.conteneur {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.image-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.diapositive {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.diapositive img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Overlay Companies */
+
+.overlay-companies {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+    padding: 10px 20px;
+}
+
+.overlay-companies h3 {
+    font-size: 4.5rem;
+    margin: 0;
+}
+
+.overlay-companies p {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Overlay Offer */
+
+.overlay-offer {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+    padding: 10px 20px;
+}
+
+.overlay-offer h3 {
+    font-size: 4.5rem;
+    margin: 0;
+}
+
+.overlay-offer p {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Overlay Users */
+
+.overlay-user {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 2;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.overlay-user h3 {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.overlay-user p {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+    background: none;
+    border: none;
+}
+
+.arrow.gauche {
+    left: 10px;
+}
+
+.arrow.droite {
+    right: 10px;
+}
+
+.indicateurs {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.point {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.point2 {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.point3 {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.point4 {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.point.actif {
+    background-color: #717171;
+}
+
+/* Style global de la section */
+/* Style global de la section */
+.about-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Style des blocs d'information */
+.about-block {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    flex: 1 1 calc(33% - 30px); /* Trois blocs par ligne sur grand écran */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-block:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.about-block h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.about-block p {
+    font-size: 16px;
+    color: #666666;
+    line-height: 1.6;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .about-block {
+        flex: 1 1 calc(50% - 30px); /* Deux blocs par ligne sur tablette */
+    }
+}
+
+@media (max-width: 768px) {
+    .about-block {
+        flex: 1 1 100%; /* Un bloc par ligne sur mobile */
+    }
+}
+
+/* Style du formulaire de contact */
+.contact-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    flex: 1 1 100%; /* Le formulaire occupe toute la largeur */
+    text-align: left;
+}
+
+.contact-form h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.contact-form p {
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Phrase finale */
+.welcome-message {
+    margin-top: 50px;
+    text-align: center;
+    color: #333333;
+}
+
+.welcome-message h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    font-size: 18px;
+    color: #666666;
+}
+
+/* Style pour la section des diagrammes */
+.git-stats {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    flex: 1 1 100%; /* Le conteneur occupe toute la largeur */
+    text-align: center;
+}
+
+.git-stats h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.git-stats p {
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    max-width: 800px;
+    margin: 0 auto;
+}

@@ -119,7 +119,6 @@ class Offer
         }
     }
 
-    //récuperer l'entreprise qui a publié l'offre
     public function getOffersCompanies($offer_id)
     {
         try {
@@ -158,7 +157,6 @@ class Offer
             throw new Exception("Erreur lors de la récupération de l'entreprise : " . $e->getMessage());
         }
     }
-
     public function getPaginatedOffers($limit, $offset)
     {
         try {

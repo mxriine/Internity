@@ -19,13 +19,9 @@ require_once('../../src/Controllers/CheckAuth.php');
 
 <body>
     <!-- Barre de navigation -->
-    <?php include '../Navbar.php'; ?>
+    <?php include '../include/Navbar.php'; ?>
 
-
-    
-    <?php include 'includes/menu.php'; ?>
-
-    
+    <?php include 'includes/Menu.php'; ?>
 
     <main>
         
