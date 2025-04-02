@@ -493,3 +493,25 @@
     transform: scale(1.05);
     box-shadow: 0px 8px 15px var(--CoBlack);
 }
+
+/* Cache toutes les sections par défaut */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Affiche la section active */
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+
+.wishlist-item {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.wishlist-item.removing {
+    opacity: 0;
+}
