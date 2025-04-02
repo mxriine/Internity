@@ -16,7 +16,7 @@ require_once('../src/Controllers/Offer.php');
     <meta charset="UTF-8">
     <meta name="description" content="Gérez votre profil chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createOffer.css">  <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
+    <link rel="stylesheet" href="/assets/css/manage/offer.css">  <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -66,7 +66,7 @@ require_once('../src/Controllers/Offer.php');
         </div>
     </main>
 
-    <script src="/assets/js/createOffer.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'offre -->
+    <script src="/assets/js/manage/offer.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'offre -->
 
 </body>
 

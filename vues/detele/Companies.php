@@ -15,7 +15,7 @@ require_once('Navbar.php');
     <meta charset="UTF-8">
     <meta name="description" content="Supprimer une entreprise chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createCompanies.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'entreprise -->
+    <link rel="stylesheet" href="/assets/css/manage/companies.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'entreprise -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -80,7 +80,7 @@ require_once('Navbar.php');
         
     </main>
 
-    <script src="/assets/js/createCompanies.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'entreprise -->
+    <script src="/assets/js/manage/companies.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'entreprise -->
 
 </body>
 

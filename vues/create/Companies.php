@@ -1,9 +1,7 @@
 <?php
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
-require_once('../src/Controllers/Offer.php'); // Assurez-vous que ce fichier existe pour gérer les entreprises
-
-require_once('Navbar.php'); 
+require_once('../src/Controllers/Offer.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +12,14 @@ require_once('Navbar.php');
     <meta charset="UTF-8">
     <meta name="description" content="Créez une nouvelle entreprise chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/create/Companies.css">
+    <link rel="stylesheet" href="/assets/css/manage/companies.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
+
+    <!-- Navbar -->
+    <?php require_once('include/Navbar.php'); ?>
 
     <main>
         <!-- Formulaire pour créer une entreprise -->
@@ -34,41 +35,48 @@ require_once('Navbar.php');
                 <!-- Description de l'entreprise -->
                 <div class="form-group">
                     <label for="company_desc">Description de l'entreprise :</label>
-                    <textarea id="company_desc" name="company_desc" placeholder="Décrivez l'entreprise en détail..." rows="5"></textarea>
+                    <textarea id="company_desc" name="company_desc" placeholder="Décrivez l'entreprise en détail..."
+                        rows="5"></textarea>
                 </div>
 
                 <!-- Secteur d'activité -->
                 <div class="form-group">
                     <label for="company_business">Secteur d'activité :</label>
-                    <input type="text" id="company_business" name="company_business" placeholder="Ex: Technologie, Santé, Éducation" required>
+                    <input type="text" id="company_business" name="company_business"
+                        placeholder="Ex: Technologie, Santé, Éducation" required>
                 </div>
 
                 <!-- Email de l'entreprise -->
                 <div class="form-group">
                     <label for="company_email">Email de l'entreprise :</label>
-                    <input type="email" id="company_email" name="company_email" placeholder="Ex: contact@internity.com" required>
+                    <input type="email" id="company_email" name="company_email" placeholder="Ex: contact@internity.com"
+                        required>
                 </div>
 
                 <!-- Téléphone de l'entreprise -->
                 <div class="form-group">
                     <label for="company_phone">Téléphone de l'entreprise :</label>
-                    <input type="tel" id="company_phone" name="company_phone" placeholder="Ex: +33612345678" pattern="[0-9+]{10,15}">
+                    <input type="tel" id="company_phone" name="company_phone" placeholder="Ex: +33612345678"
+                        pattern="[0-9+]{10,15}">
                 </div>
 
                 <!-- Adresse de l'entreprise -->
                 <div class="form-group">
                     <label for="company_street_number">Numéro de rue :</label>
-                    <input type="text" id="company_street_number" name="company_street_number" placeholder="Ex: 123" required>
+                    <input type="text" id="company_street_number" name="company_street_number" placeholder="Ex: 123"
+                        required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="company_street_name">Nom de la rue :</label>
-                    <input type="text" id="company_street_name" name="company_street_name" placeholder="Ex: Rue de la République" required>
+                    <input type="text" id="company_street_name" name="company_street_name"
+                        placeholder="Ex: Rue de la République" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="company_postal_code">Code postal :</label>
-                    <input type="text" id="company_postal_code" name="company_postal_code" placeholder="Ex: 75000" required>
+                    <input type="text" id="company_postal_code" name="company_postal_code" placeholder="Ex: 75000"
+                        required>
                 </div>
 
                 <div class="form-group">
@@ -84,7 +92,7 @@ require_once('Navbar.php');
         </div>
     </main>
 
-    <script src="/assets/js/createCompanies.js" defer></script>
+    <script src="/assets/js/manage/companies.js" defer></script>
 
 </body>
 

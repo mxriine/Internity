@@ -14,7 +14,7 @@ require_once('Navbar.php');
     <meta charset="UTF-8">
     <meta name="description" content="Créer un compte chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/createUser.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
+    <link rel="stylesheet" href="/assets/css/manage/user.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -68,7 +68,7 @@ require_once('Navbar.php');
         </div>
     </main>
 
-    <script src="/assets/js/createUser.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'utilisateurs -->
+    <script src="/assets/js/manage/user.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'utilisateurs -->
 
 </body>
 
