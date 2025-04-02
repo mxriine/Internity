@@ -33,7 +33,7 @@ require_once('../src/Controllers/Offer.php');
             <!-- Barre d'étiquettes -->
             <div class="tags">
             <?php 
-            $categories = ['Stage', 'Marketing', 'Data', 'Informatique', 'Cyber-sécurité'];
+            $categories = ['Stage', 'Marketing', 'JavaScript', 'Électronique', 'Cybersécurité'];
             foreach ($categories as $index => $category): 
             ?>
                 <input type="checkbox" id="category<?= $index + 1 ?>" class="hidden-checkbox" data-skill="<?= $category ?>">
@@ -83,15 +83,15 @@ require_once('../src/Controllers/Offer.php');
         <!-- Pagination -->
         <div class="pagination">
             <?php if ($page_actuelle > 1): ?>
-                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <a href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($page_actuelle < $total_pages): ?>
-                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <a href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Suivant</a>
             <?php endif; ?>
         </div>
     </main>

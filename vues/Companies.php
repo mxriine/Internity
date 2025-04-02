@@ -89,15 +89,15 @@ $total_pages = isset($total_pages) ? $total_pages : 1; // Replace with actual lo
         <!-- Pagination -->
         <div class="pagination">
             <?php if ($page_actuelle > 1): ?>
-                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <a href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($_GET['search'] ?? '') ?>&location=<?= urlencode($_GET['location'] ?? '') ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <a href="?page=<?= $i ?>&search=<?= urlencode($_GET['search'] ?? '') ?>&location=<?= urlencode($_GET['location'] ?? '') ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($page_actuelle < $total_pages): ?>
-                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <a href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($_GET['search'] ?? '') ?>&location=<?= urlencode($_GET['location'] ?? '') ?>">Suivant</a>
             <?php endif; ?>
         </div>
     </main>
