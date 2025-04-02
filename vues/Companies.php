@@ -8,10 +8,6 @@ require_once('../src/Controllers/Companies.php');
 $page_actuelle = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $total_pages = isset($total_pages) ? $total_pages : 1; // Replace with actual logic to calculate total pages
 
-// Define the createSlug function
-function createSlug($string) {
-    return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
-}
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +66,7 @@ function createSlug($string) {
 
                 // Créer un slug pour le nom de l'entreprise
                 $companySlug = createSlug($company['company_name']);
-                $companyLink = "/vues/Companies.php?company_id=" . urlencode($company['company_id']) . "&name=" . urlencode($companySlug);
+                $companyLink = "/vues/Company.php?company_id=" . urlencode($company['company_id']) . "&name=" . urlencode($companySlug);
                 ?>
                 <div class="card">
                     <div class="card-header">

@@ -60,12 +60,29 @@ class Companies {
         }
     }
 
+    // Voir les offres d'une entreprise selon son ID
+    public function getCompanyOffers($companyId) {
+        $stmt = $this->pdo->prepare("SELECT * FROM Offers WHERE company_id = ?");
+        $stmt->bindParam(1, $companyId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Voir une entreprise selon son ID
     public function getCompanyById($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM Companies WHERE company_id = ?");
-        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt = $this->pdo->prepare("SELECT 
+                c.*,
+                ci.city_name,
+                r.region_name
+        FROM Companies c
+        JOIN Located l ON c.company_id = l.company_id
+        JOIN Cities ci ON l.city_id = ci.city_id
+        JOIN Regions r ON ci.region_id = r.region_id
+        WHERE c.company_id = :companyId
+        ");
+            $stmt->bindParam(':companyId', $id, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Créer une entreprise
