@@ -58,10 +58,10 @@ require_once('../../src/Controllers/Offer.php');
             </div>
         </div>
 
-        <?php foreach ($offerss as $offer): ?>
+        <?php foreach ($offers as $offer): ?>
             <?php
             // On récupère les détails de l'entreprise liée à l'OFFRE (pas par company_id, mais par offer_id ici)
-            $companyDetails = $offerModel->getOffersCompanies($offer['offer_id']);
+            $offerDetails = $offerModel->getOffersCompanies($offer['offer_id']);
             ?>
             <div class="container">
 
@@ -74,9 +74,9 @@ require_once('../../src/Controllers/Offer.php');
                 </div>
 
                 <div class="company">
-                    <p><?= htmlspecialchars($companyDetails['company_name']) ?></p>
-                    <p><strong>Lieu :</strong> <?= htmlspecialchars($companyDetails['city']) ?>,
-                        <?= htmlspecialchars($companyDetails['region']) ?>
+                    <p><?= htmlspecialchars($offerDetails['company_name']) ?></p>
+                    <p><strong>Lieu :</strong> <?= htmlspecialchars($offerDetails['city']) ?>,
+                        <?= htmlspecialchars($offerDetails['region']) ?>
                     </p>
                 </div>
 
@@ -97,6 +97,23 @@ require_once('../../src/Controllers/Offer.php');
 
             </div>
         <?php endforeach; ?>
+
+        <div class="pagination">
+            <?php if ($page_actuelle > 1): ?>
+                <a
+                    href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Précédent</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>"
+                    class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page_actuelle < $total_pages): ?>
+                <a
+                    href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Suivant</a>
+            <?php endif; ?>
+        </div>
 
     </main>
 

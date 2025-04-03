@@ -27,8 +27,12 @@ require_once('../../src/Controllers/Offer.php');
     <main>
         <!-- Formulaire pour créer une entreprise -->
         <div class="create-company-container">
-            <h1>Créer une nouvelle entreprise</h1>
-            <form action="/api/create-company" method="POST" class="create-company-form">
+            <a href="#" class="back" onclick="history.back(); return false;">
+                <img src="/assets/icons/arrow.svg" alt="Retour">
+                Retour
+            </a>
+            <h1>Ajouter une entreprise</h1>
+            <form action="../../src/Controllers/Companies.php?create=1" method="POST" class="create-company-form">
                 <!-- Nom de l'entreprise -->
                 <div class="form-group">
                     <label for="company_name">Nom de l'entreprise :</label>
@@ -61,10 +65,31 @@ require_once('../../src/Controllers/Offer.php');
                     <label for="company_phone">Téléphone de l'entreprise :</label>
                     <div class="phone-input-wrapper">
                         <select id="phone_prefix" name="phone_prefix"></select>
-                        <input type="tel" id="company_phone" name="company_phone" placeholder="612345678"
-                            pattern="[0-9]{9}" required>
+                        <input type="tel" id="company_phone" name="company_phone" placeholder="6 12 34 56 78"
+                            pattern="[0-9 ]{13}" required>
+                    </div>
+                    <script>
+                        document.getElementById('company_phone').addEventListener('input', function (e) {
+                            let value = e.target.value.replace(/\D/g, ''); // Remove non-digit characters
+                            let formatted = value.replace(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5');
+                            e.target.value = formatted.trim();
+                        });
+                    </script>
+                </div>
+
+                <!-- Adresse -->
+                <div class="form-row">
+                    <div class="form-group small">
+                        <label for="company_rue">N° Rue :</label>
+                        <input type="text" id="company_rue" name="company_rue" placeholder="Ex: 81" required>
+                    </div>
+                    <div class="form-group full">
+                        <label for="company_namerue">Nom de la rue :</label>
+                        <input type="text" id="company_namerue" name="company_namerue" placeholder="Ex: Avenue"
+                            required>
                     </div>
                 </div>
+
 
                 <!-- Code postal + Ville -->
                 <div class="form-row">

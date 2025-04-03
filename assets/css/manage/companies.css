@@ -2,6 +2,7 @@
     Conteneur principal
 ============================ */
 .create-company-container {
+     position: relative;
      max-width: 600px;
      margin: 40px auto;
      padding: 20px;
@@ -161,4 +162,24 @@
      font-size: 1rem;
      border: 1px solid #ccc;
      border-radius: 5px;
+ }
+
+ .back {
+     display: flex;
+     align-items: center;
+     margin-bottom: 1rem;
+     color: var(--CpBlack);
+     text-decoration: none;
+     position: absolute;
+     top: 1rem;
+     left: 1rem;
+     font-size: 14px;
+     z-index: 1;
+ }
+ 
+ .back img {
+     width: 20px;
+     height: 20px;
+     margin-right: 5px;
+     vertical-align: middle;
  }

@@ -30,7 +30,7 @@ require_once('../../src/Controllers/Companies.php');
         <h3>Entreprises</h3>
 
         <div class="options">
-            <a href=""><button>Ajouter</button></a>
+            <a href="../create/Companies.php"><button>Ajouter</button></a>
         </div>
 
         <div class="container">
@@ -64,7 +64,7 @@ require_once('../../src/Controllers/Companies.php');
         <?php foreach ($companies as $company): ?>
             <?php
             // On récupère les détails de l'entreprise
-            $cityDetails = $companiesModel->getCompanyById($company['offer_id']);
+            $Details = $companiesModel->getCompanyById($company['offer_id']);
             ?>
             <div class="container">
 
@@ -77,7 +77,8 @@ require_once('../../src/Controllers/Companies.php');
                 </div>
 
                 <div class="city">
-                    <p><?= htmlspecialchars($cityDetails['city_name']) ?>, <?= htmlspecialchars($cityDetails['region_name']) ?></p>
+                    <p><?= htmlspecialchars($company['company_address']) ?>,
+                        <?= htmlspecialchars($Details['city_name']) ?></p>
                 </div>
 
                 <div class="email">
@@ -89,12 +90,32 @@ require_once('../../src/Controllers/Companies.php');
                 </div>
 
                 <div class="action">
-                    <a href="/vues/update/Offer.php?offer_id=<?= $offer['offer_id'] ?>" class="update">Modifier</a>
-                    <a href="/vues/delete/Offer.php?offer_id=<?= $offer['offer_id'] ?>" class="delete">Supprimer</a>
+                    <a href="/vues/update/Company.php?company_id=<?= $company['company_id'] ?>"
+                        class="update">Modifier</a>
+                    <a href="/vues/delete/Company.php?company_id=<?= $company['company_id'] ?>"
+                        class="delete">Supprimer</a>
                 </div>
 
             </div>
         <?php endforeach; ?>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <?php if ($page_actuelle > 1): ?>
+                <a
+                    href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Précédent</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>"
+                    class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page_actuelle < $total_pages): ?>
+                <a
+                    href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Suivant</a>
+            <?php endif; ?>
+        </div>
 
     </main>
 
