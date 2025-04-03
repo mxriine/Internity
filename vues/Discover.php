@@ -24,7 +24,7 @@ require_once('../src/Controllers/Offer.php');
 
     <main>
     
-        <?php include 'include/FilterDiscovery.php'; ?>
+        <?php include 'include/Filter.php'; ?>
 
         <!-- Section des offres -->
         <div class="header-section">
