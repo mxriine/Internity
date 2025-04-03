@@ -26,3 +26,9 @@ if ($role === 'student' && str_starts_with($current_path, 'vues/dashboard/')) {
     exit();
 }
 
+// SECTION 4 : Redirection si l'étudiant essaie d'accéder au dossier dashboard
+if ($role === 'pilote' && str_starts_with($current_path, 'vues/dashboard/Pilotes.php')) {
+    // Rediriger vers la page Discover
+    header('Location: /vues/dashboard/Home.php');
+    exit();
+}

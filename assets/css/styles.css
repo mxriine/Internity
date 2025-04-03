@@ -10,8 +10,10 @@
 
 /* Contenu principal */
 main {
-    flex: 1; /* Le contenu principal prend tout l'espace disponible */
-    margin-bottom: 5%; /* Ajoute un peu d'espace autour du contenu */
+    flex: 1;
+    /* Le contenu principal prend tout l'espace disponible */
+    margin-bottom: 5%;
+    /* Ajoute un peu d'espace autour du contenu */
 }
 
 
@@ -214,15 +216,15 @@ header {
 }
 
 .connect {
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     height: 5vh;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .connect button {
     padding: 1.5vh 1vw;
-    /* Plus d'espace pour l'icône */
     border: none;
     border-radius: 20px;
     background: var(--CpBlue);
