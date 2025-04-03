@@ -240,8 +240,6 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                             <p><strong>Lieu :</strong>
                                 <?= htmlspecialchars($application['city_name'] ?? 'Ville inconnue') . ', ' . htmlspecialchars($application['region_name'] ?? 'Region inconnue') ?>
                             </p>
-                            <p><strong>Date limite :</strong>
-                                <?= htmlspecialchars($application['company_name'] ?? 'Entreprise inconnue') ?></p>
                             <button class="offer-button">Voir plus</button>
                         </div>
                     <?php endforeach; ?>

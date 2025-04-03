@@ -30,36 +30,8 @@ require_once('../../src/Controllers/Companies.php');
         <h3>Entreprises</h3>
 
         <div class="options">
-            <a href="../create/Company.php"><button>Ajouter</button></a>
+            <a href="../create/Company.php">Ajouter</a>
         </div>
-
-        <div class="container">
-            <div class="name">
-                <h4>Nom</h4>
-            </div>
-
-            <div class="name">
-                <h4>Domaine d'expertise</h4>
-            </div>
-
-            <div class="name">
-                <h4>Lieu</h4>
-            </div>
-
-            <div class="name">
-                <h4>Email</h4>
-            </div>
-
-            <div class="name">
-                <h4>Phone</h4>
-            </div>
-
-            <div class="action">
-                <h4>Action</h4>
-            </div>
-        </div>
-
-
 
         <?php foreach ($companies as $company): ?>
             <?php
@@ -68,24 +40,44 @@ require_once('../../src/Controllers/Companies.php');
             ?>
             <div class="container">
 
-                <div class="name">
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Domaine d'expertise :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Lieu :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Email :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Phone :</h4>
+                </div>
+
+                <div class="name value">
                     <p><?= htmlspecialchars($company['company_name']) ?></p>
                 </div>
 
-                <div class="desc">
+                <div class="desc value">
                     <p><?= htmlspecialchars($company['company_business']) ?></p>
                 </div>
 
-                <div class="city">
+                <div class="city value">
                     <p><?= htmlspecialchars($company['company_address']) ?>,
                         <?= htmlspecialchars($Details['city_name']) ?></p>
                 </div>
 
-                <div class="email">
+                <div class="email value">
                     <p><?= htmlspecialchars($company['company_email']) ?></p>
                 </div>
 
-                <div class="phone">
+                <div class="phone value">
                     <p><?= htmlspecialchars($company['company_phone']) ?></p>
                 </div>
 

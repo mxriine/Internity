@@ -1,9 +1,7 @@
-<!-- FORMULAIRE EN PHP -->
 <?php
 require_once('../../src/Controllers/Login.php');
 require_once('../../src/Controllers/CheckAuth.php');
-require_once('../../src/Controllers/Companies.php');
-require_once('../../src/Controllers/Wishlist.php');
+require_once('../../src/Controllers/Statistics.php');
 ?>
 
 <!doctype html>
@@ -21,97 +19,122 @@ require_once('../../src/Controllers/Wishlist.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 
-<body>
+<body class="bg-gray-50 text-CpBlack font-sans">
     <!-- Barre de navigation -->
     <?php include '../include/Navbar.php'; ?>
 
-    <?php include 'includes/Menu.php'; ?>
-    <main>
+    <div class="flex">
+        <!-- Menu latéral -->
+        <?php include 'includes/Menu.php'; ?>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Entreprises</p>
-                <p class="text-2xl font-bold text-blue-600"><?= $total_companies ?></p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Offres</p>
-                <p class="text-2xl font-bold text-green-600"><?= $countOffers ?></p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Etudiants</p>
-                <p class="text-2xl font-bold text-purple-600"><?= $countStudents ?></p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Pilotes</p>
-                <p class="text-2xl font-bold text-yellow-600"><?= $countPilots ?></p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Postulations</p>
-                <p class="text-2xl font-bold text-red-600"><?= $countApplications ?></p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Wishlist</p>
-                <p class="text-2xl font-bold text-pink-600"><?= $nbr_wishlist ?></p>
-            </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <p class="text-gray-500">Moy. Evaluations</p>
-                <p class="text-2xl font-bold text-indigo-600"><?= number_format($moyenne, 2) ?>/5</p>
-            </div>
-        </div>
+        <!-- Contenu principal -->
+        <main class="flex-1 p-8">
+            <!-- Section des statistiques -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Entreprises</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= $total_companies ?></p>
+                </div>
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Offres</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= $total_offers ?></p>
+                </div>
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Étudiants</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= $total_users ?></p>
+                </div>
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Pilotes</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= $total_pilotes ?></p>
+                </div>
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Postulations</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= $total_apply ?></p>
+                </div>
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Wishlist</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= $total_wishlists ?></p>
+                </div>
+                <div class="bg-CWhite rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-base text-CGrey">Moy. Évaluations</p>
+                    <p class="text-3xl font-bold text-cpblue"><?= number_format($moyenne, 2) ?>/5</p>
+                </div>
+            </section>
 
-        <!-- Graphe Offres par statut -->
-        <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold mb-4">Statut des Offres</h2>
-            <canvas id="offersStatusChart" width="400" height="200"></canvas>
-        </div>
-        </div>
-    </main>
+            <!-- Graphique des offres par statut -->
+            <section class="bg-CWhite rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-semibold text-CpBlack mb-6">Statut des Offres</h2>
+                <div class="max-w-lg mx-auto">
+                    <canvas id="offersStatusChart" width="500" height="300"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
 
-</body>
+    <style>
+        :root {
+            --CWhite: rgb(255, 255, 255);
+            --CBlack: rgba(0, 0, 0);
+            --CoBlack: rgba(0, 0, 0, 0.1);
+            --CpBlack: rgb(34, 40, 49);
+            --CsBlack: rgb(49, 54, 63);
+            --CGrey: rgba(255, 255, 255, 0.6);
+            --CpBlue: rgb(118, 171, 174);
+        }
 
-<style>
-    .dashboard-menu>ul>li:nth-child(1)::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: var(--widthslect);
-        background-color: var(--CpBlue);
-    }
-</style>
+        .dashboard-menu>ul>li:nth-child(1)::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--CpBlue);
+        }
 
-<script>
-    const ctx = document.getElementById('offersStatusChart').getContext('2d');
-    const offersStatusChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['En attente', 'Acceptée', 'Refusée'],
-            datasets: [{
-                label: 'Offres',
-                data: [<?= $pendingOffers ?>, <?= $acceptedOffers ?>, <?= $refusedOffers ?>],
-                backgroundColor: [
-                    'rgba(255, 206, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(255, 99, 132, 0.7)'
-                ],
-                borderColor: [
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom'
+        .text-cpblue {
+            color: var(--CpBlue);
+        }
+    </style>
+
+    <script>
+        const ctx = document.getElementById('offersStatusChart').getContext('2d');
+        const offersStatusChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['En attente', 'Acceptée', 'Refusée'],
+                datasets: [{
+                    label: 'Offres',
+                    data: [<?= $apply_pending ?>, <?= $apply_accepted ?>, <?= $apply_rejected ?>],
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 99, 132, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 15 // Augmente la taille des légendes
+                            }
+                        }
+                    }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
+</body>
 
 </html>

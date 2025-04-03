@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["cv"]) && isset($_FIL
         $result = $applicationModel->createApplication($data);
 
         if ($result) {
-            header("Location: /vues/Profil.php?success=1");
+            header("Location: /vues/Profil.php?page=account?success=1");
             exit;
         } else {
             echo "Erreur lors de l'enregistrement de la candidature.";

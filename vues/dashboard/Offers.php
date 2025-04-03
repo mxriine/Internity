@@ -29,33 +29,7 @@ require_once('../../src/Controllers/Offer.php');
         <h3>Offres</h3>
 
         <div class="options">
-            <a href="../create/Offer.php"><button>Ajouter</button></a>
-        </div>
-
-        <div class="container">
-            <div class="name">
-                <h4>Nom</h4>
-            </div>
-
-            <div class="name">
-                <h4>Description</h4>
-            </div>
-
-            <div class="name">
-                <h4>Entreprise</h4>
-            </div>
-
-            <div class="name">
-                <h4>Date</h4>
-            </div>
-
-            <div class="name">
-                <h4>Gratification</h4>
-            </div>
-
-            <div class="action">
-                <h4>Action</h4>
-            </div>
+            <a href="../create/Offer.php">+ Ajouter</a>
         </div>
 
         <?php foreach ($offers as $offer): ?>
@@ -65,28 +39,56 @@ require_once('../../src/Controllers/Offer.php');
             ?>
             <div class="container">
 
-                <div class="name">
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Description :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Entreprise :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Lieu :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Dates :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Gratification :</h4>
+                </div>
+
+                <div class="name value">
                     <p><?= htmlspecialchars($offer['offer_title']) ?></p>
                 </div>
 
-                <div class="desc">
-                    <p><?= htmlspecialchars($offer['offer_desc']) ?></p>
-                </div>
-
-                <div class="company">
-                    <p><?= htmlspecialchars($offerDetails['company_name']) ?></p>
-                    <p><strong>Lieu :</strong> <?= htmlspecialchars($offerDetails['city']) ?>,
-                        <?= htmlspecialchars($offerDetails['region']) ?>
+                <div class="desc value">
+                    <p><?= htmlspecialchars(explode(':', $offer['offer_desc'])[0] . '. . .') ?>
                     </p>
                 </div>
 
-                <div class="date">
+                <div class="company value">
+                    <p><?= htmlspecialchars($offerDetails['company_name']) ?></p>
+                </div>
+
+                <div class="company-pos value">
+                    <p><?= htmlspecialchars($offerDetails['city']) ?>, <?= htmlspecialchars($offerDetails['region']) ?>
+                    </p>
+                </div>
+
+
+                <div class="date value">
                     <p><?= date('d/m/Y', strtotime($offer['offer_start'])) ?> -
                         <?= date('d/m/Y', strtotime($offer['offer_end'])) ?>
                     </p>
                 </div>
 
-                <div class="salaire">
+                <div class="salaire value">
                     <p><?= htmlspecialchars($offer['offer_salary']) ?> €</p>
                 </div>
 
