@@ -3,6 +3,7 @@
 // Récupérer le rôle et le nom depuis la session
 $role = $_SESSION['role'] ?? 'inconnu';
 $name = $_SESSION['name'] ?? '';
+$surname = $_SESSION['surname'] ?? '';
 
 // Déterminer le contenu de la navbar en fonction du rôle et définir le lien correspondant
 if ($role === 'admin' || $role === 'pilote') {

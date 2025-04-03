@@ -29,33 +29,9 @@ require_once('../../src/Controllers/Offer.php');
         <h3>Offres</h3>
 
         <div class="options">
-            <a href="../create/Offer.php"><button>Ajouter</button></a>
-        </div>
-
-        <div class="container">
-            <div class="name">
-                <h4>Nom</h4>
-            </div>
-
-            <div class="name">
-                <h4>Description</h4>
-            </div>
-
-            <div class="name">
-                <h4>Entreprise</h4>
-            </div>
-
-            <div class="name">
-                <h4>Date</h4>
-            </div>
-
-            <div class="name">
-                <h4>Gratification</h4>
-            </div>
-
-            <div class="action">
-                <h4>Action</h4>
-            </div>
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
+            <a href="../create/Offer.php">+ Ajouter</a>
         </div>
 
         <?php foreach ($offers as $offer): ?>
@@ -65,28 +41,56 @@ require_once('../../src/Controllers/Offer.php');
             ?>
             <div class="container">
 
-                <div class="name">
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Description :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Entreprise :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Lieu :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Dates :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Gratification :</h4>
+                </div>
+
+                <div class="name value">
                     <p><?= htmlspecialchars($offer['offer_title']) ?></p>
                 </div>
 
-                <div class="desc">
-                    <p><?= htmlspecialchars($offer['offer_desc']) ?></p>
-                </div>
-
-                <div class="company">
-                    <p><?= htmlspecialchars($offerDetails['company_name']) ?></p>
-                    <p><strong>Lieu :</strong> <?= htmlspecialchars($offerDetails['city']) ?>,
-                        <?= htmlspecialchars($offerDetails['region']) ?>
+                <div class="desc value">
+                    <p><?= htmlspecialchars(explode(':', $offer['offer_desc'])[0] . '. . .') ?>
                     </p>
                 </div>
 
-                <div class="date">
+                <div class="company value">
+                    <p><?= htmlspecialchars($offerDetails['company_name']) ?></p>
+                </div>
+
+                <div class="company-pos value">
+                    <p><?= htmlspecialchars($offerDetails['city']) ?>, <?= htmlspecialchars($offerDetails['region']) ?>
+                    </p>
+                </div>
+
+
+                <div class="date value">
                     <p><?= date('d/m/Y', strtotime($offer['offer_start'])) ?> -
                         <?= date('d/m/Y', strtotime($offer['offer_end'])) ?>
                     </p>
                 </div>
 
-                <div class="salaire">
+                <div class="salaire value">
                     <p><?= htmlspecialchars($offer['offer_salary']) ?> €</p>
                 </div>
 
@@ -101,17 +105,17 @@ require_once('../../src/Controllers/Offer.php');
         <div class="pagination">
             <?php if ($page_actuelle > 1): ?>
                 <a
-                    href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Précédent</a>
+                    href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>"
+                <a href="?page=<?= $i ?>"
                     class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($page_actuelle < $total_pages): ?>
                 <a
-                    href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Suivant</a>
+                    href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
             <?php endif; ?>
         </div>
 
@@ -120,7 +124,7 @@ require_once('../../src/Controllers/Offer.php');
 </body>
 
 <style>
-    .dashboard-menu>ul>li:nth-child(5)::before {
+    .dashboard-menu>ul>li:nth-child(<?php if ($_SESSION['role']!="pilote"): ?>5<?php endif; ?><?php if ($_SESSION['role']=="pilote"): ?>4<?php endif; ?>)::before {
         content: "";
         position: absolute;
         left: 0;

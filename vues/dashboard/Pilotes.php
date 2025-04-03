@@ -2,6 +2,7 @@
 <?php
 require_once('../../src/Controllers/Login.php');
 require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/User.php');
 ?>
 
 <!doctype html>
@@ -11,7 +12,7 @@ require_once('../../src/Controllers/CheckAuth.php');
     <title>Internity - Discover</title>
     <meta charset="UTF-8">
     <meta name="description" content="Internity - Le meilleur de l'Internet">
-    <meta name="author" content="Internity">
+    <meta name="author" content="Internityq">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/dashboard/style.css">
     <link rel="stylesheet" href="/assets/css/dashboard/list.css">
@@ -25,58 +26,76 @@ require_once('../../src/Controllers/CheckAuth.php');
     <?php include 'includes/Menu.php'; ?>
 
     <main>
-
         <h3>Pilotes</h3>
 
         <div class="options">
-            <a href=""><button>Ajouter</button></a>
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
+            <a href="../create/Pilote.php">+ Ajouter</a>
         </div>
 
-        <div class="container">
-            <div class="name">
-                <h5>Nom</h5>
+        <?php foreach ($pilotes as $pilote): ?>
+            <?php
+            ?>
+            <div class="container">
+
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Prénom :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Promotion :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Email :</h4>
+                </div>
+
+
+                <div class="name value">
+                    <p><?= htmlspecialchars($pilote['user_surname']) ?></p>
+                </div>
+
+                <div class="desc value">
+                    <p><?= htmlspecialchars($pilote['user_name']) ?>
+                    </p>
+                </div>
+
+                <div class="company value">
+                    <p><?= htmlspecialchars($pilote['promotion_name'] ?? 'Aucune') ?></p>
+                </div>
+
+                <div class="company-pos value">
+                    <p><?= htmlspecialchars($pilote['user_email']) ?></p>
+                </div>
+
+                <div class="action">
+                    <a href="/vues/update/Pilote.php?pilote_id=<?= $pilote['user_id'] ?>" class="update">Modifier</a>
+                    <a href="/vues/delete/Pilote.php?pilote_id=<?= $pilote['user_id'] ?>" class="delete">Supprimer</a>
+                </div>
+
             </div>
+        <?php endforeach; ?>
 
-            <div class="second-name">
-                <h4>Prénom</h4>
-            </div>
+        <div class="pagination">
+            <?php if ($page_actuelle > 1): ?>
+                <a
+                    href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <?php endif; ?>
 
-            <div class="email">
-                <h4>Adresse Email</h4>
-            </div>
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?= $i ?>"
+                    class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
 
-            <div class="promo">
-                <h4>Promotion</h4>
-            </div>
-
-            <div class="action">
-                <h4>Action</h4>
-            </div>
-        </div>
-
-
-
-        <div class="container">
-            <div class="name">
-                <p>Raynaud</p>
-            </div>
-
-            <div class="second-name">
-                <p>Muriel</p>
-            </div>
-
-            <div class="email">
-                <p>muriel.raynaud@cesi.fr</p>
-            </div>
-
-            <div class="promo">
-                <p>CPI A2 Informatique</p>
-            </div>
-
-            <div class="action">
-                <a href="" class="Modify">Modifier</a>
-                <a href="" class="delete">Supprimer</a>
-            </div>
+            <?php if ($page_actuelle < $total_pages): ?>
+                <a
+                    href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <?php endif; ?>
         </div>
 
     </main>

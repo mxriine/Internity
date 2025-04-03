@@ -99,4 +99,52 @@ class Application
             throw new Exception("Erreur lors de la suppression de la candidature : " . $e->getMessage());
         }
     }
+
+    public function getApplicationsCount()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) AS apply_count FROM Applications");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['apply_count'] ?? 0;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération du nombre d'applications : " . $e->getMessage());
+        }
+    }
+
+    public function getPendingApplicationsCount()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) AS pending_count FROM Applications WHERE apply_status = 'En attente'");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['pending_count'] ?? 0;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération du nombre d'applications en attente : " . $e->getMessage());
+        }
+    }
+
+    public function getRejectedApplicationsCount()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) AS rejected_count FROM Applications WHERE apply_status = 'Refusée'");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['rejected_count'] ?? 0;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération du nombre d'applications refusées : " . $e->getMessage());
+        }
+    }
+
+    public function getAcceptedApplicationsCount()
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) AS accepted_count FROM Applications WHERE apply_status = 'Acceptée'");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['accepted_count'] ?? 0;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération du nombre d'applications acceptées : " . $e->getMessage());
+        }
+    }
 }

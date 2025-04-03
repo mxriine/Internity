@@ -80,7 +80,7 @@ require_once('../src/Controllers/Wishlist.php');
                             <div class="popup-content">
                                 <h2>
                                     Vous avez ajouté l'offre 
-                                    <?= htmlspecialchars($offerDetails['offer_name'] ?? 'X') ?> 
+                                    <?= htmlspecialchars($offerDetails['offer_title'] ?? 'Offre inconnue') ?> 
                                     à votre wishlist !
                                 </h2>
                                 <button id="closeAddToWishlistPopup" class="submit-rating">OK</button>
@@ -92,7 +92,7 @@ require_once('../src/Controllers/Wishlist.php');
                             <div class="popup-content">
                                 <h2>
                                     Vous avez supprimé l'offre 
-                                    <?= htmlspecialchars($offerDetails['offer_name'] ?? 'X') ?> 
+                                    <?= htmlspecialchars($offerDetails['offer_title'] ?? 'Offre inconnue') ?> 
                                     de votre wishlist !
                                 </h2>
                                 <button id="closeRemoveFromWishlistPopup" class="submit-rating">OK</button>

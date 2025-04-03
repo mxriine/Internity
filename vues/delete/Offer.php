@@ -26,6 +26,10 @@ require_once('../../src/Controllers/Offer.php');
     <main>
         <!-- Conteneur pour afficher les informations de l'offre -->
         <div class="create-offer-container">
+            <a href="#" class="back" onclick="history.back(); return false;">
+                <img src="/assets/icons/arrow.svg" alt="Retour">
+                Retour
+            </a>
             <h1>Supprimer l'offre</h1>
 
             <!-- Informations de l'offre en lecture seule -->

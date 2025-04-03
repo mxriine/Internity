@@ -1,9 +1,7 @@
 <?php
 require_once('../../src/Controllers/Login.php');
 require_once('../../src/Controllers/CheckAuth.php');
-require_once('../../src/Controllers/Offer.php'); // Assurez-vous que ce fichier existe pour gérer les comptes
-
-require_once('../include/Navbar.php'); 
+require_once('../../src/Controllers/User.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,41 +12,54 @@ require_once('../include/Navbar.php');
     <meta charset="UTF-8">
     <meta name="description" content="Supprimer un compte chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/manage/user.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
+    <link rel="stylesheet" href="/assets/css/manage/user.css">
+    <!-- C'est le même fichier CSS que pour le formulaire de création d'offre -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
 
+    <!-- Navbar -->
+    <?php require_once('../include/Navbar.php'); ?>
+
     <main>
         <!-- Conteneur pour afficher les informations du compte -->
         <div class="create-account-container">
-            <h1>Supprimer ce compte</h1>
+            <a href="#" class="back" onclick="history.back(); return false;">
+                <img src="/assets/icons/arrow.svg" alt="Retour">
+                Retour
+            </a>
+            <h1>Supprimer l'étudiant</h1>
 
             <!-- Informations du compte en lecture seule -->
             <div class="form-group">
                 <label>Nom :</label>
-                <p>nom</p>
+                <p><?= htmlspecialchars($userDetails['user_surname']) ?></p>
             </div>
 
             <div class="form-group">
                 <label>Prénom :</label>
-                <p>prenom</p>
+                <p><?= htmlspecialchars($userDetails['user_name']) ?></p>
+            </div>
+
+            <div class="form-group">
+                <label>Pilote :</label>
+                <p><?= htmlspecialchars($userDetails['pilote_surname']) . ' ' . htmlspecialchars($userDetails['pilote_name']) ?></p>
+            </div>
+
+            <div class="form-group">
+                <label>Promotion :</label>
+                <p><?= htmlspecialchars($userDetails['promotion_name']) ?></p>
             </div>
 
             <div class="form-group">
                 <label>Email :</label>
-                <p>email</p>
-            </div>
-
-            <div class="form-group">
-                <label>Rôle :</label>
-                <p>role</p>
+                <p><?= htmlspecialchars($userDetails['user_email']) ?></p>
             </div>
 
             <!-- Formulaire de suppression -->
-            <form action="/api/delete-account" method="POST" class="delete-account-form">
-                <input type="hidden" name="user_id" value="id_du_compte"> <!-- Remplacez "id_du_compte" par l'ID réel du compte -->
+            <form action="../../src/Controllers/User.php?delete=1" method="POST" class="delete-account-form">
+                <input type="hidden" name="user_id" value="<?= htmlspecialchars($userDetails['user_id']) ?>">
                 <div class="form-group">
                     <button type="submit" class="submit-button">Supprimer ce compte</button>
                 </div>
@@ -72,7 +83,7 @@ require_once('../include/Navbar.php');
 
 </body>
 
-<footer>
+<footer style="position: fixed;">
     <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
     <p>© 2025 - Internity</p>
 </footer>

@@ -75,6 +75,14 @@
     margin: 10px;
 }
 
+.options > input {
+    margin: 10px;
+
+    border: var(--CpBlue) solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 main > h3 {
     position: absolute;
 }

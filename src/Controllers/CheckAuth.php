@@ -30,3 +30,4 @@ if ($role === 'student' && str_starts_with($current_path, 'vues/dashboard/')) {
     header('Location: /vues/Discover.php');
     exit();
 }
+

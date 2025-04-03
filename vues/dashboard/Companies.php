@@ -30,36 +30,10 @@ require_once('../../src/Controllers/Companies.php');
         <h3>Entreprises</h3>
 
         <div class="options">
-            <a href="../create/Company.php"><button>Ajouter</button></a>
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
+            <a href="../create/Company.php">Ajouter</a>
         </div>
-
-        <div class="container">
-            <div class="name">
-                <h4>Nom</h4>
-            </div>
-
-            <div class="name">
-                <h4>Domaine d'expertise</h4>
-            </div>
-
-            <div class="name">
-                <h4>Lieu</h4>
-            </div>
-
-            <div class="name">
-                <h4>Email</h4>
-            </div>
-
-            <div class="name">
-                <h4>Phone</h4>
-            </div>
-
-            <div class="action">
-                <h4>Action</h4>
-            </div>
-        </div>
-
-
 
         <?php foreach ($companies as $company): ?>
             <?php
@@ -68,24 +42,44 @@ require_once('../../src/Controllers/Companies.php');
             ?>
             <div class="container">
 
-                <div class="name">
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Domaine d'expertise :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Lieu :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Email :</h4>
+                </div>
+
+                <div class="title">
+                    <h4>Phone :</h4>
+                </div>
+
+                <div class="name value">
                     <p><?= htmlspecialchars($company['company_name']) ?></p>
                 </div>
 
-                <div class="desc">
+                <div class="desc value">
                     <p><?= htmlspecialchars($company['company_business']) ?></p>
                 </div>
 
-                <div class="city">
+                <div class="city value">
                     <p><?= htmlspecialchars($company['company_address']) ?>,
                         <?= htmlspecialchars($Details['city_name']) ?></p>
                 </div>
 
-                <div class="email">
+                <div class="email value">
                     <p><?= htmlspecialchars($company['company_email']) ?></p>
                 </div>
 
-                <div class="phone">
+                <div class="phone value">
                     <p><?= htmlspecialchars($company['company_phone']) ?></p>
                 </div>
 
@@ -103,17 +97,17 @@ require_once('../../src/Controllers/Companies.php');
         <div class="pagination">
             <?php if ($page_actuelle > 1): ?>
                 <a
-                    href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Précédent</a>
+                    href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>"
+                <a href="?page=<?= $i ?>"
                     class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($page_actuelle < $total_pages): ?>
                 <a
-                    href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Suivant</a>
+                    href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
             <?php endif; ?>
         </div>
 
@@ -122,7 +116,7 @@ require_once('../../src/Controllers/Companies.php');
 </body>
 
 <style>
-    .dashboard-menu>ul>li:nth-child(4)::before {
+    .dashboard-menu>ul>li:nth-child(<?php if ($_SESSION['role']!="pilote"): ?>4<?php endif; ?><?php if ($_SESSION['role']=="pilote"): ?>3<?php endif; ?>)::before {
         content: "";
         position: absolute;
         left: 0;

@@ -6,7 +6,8 @@ use PDO;
 use PDOException;
 use Exception;
 
-class Wishlist {
+class Wishlist
+{
 
     private $pdo;
 
@@ -69,16 +70,16 @@ class Wishlist {
     }
 
     public function getWishlistsCount()
-{
-    try {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) AS wishlist_count FROM Wishlists");
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['wishlist_count'] ?? 0;
-    } catch (PDOException $e) {
-        throw new Exception("Erreur lors de la récupération du nombre de wishlists : " . $e->getMessage());
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) AS wishlist_count FROM Wishlists");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['wishlist_count'] ?? 0;
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la récupération du nombre de wishlists : " . $e->getMessage());
+        }
     }
-}
 
 }
 

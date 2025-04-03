@@ -83,6 +83,7 @@ header {
 .nav {
     display: flex;
     align-items: center;
+    justify-content: end;
 }
 
 .menu-left {
@@ -243,6 +244,11 @@ header {
 
 /* Pour les petits écrans */
 @media screen and (max-width: 768px) {
+
+    .nav {
+        flex-direction: row-reverse;
+    }
+
     .menu-left {
         flex-direction: column;
         display: none;

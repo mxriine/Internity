@@ -2,6 +2,7 @@
 <?php
 require_once('../../src/Controllers/Login.php');
 require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/User.php');
 ?>
 
 <!doctype html>
@@ -21,74 +22,85 @@ require_once('../../src/Controllers/CheckAuth.php');
 <body>
     <!-- Barre de navigation -->
     <?php include '../include/Navbar.php'; ?>
-
     <?php include 'includes/Menu.php'; ?>
 
     <main>
-
-        <h3>Etudiants</h3>
+        <h3>Étudiants</h3>
 
         <div class="options">
-            <a href=""><button>Ajouter</button></a>
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
+            <a href="../create/Student.php">Ajouter</a>
         </div>
 
-        <div class="container">
-            <div class="name">
-                <h5>Nom</h5>
-            </div>
+        <?php if (!empty($error_message)): ?>
+            <p style="font-size: 2.5vh; margin-left: 40vw"><?= $error_message ?></p>
+        <?php endif; ?>
 
-            <div class="second-name">
-                <h4>Prénom</h4>
-            </div>
+        <?php foreach ($students as $student): ?>
+            <div class="container">
 
-            <div class="email">
-                <h4>Adresse Email</h4>
-            </div>
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+                <div class="title">
+                    <h4>Prénom :</h4>
+                </div>
+                <div class="title">
+                    <h4>Pilote :</h4>
+                </div>
+                <div class="title">
+                    <h4>Promotion :</h4>
+                </div>
+                <div class="title">
+                    <h4>Email :</h4>
+                </div>
 
-            <div class="promo">
-                <h4>Promotion</h4>
-            </div>
+                <div class="name value">
+                    <p><?= htmlspecialchars($student['user_surname']) ?></p>
+                </div>
 
-            <div class="pilote">
-                <h4>Pilote</h4>
-            </div>
+                <div class="desc value">
+                    <p><?= htmlspecialchars($student['user_name']) ?></p>
+                </div>
 
-            <div class="action">
-                <h4>Action</h4>
+                <div class="company value">
+                    <p><?= htmlspecialchars($student['pilote_name'] ?? 'Aucune') . " " . htmlspecialchars($student['pilote_surname'] ?? '') ?>
+                    </p>
+                </div>
+
+                <div class="company value">
+                    <p><?= htmlspecialchars($student['promotion_name'] ?? 'Aucune') ?></p>
+                </div>
+
+                <div class="company-pos value">
+                    <p><?= htmlspecialchars($student['user_email']) ?></p>
+                </div>
+
+                <div class="action">
+                    <a href="/vues/update/Student.php?student_id=<?= $student['user_id'] ?>" class="update">Modifier</a>
+                    <a href="/vues/delete/Student.php?student_id=<?= $student['user_id'] ?>" class="delete">Supprimer</a>
+                </div>
+
             </div>
+        <?php endforeach; ?>
+
+        <div class="pagination">
+            <?php if (isset($page_actuelle) && $page_actuelle > 1): ?>
+                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; isset($total_pages) && $i <= $total_pages; $i++): ?>
+                <a href="?page=<?= $i ?>" class="<?= ($i === $page_actuelle) ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if (isset($page_actuelle) && isset($total_pages) && $page_actuelle < $total_pages): ?>
+                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <?php endif; ?>
         </div>
 
-
-
-        <div class="container">
-            <div class="name">
-                <p>Guerton</p>
-            </div>
-
-            <div class="second-name">
-                <p>Nathan</p>
-            </div>
-
-            <div class="email">
-                <p>nathan.guerton@viacesi.fr</p>
-            </div>
-
-            <div class="promo">
-                <p>CPI A2 Informatique</p>
-            </div>
-
-            <div class="pilote">
-                <p>Muriel RAYNAUD</p>
-            </div>
-
-            <div class="action">
-                <a href="" class="Modify">Modifier</a>
-                <a href="" class="delete">Supprimer</a>
-            </div>
         </div>
-
     </main>
-
 </body>
 
 <style>
