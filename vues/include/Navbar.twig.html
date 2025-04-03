@@ -1,0 +1,44 @@
+<header class="header">
+    <div class="logo">
+        <h1>INTERNITY</h1>
+    </div>
+    <nav class="nav">
+        <ul class="menu-left">
+            <li><a href="/vues/Discover.php" class="{{ current_page == 'Discover.php' ? 'active' : '' }}">Offre</a></li>
+            <li><a href="/vues/Companies.php" class="{{ current_page == 'Companies.php' ? 'active' : '' }}">Entreprise</a></li>
+            <li><a href="/" class="{{ current_page == '/' ? 'active' : '' }}">À propos</a></li>
+        </ul>
+
+        {% if is_logged %}
+            <div class="menu-right">
+                <div class="user-info">
+                    <div class="avatar">
+                        <img src="/assets/icons/user.svg" alt="Avatar" class="avatar-icon">
+                    </div>
+                    <div class="user-menu" id="userMenu">
+                        <ul>
+                            <li>
+                                {% if role == 'admin' or role == 'pilote' %}
+                                    <a href="/vues/dashboard/Home.php">Dashboard</a>
+                                {% else %}
+                                    <a href="Profil.php?page=account">Mon compte</a>
+                                {% endif %}
+                            </li>
+                            <li><a href="../../src/Controllers/Logout.php">Se déconnecter</a></li>
+                        </ul>
+                    </div>
+                    <div class="user-details">
+                        <span>{{ name|e }}</span>
+                        <span>{{ role|e }}</span>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="connect">
+                <a href="/vues/Login.php"><button>Se connecter</button></a>
+            </div>
+        {% endif %}
+    </nav>
+</header>
+
+<script src="/assets/js/navbar.js"></script>

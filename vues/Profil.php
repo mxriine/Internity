@@ -10,6 +10,7 @@ $showSuccess = isset($_GET['success']) && $_GET['success'] == 1;
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
+
 ?>
 
 <!DOCTYPE html>
@@ -60,17 +61,15 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                     <form id="accountForm">
                         <div class="form-group">
                             <label for="firstName">Prénom :</label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom"
-                                value="<?php echo htmlspecialchars($name); ?>" disabled>
+                            <input type="text" id="firstName" name="firstName" value="<?php echo $name; ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="lastName">Nom :</label>
-                            <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom"
-                                value="<?php echo htmlspecialchars($surname); ?>" disabled>
+                            <input type="text" id="lastName" name="lastName" value="<?php echo $surname; ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pilote">Pilote :</label>
-                            <input type="pilote" id="pilote" name="pilote" value="Muriel Caca" disabled>
+                            <input type="pilote" id="pilote" name="pilote" value="Muriel Raynaud" disabled>
                         </div>
                         <div class="form-group">
                             <label for="promotion">Promotion :</label>

@@ -82,7 +82,8 @@ header {
     padding: 5px 80px;
     list-style: none;
     display: flex;
-    gap: 20px; /* Espacement entre les liens principaux */
+    gap: 20px;
+    /* Espacement entre les liens principaux */
 }
 
 .menu-left a {
@@ -110,7 +111,8 @@ header {
 }
 
 .submenu {
-    display: none; /* Masqué par défaut */
+    display: none;
+    /* Masqué par défaut */
     position: absolute;
     top: 100%;
     left: 0;
@@ -123,14 +125,16 @@ header {
 }
 
 .submenu li {
-    width: 200px; /* Largeur fixe pour le sous-menu */
+    width: 200px;
+    /* Largeur fixe pour le sous-menu */
 }
 
 .submenu a {
     display: block;
     padding: 10px 20px;
     color: #333;
-    white-space: nowrap; /* Empêche le texte de se casser */
+    white-space: nowrap;
+    /* Empêche le texte de se casser */
 }
 
 .submenu a:hover {
@@ -138,7 +142,7 @@ header {
 }
 
 /* Affichage du sous-menu au survol */
-.menu-right-links .dropdown-toggle:hover + .submenu,
+.menu-right-links .dropdown-toggle:hover+.submenu,
 .menu-right-links .submenu:hover {
     display: block;
 }
@@ -162,14 +166,17 @@ header {
 
 /* Style du menu déroulant */
 .user-menu {
-    display: none; /* Masqué par défaut */
+    display: none;
+    /* Masqué par défaut */
     position: absolute;
-    top: calc(100% + 10px); /* Positionné sous l'icône d'avatar */
+    top: calc(100% + 10px);
+    /* Positionné sous l'icône d'avatar */
     right: 10px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    z-index: 1000; /* Assure que le menu reste au premier plan */
+    z-index: 1000;
+    /* Assure que le menu reste au premier plan */
 }
 
 .user-menu ul {
@@ -183,7 +190,8 @@ header {
 }
 
 .user-menu li:last-child {
-    border-bottom: none; /* Supprime la bordure inférieure du dernier élément */
+    border-bottom: none;
+    /* Supprime la bordure inférieure du dernier élément */
 }
 
 .user-menu a {
@@ -205,7 +213,7 @@ header {
 }
 
 .connect button {
-    padding:1.5vh 1vw;
+    padding: 1.5vh 1vw;
     /* Plus d'espace pour l'icône */
     border: none;
     border-radius: 20px;
@@ -215,4 +223,61 @@ header {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0px 10px 10px var(--CoBlack);
+}
+
+/* Menu de base */
+.menu-left {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin-right: 2vw;
+}
+
+/* Pour les petits écrans */
+@media screen and (max-width: 768px) {
+    .menu-left {
+        flex-direction: column;
+        display: none;
+        background-color: #fff;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 0 0 10px 10px;
+    }
+
+    .menu-left.show {
+        display: flex;
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        margin-right: 2vw;
+        background-color: #fff;
+    }
+
+    .burger-menu .bar {
+        height: 4px;
+        background-color: var(--CpBlack);
+        border-radius: 2px;
+    }
+}
+
+/* Cacher le burger sur grand écran */
+.burger-menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+    }
 }

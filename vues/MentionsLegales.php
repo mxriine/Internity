@@ -102,7 +102,7 @@ require_once('../src/Controllers/CheckAuth.php');
     <br>
 
     <footer>
-        <a class="legal" href="">Mention légale</a>
+        <a class="legal" href="">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
 </body>

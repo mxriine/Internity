@@ -1,25 +1,32 @@
 <?php
-// Chargement de l'autoloader de Composer
+session_start();
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Initialisation du moteur de templates Twig
-$loader = new \Twig\Loader\FilesystemLoader('vues'); // Définit le dossier des templates
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/vues');
 $twig = new \Twig\Environment($loader, [
-    'debug' => true, // Active le mode debug
+    'debug' => true,
+    'cache' => false
 ]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-// Vérifie si une URI est présente dans l'URL (paramètre GET 'uri')
-$uri = $_GET['uri'] ?? '/'; // Valeur par défaut : page d'accueil
+$uri = $_SERVER['REQUEST_URI'] ?? '/';
+$uri = strtok($uri, '?'); // Supprime les paramètres GET
 
-// Récupérer le contrôleur et exécuter l'action appropriée
 switch ($uri) {
     case '/':
-        // Afficher la page d'accueil
-        echo $twig->render('Home.twig.html', ['navbar' => $navbar]);
+        echo $twig->render('Home.twig.html', [
+            'role' => $_SESSION['role'] ?? 'inconnu',
+            'name' => $_SESSION['name'] ?? '',
+            'current_page' => '/',
+            'is_logged' => isset($_SESSION['role']),
+            
+        ]);
+        
         break;
 
     default:
+        http_response_code(404);
         echo 'Page non trouvée';
         break;
 }

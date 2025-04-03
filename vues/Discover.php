@@ -24,7 +24,7 @@ require_once('../src/Controllers/Offer.php');
 
     <main>
     
-        <?php include 'include/FilterDiscovery.php'; ?>
+        <?php include 'include/Filter.php'; ?>
 
         <!-- Section des offres -->
         <div class="header-section">
@@ -32,22 +32,17 @@ require_once('../src/Controllers/Offer.php');
 
             <!-- Barre d'étiquettes -->
             <div class="tags">
-                <input type="checkbox" id="category1" class="hidden-checkbox">
-                <label class="tag" for="category1">Stage</label>
-
-                <input type="checkbox" id="category2" class="hidden-checkbox">
-                <label class="tag" for="category2">Marketing</label>
-
-                <input type="checkbox" id="category3" class="hidden-checkbox">
-                <label class="tag" for="category3">Data</label>
-
-                <input type="checkbox" id="category4" class="hidden-checkbox">
-                <label class="tag" for="category4">Informatique</label>
-
-                <input type="checkbox" id="category5" class="hidden-checkbox">
-                <label class="tag" for="category5">Cyber-sécurité</label>
+            <?php 
+            $categories = ['Stage', 'Marketing', 'JavaScript', 'Électronique', 'Cybersécurité'];
+            foreach ($categories as $index => $category): 
+            ?>
+                <input type="checkbox" id="category<?= $index + 1 ?>" class="hidden-checkbox" data-skill="<?= $category ?>">
+                <label class="tag" for="category<?= $index + 1 ?>"><?= $category ?></label>
+            <?php endforeach; ?>
             </div>
         </div>
+
+        
 
         <!-- Section des cartes de stages -->
         <section class="cards">
@@ -88,15 +83,15 @@ require_once('../src/Controllers/Offer.php');
         <!-- Pagination -->
         <div class="pagination">
             <?php if ($page_actuelle > 1): ?>
-                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <a href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <a href="?page=<?= $i ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($page_actuelle < $total_pages): ?>
-                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <a href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search) ?>&location=<?= urlencode($location) ?>">Suivant</a>
             <?php endif; ?>
         </div>
     </main>

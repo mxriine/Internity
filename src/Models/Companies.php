@@ -13,34 +13,10 @@ class Companies {
     {
         $this->pdo = $pdo;
     }
-
-    // Vérifier les identifiants
-    public function checkLogin($email, $password) {
-        $stmt = $this->pdo->prepare("SELECT user_password FROM Users WHERE user_email = ?");
-        $stmt->bindParam(1, $email);
-        $stmt->execute();
-
-        $stored_hashed_password = $stmt->fetchColumn();
-
-        if ($stored_hashed_password) {
-            $input_hashed = hash("sha512", $password);
-
-            if ($input_hashed === $stored_hashed_password) {
-                return true;
-            } else {
-                return "Mot de passe incorrect.";
-            }
-        } else {
-            return "Aucun utilisateur trouvé avec cet email.";
-        }
-    }
-
-    // Voir toutes les entreprises
     public function getAllCompanies() {
         $stmt = $this->pdo->query("SELECT * FROM Companies");
         return $stmt->fetchAll();
     }
-
 
     public function getTotalCompaniesCount() {
         $stmt = $this->pdo->query("SELECT COUNT(*) FROM Companies");
@@ -48,12 +24,43 @@ class Companies {
     }
 
 
-    public function getPaginatedCompanies($limit, $offset)
+    public function getPaginatedCompanies($limit, $offset, $search, $location)
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM Companies LIMIT :limit OFFSET :offset");
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $sql = "SELECT DISTINCT c.*, ci.city_name, ci.city_code, r.region_name
+                    FROM Companies c
+                    JOIN Located l ON c.company_id = l.company_id
+                    JOIN Cities ci ON l.city_id = ci.city_id
+                    JOIN Regions r ON ci.region_id = r.region_id";
+
+            $whereClauses = [];
+            $params = [];
+
+            // Search by company name
+            if (!empty($search)) {
+                $whereClauses[] = "c.company_name LIKE :search";
+                $params[':search'] = '%' . $search . '%';
+            }
+
+            // Filter by location (city name, city code, region name, company address)
+            if (!empty($location)) {
+                $whereClauses[] = "(ci.city_name LIKE :location OR ci.city_code LIKE :location OR r.region_name LIKE :location OR c.company_address LIKE :location)";
+                $params[':location'] = '%' . $location . '%';
+            }
+
+            if (!empty($whereClauses)) {
+                $sql .= ' WHERE ' . implode(' AND ', $whereClauses);
+            }
+
+            $sql .= " LIMIT :limit OFFSET :offset";
+            $stmt = $this->pdo->prepare($sql);
+
+            foreach ($params as $key => $val) {
+                $stmt->bindValue($key, $val);
+            }
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -61,12 +68,84 @@ class Companies {
         }
     }
 
-    // Voir une entreprise selon son ID
-    public function getCompanyById($id) {
-        $stmt = $this->pdo->prepare("SELECT * FROM Companies WHERE company_id = ?");
-        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+    public function getTotalPaginatedCompaniesCount($search, $location)
+    {
+        try {
+            $sql = "SELECT COUNT(DISTINCT c.company_id)
+                    FROM Companies c
+                    JOIN Located l ON c.company_id = l.company_id
+                    JOIN Cities ci ON l.city_id = ci.city_id
+                    JOIN Regions r ON ci.region_id = r.region_id";
+
+            $whereClauses = [];
+            $params = [];
+
+            // Handle search
+            $keywords = array_filter(array_map('trim', explode(' ', $search)));
+            if (!empty($keywords)) {
+                if (count($keywords) === 1) {
+                    $whereClauses[] = "c.company_name LIKE :word";
+                    $params[':word'] = '%' . $keywords[0] . '%';
+                } else {
+                    $companyName = array_shift($keywords);
+                    $whereClauses[] = "c.company_name LIKE :companyName";
+                    $params[':companyName'] = '%' . $companyName . '%';
+                    $otherParts = [];
+                    foreach ($keywords as $index => $word) {
+                        $key = ':otherName' . $index;
+                        $otherParts[] = "c.company_name LIKE $key";
+                        $params[$key] = '%' . $word . '%';
+                    }
+                    if (!empty($otherParts)) {
+                        $whereClauses[] = '(' . implode(' OR ', $otherParts) . ')';
+                    }
+                }
+            }
+
+            // Handle location (city name, city code, region name, company address)
+            if (!empty($location)) {
+                $whereClauses[] = "(ci.city_name LIKE :location OR ci.city_code LIKE :location OR r.region_name LIKE :location OR c.company_address LIKE :location)";
+                $params[':location'] = '%' . $location . '%';
+            }
+
+            if (!empty($whereClauses)) {
+                $sql .= ' WHERE ' . implode(' AND ', $whereClauses);
+            }
+
+            $stmt = $this->pdo->prepare($sql);
+            foreach ($params as $key => $val) {
+                $stmt->bindValue($key, $val);
+            }
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors du comptage des entreprises : " . $e->getMessage());
+        }
+    }
+
+    // Voir les offres d'une entreprise selon son ID
+    public function getCompanyOffers($companyId) {
+        $stmt = $this->pdo->prepare("SELECT * FROM Offers WHERE company_id = ?");
+        $stmt->bindParam(1, $companyId, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Voir une entreprise selon son ID
+    public function getCompanyById($companyId) {
+        $stmt = $this->pdo->prepare("SELECT 
+                c.*,
+                ci.*,
+                r.*
+        FROM Companies c
+        JOIN Located l ON c.company_id = l.company_id
+        JOIN Cities ci ON l.city_id = ci.city_id
+        JOIN Regions r ON ci.region_id = r.region_id
+        WHERE c.company_id = :companyId
+        ");
+            $stmt->bindParam(':companyId', $companyId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Créer une entreprise

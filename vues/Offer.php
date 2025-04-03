@@ -16,6 +16,7 @@ require_once('../src/Controllers/Wishlist.php');
     <meta name="author" content="Internity">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/offer.css">
+    <link rel="stylesheet" href="/assets/css/popup.css">
 </head>
 
 <body>
@@ -56,7 +57,7 @@ require_once('../src/Controllers/Wishlist.php');
                         <div class="card-title">
                             <?= htmlspecialchars($companiesDetails['company_name'] ?? 'Entreprise inconnue') ?>
                         </div>
-                        <button class="wishlist-toggle"
+                        <button class="wishlist-toggle" id="addToWishlistButton"
                             data-offer-id="<?= htmlspecialchars($offerDetails['offer_id'] ?? '') ?>"
                             data-in-wishlist="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? '1' : '0' ?>"
                             title="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? 'Retirer de la wishlist' : 'Ajouter à la wishlist' ?>">
@@ -97,13 +98,29 @@ require_once('../src/Controllers/Wishlist.php');
         </div>
     </main>
     <!-- Footer -->
-    <footer>
+    <footer style="position: fixed;">
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
 
+    <!-- Popup pour ajouter à la wishlist -->
+    <div id="addToWishlistPopup" class="popup hidden">
+        <div class="popup-content">
+            <h2 id="popupMessage">Vous avez ajouté une offre à votre wishlist !</h2>
+            <button id="closeAddToWishlistPopup" class="submit-rating">OK</button>
+        </div>
+    </div>
+
+    <div id="removeFromWishlistPopup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Vous avez supprimé l'offre X de votre wishlist !</h2>
+                <button id="closeRemoveFromWishlistPopup" class="submit-rating">OK</button>
+            </div>
+        </div>
+
     <!-- Inclusion du fichier JavaScript -->
     <script src="/assets/js/offer.js"></script>
+    <script src="/assets/js/popup.js"></script>
 </body>
 
 </html>

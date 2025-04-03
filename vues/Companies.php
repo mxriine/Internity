@@ -8,10 +8,6 @@ require_once('../src/Controllers/Companies.php');
 $page_actuelle = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $total_pages = isset($total_pages) ? $total_pages : 1; // Replace with actual logic to calculate total pages
 
-// Define the createSlug function
-function createSlug($string) {
-    return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
-}
 ?>
 
 <!DOCTYPE html>
@@ -29,9 +25,9 @@ function createSlug($string) {
 
 <body>
     <!-- Barre de navigation -->
-    
-    <?php require_once('include/Navbar.php'); ?>
-    
+    <header class="header">
+        <?php require_once('include/Navbar.php'); ?>
+    </header> 
 
     <main>
     
@@ -72,7 +68,7 @@ function createSlug($string) {
 
                 // Créer un slug pour le nom de l'entreprise
                 $companySlug = createSlug($company['company_name']);
-                $companyLink = "/vues/Companies.php?company_id=" . urlencode($company['company_id']) . "&name=" . urlencode($companySlug);
+                $companyLink = "/vues/Company.php?company_id=" . urlencode($company['company_id']) . "&name=" . urlencode($companySlug);
                 ?>
                 <div class="card">
                     <div class="card-header">
@@ -95,15 +91,15 @@ function createSlug($string) {
         <!-- Pagination -->
         <div class="pagination">
             <?php if ($page_actuelle > 1): ?>
-                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
+            <a href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($_GET['search'] ?? '') ?>&location=<?= urlencode($_GET['location'] ?? '') ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
+            <a href="?page=<?= $i ?>&search=<?= urlencode($_GET['search'] ?? '') ?>&location=<?= urlencode($_GET['location'] ?? '') ?>" class="<?= $i === $page_actuelle ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if ($page_actuelle < $total_pages): ?>
-                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
+            <a href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($_GET['search'] ?? '') ?>&location=<?= urlencode($_GET['location'] ?? '') ?>">Suivant</a>
             <?php endif; ?>
         </div>
     </main>
