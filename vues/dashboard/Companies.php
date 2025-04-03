@@ -30,6 +30,8 @@ require_once('../../src/Controllers/Companies.php');
         <h3>Entreprises</h3>
 
         <div class="options">
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
             <a href="../create/Company.php">Ajouter</a>
         </div>
 
@@ -114,7 +116,7 @@ require_once('../../src/Controllers/Companies.php');
 </body>
 
 <style>
-    .dashboard-menu>ul>li:nth-child(4)::before {
+    .dashboard-menu>ul>li:nth-child(<?php if ($_SESSION['role']!="pilote"): ?>4<?php endif; ?><?php if ($_SESSION['role']=="pilote"): ?>3<?php endif; ?>)::before {
         content: "";
         position: absolute;
         left: 0;

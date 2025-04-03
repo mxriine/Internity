@@ -28,7 +28,9 @@ require_once('../../src/Controllers/User.php');
         <h3>Étudiants</h3>
 
         <div class="options">
-            <a href="">Ajouter</a>
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
+            <a href="../create/Student.php">Ajouter</a>
         </div>
 
         <?php if (!empty($error_message)): ?>
@@ -38,11 +40,21 @@ require_once('../../src/Controllers/User.php');
         <?php foreach ($students as $student): ?>
             <div class="container">
 
-                <div class="title"><h4>Nom :</h4></div>
-                <div class="title"><h4>Prénom :</h4></div>
-                <div class="title"><h4>Pilote :</h4></div>
-                <div class="title"><h4>Promotion :</h4></div>
-                <div class="title"><h4>Email :</h4></div>
+                <div class="title">
+                    <h4>Nom :</h4>
+                </div>
+                <div class="title">
+                    <h4>Prénom :</h4>
+                </div>
+                <div class="title">
+                    <h4>Pilote :</h4>
+                </div>
+                <div class="title">
+                    <h4>Promotion :</h4>
+                </div>
+                <div class="title">
+                    <h4>Email :</h4>
+                </div>
 
                 <div class="name value">
                     <p><?= htmlspecialchars($student['user_surname']) ?></p>
@@ -53,7 +65,8 @@ require_once('../../src/Controllers/User.php');
                 </div>
 
                 <div class="company value">
-                    <p><?= htmlspecialchars($student['pilote_name'] ?? 'Aucune') . " " . htmlspecialchars($student['pilote_surname'] ?? '') ?></p>
+                    <p><?= htmlspecialchars($student['pilote_name'] ?? 'Aucune') . " " . htmlspecialchars($student['pilote_surname'] ?? '') ?>
+                    </p>
                 </div>
 
                 <div class="company value">
@@ -65,8 +78,8 @@ require_once('../../src/Controllers/User.php');
                 </div>
 
                 <div class="action">
-                    <a href="/vues/update/User.php?user_id=<?= $student['user_id'] ?>" class="update">Modifier</a>
-                    <a href="/vues/delete/User.php?user_id=<?= $student['user_id'] ?>" class="delete">Supprimer</a>
+                    <a href="/vues/update/Student.php?student_id=<?= $student['user_id'] ?>" class="update">Modifier</a>
+                    <a href="/vues/delete/Student.php?student_id=<?= $student['user_id'] ?>" class="delete">Supprimer</a>
                 </div>
 
             </div>
@@ -74,23 +87,25 @@ require_once('../../src/Controllers/User.php');
 
         <div class="pagination">
             <?php if (isset($page_actuelle) && $page_actuelle > 1): ?>
-                <a href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>">Précédent</a>
+                <a
+                    href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; isset($total_pages) && $i <= $total_pages; $i++): ?>
                 <a href="?page=<?= $i ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>"
-                   class="<?= ($i === $page_actuelle) ? 'active' : '' ?>"><?= $i ?></a>
+                    class="<?= ($i === $page_actuelle) ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if (isset($page_actuelle) && isset($total_pages) && $page_actuelle < $total_pages): ?>
-                <a href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>">Suivant</a>
+                <a
+                    href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>">Suivant</a>
             <?php endif; ?>
         </div>
     </main>
 </body>
 
 <style>
-    .dashboard-menu > ul > li:nth-child(2)::before {
+    .dashboard-menu>ul>li:nth-child(2)::before {
         content: "";
         position: absolute;
         left: 0;

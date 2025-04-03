@@ -29,6 +29,8 @@ require_once('../../src/Controllers/Offer.php');
         <h3>Offres</h3>
 
         <div class="options">
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
             <a href="../create/Offer.php">+ Ajouter</a>
         </div>
 
@@ -122,7 +124,7 @@ require_once('../../src/Controllers/Offer.php');
 </body>
 
 <style>
-    .dashboard-menu>ul>li:nth-child(5)::before {
+    .dashboard-menu>ul>li:nth-child(<?php if ($_SESSION['role']!="pilote"): ?>5<?php endif; ?><?php if ($_SESSION['role']=="pilote"): ?>4<?php endif; ?>)::before {
         content: "";
         position: absolute;
         left: 0;

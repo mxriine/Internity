@@ -13,7 +13,8 @@ require_once('../../src/Controllers/Companies.php');
     <meta charset="UTF-8">
     <meta name="description" content="Supprimer une entreprise chez Internity">
     <meta name="author" content="Internity">
-    <link rel="stylesheet" href="/assets/css/manage/companies.css"> <!-- C'est le même fichier CSS que pour le formulaire de création d'entreprise -->
+    <link rel="stylesheet" href="/assets/css/manage/companies.css">
+    <!-- C'est le même fichier CSS que pour le formulaire de création d'entreprise -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
@@ -25,8 +26,12 @@ require_once('../../src/Controllers/Companies.php');
     <main>
         <!-- Conteneur pour afficher les informations de l'entreprise -->
         <div class="create-company-container">
+            <a href="#" class="back" onclick="history.back(); return false;">
+                <img src="/assets/icons/arrow.svg" alt="Retour">
+                Retour
+            </a>
             <h1>Supprimer une entreprise</h1>
-            
+
             <!-- Informations de l'entreprise en lecture seule -->
             <div class="form-group">
                 <label>Nom de l'entreprise :</label>
@@ -50,7 +55,8 @@ require_once('../../src/Controllers/Companies.php');
 
             <div class="form-group">
                 <label>Location :</label>
-                <p><?= htmlspecialchars($companyDetails['company_address']) . ', ' . htmlspecialchars($companyDetails['city_name']) . ' ' . htmlspecialchars($companyDetails['city_code'])?></p>
+                <p><?= htmlspecialchars($companyDetails['company_address']) . ', ' . htmlspecialchars($companyDetails['city_name']) . ' ' . htmlspecialchars($companyDetails['city_code']) ?>
+                </p>
             </div>
 
             <!-- Formulaire de suppression -->
@@ -73,10 +79,11 @@ require_once('../../src/Controllers/Companies.php');
                 </div>
             </div>
         </div>
-        
+
     </main>
 
-    <script src="/assets/js/manage/companies.js" defer></script> <!-- C'est le même fichier JS que pour le formulaire de création d'entreprise -->
+    <script src="/assets/js/manage/companies.js" defer></script>
+    <!-- C'est le même fichier JS que pour le formulaire de création d'entreprise -->
 
 </body>
 

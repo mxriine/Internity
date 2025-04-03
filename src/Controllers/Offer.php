@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['edit']) && isset($_POS
     }
 }
 
-//
 // =========================================
 // SECTION 3 : CRÉATION d'une offre (POST simple)
 // =========================================
@@ -138,6 +137,7 @@ if (in_array($current_file, ['Discover.php', 'Offers.php'])) {
     $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
     $total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
     $total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages
+
 }
 
 //

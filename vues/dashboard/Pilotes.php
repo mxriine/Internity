@@ -29,7 +29,9 @@ require_once('../../src/Controllers/User.php');
         <h3>Pilotes</h3>
 
         <div class="options">
-            <a href="../create/User.php">+ Ajouter</a>
+            <input type="text" placeholder="Pilote">
+            <input type="text" placeholder="Promotion">
+            <a href="../create/Pilote.php">+ Ajouter</a>
         </div>
 
         <?php foreach ($pilotes as $pilote): ?>
@@ -72,8 +74,8 @@ require_once('../../src/Controllers/User.php');
                 </div>
 
                 <div class="action">
-                    <a href="/vues/update/User.php?user_id=<?= $pilote['user_id'] ?>" class="update">Modifier</a>
-                    <a href="/vues/delete/User.php?user_id=<?= $pilote['user_id'] ?>" class="delete">Supprimer</a>
+                    <a href="/vues/update/Pilote.php?pilote_id=<?= $pilote['user_id'] ?>" class="update">Modifier</a>
+                    <a href="/vues/delete/Pilote.php?pilote_id=<?= $pilote['user_id'] ?>" class="delete">Supprimer</a>
                 </div>
 
             </div>

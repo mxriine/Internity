@@ -63,7 +63,7 @@ require_once('../../src/Controllers/Statistics.php');
 
             <!-- Graphique des offres par statut -->
             <section class="bg-CWhite rounded-lg shadow-lg p-8">
-                <h2 class="text-2xl font-semibold text-CpBlack mb-6">Statut des Offres</h2>
+                <h2 class="text-2xl font-semibold text-CpBlack mb-6">Statut des candidatures</h2>
                 <div class="max-w-lg mx-auto">
                     <canvas id="offersStatusChart" width="500" height="300"></canvas>
                 </div>
@@ -104,7 +104,7 @@ require_once('../../src/Controllers/Statistics.php');
             data: {
                 labels: ['En attente', 'Acceptée', 'Refusée'],
                 datasets: [{
-                    label: 'Offres',
+                    label: 'Candidatures',
                     data: [<?= $apply_pending ?>, <?= $apply_accepted ?>, <?= $apply_rejected ?>],
                     backgroundColor: [
                         'rgba(255, 206, 86, 0.7)',
