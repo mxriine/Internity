@@ -23,6 +23,7 @@ class Companies {
         return $stmt->fetchColumn();
     }
 
+
     public function getPaginatedCompanies($limit, $offset, $search, $location)
     {
         try {

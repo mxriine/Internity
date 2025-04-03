@@ -157,6 +157,7 @@ class Offer
             throw new Exception("Erreur lors de la récupération de l'entreprise : " . $e->getMessage());
         }
     }
+
     public function getPaginatedOffers($limit, $offset, $search, $location)
     {
         try {
