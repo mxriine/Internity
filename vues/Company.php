@@ -67,14 +67,29 @@ require_once('../src/Controllers/Companies.php');
                         <a href="/vues/Discover.php?search=<?= urlencode($companyDetails['company_name']) ?>" class="btn-offer">
                             <button class="card-button">VOIR LES OFFRES</button>
                         </a>
-                        <a href="<?= $companyLink ?>" class="btn-evaluer">
-                            <button class="card-button">EVALUER</button>
-                        </a>
+                        <!-- Bouton ÉVALUER -->
+                        <button class="card-button" id="evaluateButton">ÉVALUER</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- Popup pour l'évaluation -->
+    <div id="evaluationPopup" class="popup hidden">
+        <div class="popup-content">
+            <h2>Évaluez cette entreprise</h2>
+            <div class="stars-container" id="starsContainer">
+                <img src="/assets/images/EtoileVide.png" alt="Étoile 1" data-value="1">
+                <img src="/assets/images/EtoileVide.png" alt="Étoile 2" data-value="2">
+                <img src="/assets/images/EtoileVide.png" alt="Étoile 3" data-value="3">
+                <img src="/assets/images/EtoileVide.png" alt="Étoile 4" data-value="4">
+                <img src="/assets/images/EtoileVide.png" alt="Étoile 5" data-value="5">
+            </div>
+            <p id="selectedRating"></p>
+            <button id="submitRating" class="submit-rating hidden">Soumettre</button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer style="position: fixed;">

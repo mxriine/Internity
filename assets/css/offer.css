@@ -142,3 +142,65 @@
 .card-button:hover {
     background-color: var(--CpBlue);
 }
+
+
+/* POUR LE POPUP WIHLIST*/
+
+/* POUR LA WISHLIST*/
+
+/* Styles pour le popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+}
+
+/* Styles pour le bouton OK dans les popups */
+.submit-rating {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--CpBlue);
+    color: var(--CWhite);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    outline: none;
+}
+
+.submit-rating:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px var(--CoBlack);
+}
+
+.submit-rating:focus {
+    box-shadow: 0px 0px 8px 2px var(--CpBlue);
+    outline: none;
+}
+
+.submit-rating:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+

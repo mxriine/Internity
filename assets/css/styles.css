@@ -8,6 +8,13 @@
     --CpBlue: rgb(118, 171, 174);
 }
 
+/* Contenu principal */
+main {
+    flex: 1; /* Le contenu principal prend tout l'espace disponible */
+    margin-bottom: 5%; /* Ajoute un peu d'espace autour du contenu */
+}
+
+
 * {
     margin: 0;
     padding: 0;
