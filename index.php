@@ -20,6 +20,7 @@ switch ($uri) {
             'name' => $_SESSION['name'] ?? '',
             'current_page' => '/',
             'is_logged' => isset($_SESSION['role']),
+            
         ]);
         
         break;

@@ -19,13 +19,19 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <h1>INTERNITY</h1>
     </div>
     <nav class="nav">
-        <ul class="menu-left">
+        <!-- Bouton burger -->
+        <div class="burger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <!-- Menu -->
+        <ul class="menu-left" id="navMenu">
             <li><a href="/vues/Discover.php" <?= ($current_page == 'Discover.php') ? 'class="active"' : '' ?>>Offre</a>
             </li>
-            <li><a href="/vues/Companies.php" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>Entreprise</a>
-            </li>
-            <li><a href="/" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>À propos</a></li>
-            </li>
+            <li><a href="/vues/Companies.php" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>Entreprise</a></li>
+            <li><a href="/" <?= ($current_page == '/') ? 'class="active"' : '' ?>>À propos</a></li>
         </ul>
         <div class="menu-right">
             <div class="user-info">
