@@ -2,7 +2,6 @@
 <?php
 require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
-require_once('Navbar.php');
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +14,9 @@ require_once('Navbar.php');
 </head>
 
 <body>
+
+    <!-- Barre de navigation -->
+    <?php include 'include/Navbar.php'; ?>
 
     <main class="publisher">
 
@@ -50,7 +52,8 @@ require_once('Navbar.php');
             <p>SIREN : 775 722 572</p>
             <p>Siège social : 1, avenue du Général de Gaulle – 92074 Paris La Défense</p>
             <p>Numéro de téléphone : 01 44 19 23 45</p>
-            <p>Déclaration d’activité enregistrée sous le numéro 11 75 47883 75 auprès du Préfet de la région Ile-de-France.</p>
+            <p>Déclaration d’activité enregistrée sous le numéro 11 75 47883 75 auprès du Préfet de la région
+                Ile-de-France.</p>
             <p>Cet enregistrement ne vaut pas agrément de l’État.</p>
             <br>
             <h3>CESI SAS – Société par actions simplifiée unipersonnelle au capital de 1 100 000 €</h3>
@@ -58,7 +61,8 @@ require_once('Navbar.php');
             <p>SIREN : 342 707 502</p>
             <p>Siège social : 1, avenue du Général de Gaulle – 92074 Paris La Défense</p>
             <p>Numéro de téléphone : 01 44 19 23 45</p>
-            <p>Déclaration d’activité enregistrée sous le numéro 11 75 39666 75 auprès du Préfet de la région Ile-de-France.</p>
+            <p>Déclaration d’activité enregistrée sous le numéro 11 75 39666 75 auprès du Préfet de la région
+                Ile-de-France.</p>
             <p>Cet enregistrement ne vaut pas agrément de l’État</p>
             <br>
             <h3>CESI CERTIFICATION est un département de la société CESI SAS et une marque du Groupe CESI</h3>
@@ -71,7 +75,8 @@ require_once('Navbar.php');
             <p>SIREN : 343 592 721</p>
             <p>Siège social : 44 Avenue Frédéric Auguste Bartholdi – 72000 Le Mans</p>
             <p>Numéro de téléphone : 02 43 20 33 75</p>
-            <p>Déclaration d’activité enregistrée sous le numéro 52 72 00209 72 auprès du Préfet de la région Pays de la Loire</p>
+            <p>Déclaration d’activité enregistrée sous le numéro 52 72 00209 72 auprès du Préfet de la région Pays de la
+                Loire</p>
             <p>Cet enregistrement ne vaut pas agrément de l’État.</p>
         </section>
 
@@ -97,7 +102,7 @@ require_once('Navbar.php');
     <br>
 
     <footer>
-        <a class="legal" href="">Mention légale</a>
+        <a class="legal" href="">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
 </body>

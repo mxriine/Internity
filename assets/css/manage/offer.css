@@ -1,0 +1,165 @@
+/* Conteneur principal */
+.create-offer-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Titre de la page */
+.create-offer-container h1, .create-offer-container h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--CBlack);
+    margin-bottom: 20px;
+}
+.create-offer-container h3 {
+    font-size: 1rem;
+}
+
+/* Conteneurs des champs du formulaire */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--CpBlue);
+}
+
+/* Inputs et textarea */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Effet hover/focus sur les inputs */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--CpBlue);
+    outline: none;
+}
+
+/* Bouton de soumission */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--CpBlue);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: darken(var(--CpBlue), 10%);
+}
+
+/* Style pour les champs datetime-local */
+.form-group input[type="datetime-local"] {
+    appearance: none; /* Supprime les styles par défaut */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .create-offer-container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .create-offer-container h1 {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+/* Spécial à DeleteOffer.php */
+
+/* Styles pour le modal */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #bdc3c7;
+    color: black;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-secondary:hover {
+    background-color: #95a5a6;
+}
+
+.back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--CpBlack);
+    text-decoration: none;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.back img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}

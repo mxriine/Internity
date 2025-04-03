@@ -2,114 +2,149 @@
 <html lang="fr">
 
 <head>
+    <!-- Métadonnées -->
     <title>Internity - Home</title>
     <meta charset="UTF-8">
     <meta name="description" content="Internity - Le meilleur de l'Internet">
     <meta name="author" content="Internity">
+
+    <!-- Feuilles de style -->
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/styles_home.css" />
+    <link rel="stylesheet" href="/assets/css/home.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">
-            <h1>INTERNITY</h1>
-        </div>
-        <nav class="nav">
-            <ul class="menu-left">
-                <li><a href="/entreprise.php">Offre</a></li>
-                <li><a href="/entreprise.php">Entreprise</a></li>
-                <li><a style="color: var(--CpBlue);">À propos</a></li>
-            </ul>
-            <div class="connect">
-                <a href="/vues/Login.php"><button>Se connecter</button></a>
-            </div>
-        </nav>
-    </header>
-    <!-- au dessus - marine-->
+    <!-- En-tête -->
+    {% include 'include/Navbar.twig.html' %}
 
+
+    <!-- Contenu principal -->
     <main>
-
-
-
+        <!-- Carrousel -->
         <div class="carrousel">
-            <button class="navi gauche" onclick="changerDiapositive(-1)">&#9664;</button>
+            <!-- Boutons de navigation -->
+            <button class="arrow gauche" onclick="changer(-1)">&#9664;</button>
+            <button class="arrow droite" onclick="changer(1)">&#9654;</button>
+
+            <!-- Conteneur des diapositives -->
             <div class="conteneur">
-              <div id="diapositive1" class="diapositive">
-                <!-- <img src="/assets/image1.jpg" alt="Description de l'image 1"> -->
-                <div class="ctext" id="ctext-1">
-                    <h3>Entreprises</h3>
-                    <p id="enterprise-count">0</p>
+                <!-- Diapositive 1 -->
+                <div id="diapositive1" class="diapositive">
+                    <div class="image-container">
+                        <img src="/assets/images/Companies.png" alt="Entreprise">
+                        <div class="overlay-companies">
+                            <h3>Partenariat</h3>
+                            <p>Plus de x entreprises</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div id="diapositive2" class="diapositive">
-                <!-- <img src="/assets/image2.jpg" alt="Description de l'image 2"> -->
-                <div class="ctext" id="ctext-2">
-                    <h3>Offres disponibles</h3>
-                    <p id="offer-count">0</p>
+
+                <!-- Diapositive 2 -->
+                <div id="diapositive2" class="diapositive">
+                    <div class="image-container">
+                        <img src="/assets/images/Offer.png" alt="Offer">
+                        <div class="overlay-offer">
+                            <h3>Nos offres</h3>
+                            <p>Plus de x offres</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div id="diapositive3" class="diapositive">
-                <!-- <img src="/assets/image3.jpg" alt="Description de l'image 3"> -->
-                <div class="ctext" id="ctext-3">
-                    <h3>Utilisateurs</h3>
-                    <p id="user-count">0</p>
+
+                <!-- Diapositive 3 -->
+                <div id="diapositive3" class="diapositive">
+                    <div class="image-container">
+                        <img src="/assets/images/User.png" alt="User">
+                        <div class="overlay-user">
+                            <h3>Nos utilisateurs</h3>
+                            <p>Plus de x personnes ont testé</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div id="diapositive4" class="diapositive">
-                <!-- <img src="/assets/image4.jpg" alt="Description de l'image 4"> -->
-                <div class="ctext" id="ctext-4">
-                    <h3>Je sais pas mdr</h3>
-                    <p id="jsp-count">0</p>
-                </div>
-              </div>
             </div>
-            <button class="navi droite" onclick="changerDiapositive(1)">&#9654;</button>
+
+            <!-- Indicateurs de navigation -->
             <div class="indicateurs">
-              <span id="point1" class="point" onclick="allerADiapositive(1)"></span>
-              <span id="point2" class="point" onclick="allerADiapositive(2)"></span>
-              <span id="point3" class="point" onclick="allerADiapositive(3)"></span>
-              <span id="point4" class="point" onclick="allerADiapositive(4)"></span>
+                <span id="point1" class="point" onclick="diapo(1)"></span>
+                <span id="point2" class="point" onclick="diapo(2)"></span>
+                <span id="point3" class="point" onclick="diapo(3)"></span>
             </div>
         </div>
-          
-
-        
-        <div class="image-enhaut">
-            <h1 class="text-image-enhaut1">Internity</h1>
-            <h2 class="text-image-enhaut2">Le meilleur de l'Internet</h2>
-        </div>
 
 
+        <!-- Section d'information -->
 
+        <section class="about-section">
+            <div class="about-container">
+                <!-- Bloc 1 : Notre projet -->
+                <div class="about-block">
+                    <h2>Notre projet</h2>
+                    <p>Internity est une plateforme dédiée à la mise en relation entre étudiants et entreprises pour
+                        faciliter la recherche de stages.
+                        Elle référence de nombreuses offres, et permet aux candidats de postuler directement aux
+                        meilleurs offres de stages.</p>
+                </div>
+
+                <!-- Bloc 2 : Notre mission -->
+                <div class="about-block">
+                    <h2>Notre mission</h2>
+                    <p>Notre mission est de simplifier l'accès aux stages en centralisant les opportunités et en
+                        optimisant le processus de candidature.
+                        En favorisant la visibilité des entreprises et des stages,
+                        Internity vous aide à décrocher des opportunités.</p>
+                </div>
+
+                <!-- Bloc 3 : Notre équipe -->
+                <div class="about-block">
+                    <h2>Notre équipe</h2>
+                    <p>Notre équipe est composée de professionnels passionnés par la technologie et l'Internet. Nous
+                        sommes là pour vous aider à tirer le meilleur de vous même, et trouver le stage de vos rêves.
+                    </p>
+                </div>
+
+                <!-- Diagrammes Git -->
+                <div class="git-stats">
+                    <h2>Statistiques du projet</h2>
+                    <p>Voici un aperçu des contributions et des activités sur notre dépôt Git :</p>
+                    <div class="chart-container">
+                        <canvas id="commitsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Formulaire de contact -->
+                <div class="contact-form">
+                    <h2>Nous rejoindre</h2>
+                    <p>Pour nous rejoindre ou poser vos questions, remplissez le formulaire ci-dessous :</p>
+                    <form action="/submit" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail</label>
+                            <input type="email" id="email" name="email" placeholder="Entrez votre e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Écrivez votre message ici..." rows="4"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Phrase finale -->
+            <div class="welcome-message">
+                <h3>Bienvenue sur Internity</h3>
+                <p>Découvrez toutes les possibilités qu'offre notre plateforme et rejoignez notre communauté dès
+                    aujourd'hui !</p>
+            </div>
+        </section>
+        <!-- Script JavaScript -->
+        <script src="/assets/js/home.js"></script>
     </main>
 
-
-    <section id="stats-cards" class="stats-cards">
-        <div class="card" id="card-enterprises">
-            <h3>Entreprises</h3>
-            <p id="enterprise-count">0</p>
-        </div>
-        <div class="card" id="card-offers">
-            <h3>Offres disponibles</h3>
-            <p id="offer-count">0</p>
-        </div>
-        <div class="card" id="card-users">
-            <h3>Utilisateurs</h3>
-            <p id="user-count">0</p>
-        </div>
-    </section>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("enterprise-count").textContent = nb_companies;
-            document.getElementById("offer-count").textContent = offer_count;
-            document.getElementById("user-count").textContent = user_count;
-        });
-    </script>
-
-    <script src="/assets/carroussel.js"></script>
-
+    <!-- Pied de page -->
     <footer>
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
