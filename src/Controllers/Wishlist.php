@@ -17,6 +17,8 @@ if (!isset($_SESSION['id'])) {
 $user_id = $_SESSION['id'];
 $wishlistModel = new Wishlist($conn);
 
+$nbr_wishlist = $wishlistModel->getWishlistsCount();
+
 // --- GESTION AJAX EN DELETE ---
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $input = file_get_contents("php://input");

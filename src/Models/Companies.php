@@ -166,6 +166,14 @@ class Companies
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getCompanyAverage()
+{
+    $stmt = $this->pdo->prepare("SELECT feedback_rate AS avg_rate FROM Evaluations;");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['avg_rate'] ?? 0.00;
+}
+
     //
     // ================================
     // SECTION 4 : CRUD Entreprises
@@ -223,19 +231,31 @@ class Companies
         }
     }
 
-
     public function updateCompany(int $id, array $data): bool
     {
         $this->pdo->beginTransaction();
 
         try {
-            // 1. Mettre à jour les données de l'entreprise
+            // 1. Vérifier que la ville existe
+            $stmtCity = $this->pdo->prepare("
+                SELECT city_id FROM Cities WHERE city_name = ? AND city_code = ?
+            ");
+            $stmtCity->execute([$data['city_name'], $data['city_code']]);
+            $city = $stmtCity->fetch(PDO::FETCH_ASSOC);
+
+            if (!$city) {
+                throw new Exception("La ville spécifiée n'existe pas dans la base de données.");
+            }
+
+            $cityId = $city['city_id'];
+
+            // 2. Mettre à jour les données de l'entreprise
             $stmt = $this->pdo->prepare("
-            UPDATE Companies SET
-                company_name = ?, company_desc = ?, company_business = ?,
-                company_email = ?, company_phone = ?, company_address = ?
-            WHERE company_id = ?
-        ");
+                UPDATE Companies SET
+                    company_name = ?, company_desc = ?, company_business = ?,
+                    company_email = ?, company_phone = ?, company_address = ?
+                WHERE company_id = ?
+            ");
 
             $stmt->execute([
                 $data['company_name'],
@@ -247,52 +267,42 @@ class Companies
                 $id
             ]);
 
-            // 2. Vérifier ou créer la ville
-            $stmtCity = $this->pdo->prepare("
-            SELECT city_id FROM Cities WHERE city_name = ? AND city_code = ?
-        ");
-            $stmtCity->execute([$data['city_name'], $data['city_code']]);
-            $city = $stmtCity->fetch(PDO::FETCH_ASSOC);
-
-            if ($city) {
-                $cityId = $city['city_id'];
-            } else {
-                $insertCity = $this->pdo->prepare("
-                INSERT INTO Cities (city_name, city_code, region_id)
-                VALUES (?, ?, ?)
-            ");
-                $insertCity->execute([
-                    $data['city_name'],
-                    $data['city_code'],
-                    $data['region_id'] ?? 1,
-                ]);
-                $cityId = $this->pdo->lastInsertId();
-            }
-
-            // 3. Mettre à jour Located (delete + insert ou upsert)
+            // 3. Mettre à jour la liaison dans Located (on remplace)
             $this->pdo->prepare("DELETE FROM Located WHERE company_id = ?")->execute([$id]);
 
             $stmtLocated = $this->pdo->prepare("
-            INSERT INTO Located (company_id, city_id)
-            VALUES (?, ?)
-        ");
+                INSERT INTO Located (company_id, city_id) VALUES (?, ?)
+            ");
             $stmtLocated->execute([$id, $cityId]);
+
+            $this->pdo->commit();
+            return true;
+
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            throw new Exception("Erreur lors de la mise à jour de l'entreprise : " . $e->getMessage());
+        }
+    }
+
+    public function deleteCompany($id)
+    {
+        $this->pdo->beginTransaction();
+
+        try {
+            // Supprimer les offres liées
+            $this->pdo->prepare("DELETE FROM Offers WHERE company_id = ?")->execute([$id]);
+
+            // Supprimer la société
+            $stmt = $this->pdo->prepare("DELETE FROM Companies WHERE company_id = ?");
+            $stmt->execute([$id]);
 
             $this->pdo->commit();
             return true;
 
         } catch (PDOException $e) {
             $this->pdo->rollBack();
-            throw new Exception("Erreur lors de la mise à jour de l'entreprise : " . $e->getMessage());
+            throw new Exception("Erreur lors de la suppression de l'entreprise : " . $e->getMessage());
         }
-    }
-
-
-    public function deleteCompany($id)
-    {
-        $stmt = $this->pdo->prepare("DELETE FROM Companies WHERE company_id = ?");
-        $stmt->bindParam(1, $id, PDO::PARAM_INT);
-        return $stmt->execute();
     }
 
     //

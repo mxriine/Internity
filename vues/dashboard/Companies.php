@@ -30,7 +30,7 @@ require_once('../../src/Controllers/Companies.php');
         <h3>Entreprises</h3>
 
         <div class="options">
-            <a href="../create/Companies.php"><button>Ajouter</button></a>
+            <a href="../create/Company.php"><button>Ajouter</button></a>
         </div>
 
         <div class="container">
@@ -64,7 +64,7 @@ require_once('../../src/Controllers/Companies.php');
         <?php foreach ($companies as $company): ?>
             <?php
             // On récupère les détails de l'entreprise
-            $Details = $companiesModel->getCompanyById($company['offer_id']);
+            $Details = $companiesModel->getCompanyById($company['company_id']);
             ?>
             <div class="container">
 

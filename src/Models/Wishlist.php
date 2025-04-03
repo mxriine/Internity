@@ -46,7 +46,7 @@ class Wishlist {
             $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
             $stmt->bindValue(':offer_id', $offer_id, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return true;
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la création de la candidature : " . $e->getMessage());
         }
@@ -67,6 +67,19 @@ class Wishlist {
             throw new Exception("Erreur lors de la suppression de la candidature : " . $e->getMessage());
         }
     }
+
+    public function getWishlistsCount()
+{
+    try {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) AS wishlist_count FROM Wishlists");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['wishlist_count'] ?? 0;
+    } catch (PDOException $e) {
+        throw new Exception("Erreur lors de la récupération du nombre de wishlists : " . $e->getMessage());
+    }
+}
+
 }
 
 // // Tests

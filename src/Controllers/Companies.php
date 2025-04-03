@@ -38,6 +38,8 @@ $companies = $companiesModel->getPaginatedCompanies($elements_par_page, $offset,
 $total_companies = $companiesModel->getTotalPaginatedCompaniesCount($search, $location);
 $total_pages = ceil($total_companies / $elements_par_page);
 
+$moyenne = $companiesModel->getCompanyAverage();
+
 // =========================================
 // SECTION 3 : CRUD Entreprise
 // =========================================
@@ -110,11 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['edit']) && isset($_POS
 
 // ➤ Suppression
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['delete']) && isset($_POST['company_id'])) {
-    $id = intval($_POST['company_id']);
+    $companyId = intval($_POST['company_id']);
 
-    if ($id > 0) {
+    if ($companyId > 0) {
         try {
-            $deleted = $companiesModel->deleteCompany($id);
+            $deleted = $companiesModel->deleteCompany($companyId);
             if ($deleted) {
                 header("Location: /vues/dashboard/Companies.php?success=delete");
                 exit;
@@ -143,9 +145,21 @@ if (in_array($current_file, ['Company.php', 'Details.php'])) {
 
         $offers = $companiesModel->getCompanyOffers($companyId);
 
-        // 🔧 On récupère l'adresse
+
+
+        $phone = $companyDetails['company_phone'];
+
+        $prefix = '';
+        $number = '';
+
+        if (preg_match('/^(\+\d+)\s+(.*)$/', $phone, $matches)) {
+            $prefix = $matches[1]; // +33
+            $number = $matches[2]; // 1 47 44 45 46
+        }
+
         $adresse = $companyDetails['company_address'] ?? '';
 
+        $nomRue = preg_replace('/^\d+\s*/', '', $adresse);
         // 🔍 Extraction du numéro de rue
         if (preg_match('/^\d+/', $adresse, $matches)) {
             $numeroRue = $matches[0];

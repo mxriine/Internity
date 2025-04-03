@@ -132,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
         { code: "us", name: "États-Unis", dial: "+1", flag: "🇺🇸" },
         { code: "be", name: "Belgique", dial: "+32", flag: "🇧🇪" },
         { code: "ch", name: "Suisse", dial: "+41", flag: "🇨🇭" }
-
     ];
 
     countries.forEach(country => {
@@ -142,6 +141,8 @@ document.addEventListener("DOMContentLoaded", function () {
         prefixSelect.appendChild(option);
     });
 
-    // Optionnel : définir France comme valeur par défaut
-    prefixSelect.value = "+33";
+    // Définir le préfixe par défaut selon la valeur PHP
+    if (typeof defaultPhonePrefix !== "undefined") {
+        prefixSelect.value = defaultPhonePrefix;
+    }
 });

@@ -1,9 +1,7 @@
 <?php
-require_once('../src/Controllers/Login.php');
-require_once('../src/Controllers/CheckAuth.php');
-require_once('../src/Controllers/Offer.php'); 
-
-require_once('Navbar.php'); 
+require_once('../../src/Controllers/Login.php');
+require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/Companies.php');
 
 ?>
 
@@ -21,45 +19,43 @@ require_once('Navbar.php');
 
 <body>
 
+    <!-- Navbar -->
+    <?php require_once('../include/Navbar.php'); ?>
+
     <main>
         <!-- Conteneur pour afficher les informations de l'entreprise -->
         <div class="create-company-container">
-            <h1>Supprimer cette entreprise</h1>
+            <h1>Supprimer une entreprise</h1>
             
             <!-- Informations de l'entreprise en lecture seule -->
             <div class="form-group">
                 <label>Nom de l'entreprise :</label>
-                <p>entreprise</p>
-            </div>
-
-            <div class="form-group">
-                <label>Description de l'entreprise :</label>
-                <p>description</p>
+                <p><?= htmlspecialchars($companyDetails['company_name']) ?></p>
             </div>
 
             <div class="form-group">
                 <label>Secteur d'activité :</label>
-                <p>secteur</p>
+                <p><?= htmlspecialchars($companyDetails['company_business']) ?></p>
             </div>
 
             <div class="form-group">
                 <label>Email de l'entreprise :</label>
-                <p>mail</p>
+                <p><?= htmlspecialchars($companyDetails['company_email']) ?></p>
             </div>
 
             <div class="form-group">
                 <label>Téléphone de l'entreprise :</label>
-                <p>tel</p>
+                <p><?= htmlspecialchars($companyDetails['company_phone']) ?></p>
             </div>
 
             <div class="form-group">
-                <label>Adresse :</label>
-                <p>@</p>
+                <label>Location :</label>
+                <p><?= htmlspecialchars($companyDetails['company_address']) . ', ' . htmlspecialchars($companyDetails['city_name']) . ' ' . htmlspecialchars($companyDetails['city_code'])?></p>
             </div>
 
             <!-- Formulaire de suppression -->
-            <form action="#" method="POST" class="delete-company-form">
-                <input type="hidden" name="company_id" value="<?php echo $companyData['id']; ?>">
+            <form action="../../src/Controllers/Companies.php?delete=1" method="POST" class="delete-company-form">
+                <input type="hidden" name="company_id" value="<?php echo $companyDetails['company_id']; ?>">
                 <div class="form-group">
                     <button type="submit" class="submit-button">Supprimer cette entreprise</button>
                 </div>

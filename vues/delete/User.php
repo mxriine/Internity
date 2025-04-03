@@ -1,9 +1,7 @@
 <?php
-require_once('../src/Controllers/Login.php');
-require_once('../src/Controllers/CheckAuth.php');
-require_once('../src/Controllers/Offer.php'); // Assurez-vous que ce fichier existe pour gérer les comptes
-
-require_once('Navbar.php'); 
+require_once('../../src/Controllers/Login.php');
+require_once('../../src/Controllers/CheckAuth.php');
+require_once('../../src/Controllers/Offer.php'); // Assurez-vous que ce fichier existe pour gérer les comptes
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +17,9 @@ require_once('Navbar.php');
 </head>
 
 <body>
+
+    <!-- Navbar -->
+    <?php require_once('../include/Navbar.php'); ?>
 
     <main>
         <!-- Conteneur pour afficher les informations du compte -->

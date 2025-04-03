@@ -31,13 +31,13 @@ require_once('../../src/Controllers/Companies.php'); // Assurez-vous que ce fich
             <h1>Modifier l'entreprise</h1>
             <h2><?= htmlspecialchars($companyDetails['company_name']) ?></h2>
             <form action="../../src/Controllers/Companies.php?edit=1" method="POST" class="modify-company-form">
-            <input type="hidden" name="company_id" value="<?= htmlspecialchars($companyDetails['company_id']) ?>">
+                <input type="hidden" name="company_id" value="<?= htmlspecialchars($companyDetails['company_id']) ?>">
 
                 <!-- Nom de l'entreprise -->
                 <div class="form-group">
                     <label for="company_name">Nom de l'entreprise :</label>
                     <input type="text" id="company_name" name="company_name"
-                        placeholder="<?= htmlspecialchars($companyDetails['company_name']) ?>">
+                        value="<?= htmlspecialchars($companyDetails['company_name']) ?>">
                 </div>
 
                 <!-- Description de l'entreprise -->
@@ -51,14 +51,14 @@ require_once('../../src/Controllers/Companies.php'); // Assurez-vous que ce fich
                 <div class="form-group">
                     <label for="company_business">Secteur d'activité :</label>
                     <input type="text" id="company_business" name="company_business"
-                        placeholder="<?= htmlspecialchars($companyDetails['company_business']) ?>">
+                        value="<?= htmlspecialchars($companyDetails['company_business']) ?>">
                 </div>
 
                 <!-- Email de l'entreprise -->
                 <div class="form-group">
                     <label for="company_email">Email de l'entreprise :</label>
                     <input type="email" id="company_email" name="company_email"
-                        placeholder="<?= htmlspecialchars($companyDetails['company_email']) ?>">
+                        value="<?= htmlspecialchars($companyDetails['company_email']) ?>">
                 </div>
 
                 <!-- Téléphone de l'entreprise -->
@@ -67,8 +67,7 @@ require_once('../../src/Controllers/Companies.php'); // Assurez-vous que ce fich
                     <div class="phone-input-wrapper">
                         <select id="phone_prefix" name="phone_prefix"></select>
                         <input type="tel" id="company_phone" name="company_phone"
-                            placeholder="<?= htmlspecialchars($companyDetails['company_phone']) ?>" pattern="[0-9]{9}"
-                        >
+                            value="<?= htmlspecialchars($number) ?>" pattern="^(\d{1} ?\d{2} ?\d{2} ?\d{2} ?\d{2})$">
                     </div>
                 </div>
 
@@ -76,12 +75,13 @@ require_once('../../src/Controllers/Companies.php'); // Assurez-vous que ce fich
                 <div class="form-row">
                     <div class="form-group small">
                         <label for="company_rue">N° Rue :</label>
-                        <input type="text" id="company_rue" name="company_rue" placeholder="">
+                        <input type="text" id="company_rue" name="company_rue"
+                            value="<?= htmlspecialchars($numeroRue) ?>">
                     </div>
                     <div class="form-group full">
                         <label for="company_namerue">Nom de la rue :</label>
-                        <input type="text" id="company_namerue" name="company_namerue" placeholder="<?= htmlspecialchars($companyDetails['company_address']) ?>"
-                        >
+                        <input type="text" id="company_namerue" name="company_namerue"
+                            value="<?= htmlspecialchars($nomRue) ?>">
                     </div>
                 </div>
 
@@ -90,12 +90,12 @@ require_once('../../src/Controllers/Companies.php'); // Assurez-vous que ce fich
                     <div class="form-group full">
                         <label for="company_city">Ville :</label>
                         <input type="text" id="company_city" name="company_city"
-                            placeholder="<?= htmlspecialchars($companyDetails['city_name']) ?>">
+                            value="<?= htmlspecialchars($companyDetails['city_name']) ?>">
                     </div>
                     <div class="form-group small">
                         <label for="company_postal_code">Code postal :</label>
                         <input type="text" id="company_postal_code" name="company_postal_code"
-                            placeholder="<?= htmlspecialchars($companyDetails['city_code']) ?>">
+                            value="<?= htmlspecialchars($companyDetails['city_code']) ?>">
                     </div>
                 </div>
 
@@ -107,7 +107,8 @@ require_once('../../src/Controllers/Companies.php'); // Assurez-vous que ce fich
         </div>
     </main>
 
-    <!--<script src="/assets/js/manage/companies.js" defer></script>-->
+
+    <script const defaultPhonePrefix=<?= json_encode($prefix) ?>; src="/assets/js/manage/companies.js" defer></script>
 
 </body>
 
