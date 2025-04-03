@@ -1,5 +1,3 @@
-//POUR LES COOKIES
-
 document.addEventListener("DOMContentLoaded", () => {
     const cookieBanner = document.getElementById("cookie-consent-banner");
     const acceptButton = document.getElementById("accept-cookies");

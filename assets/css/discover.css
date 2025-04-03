@@ -283,40 +283,81 @@ h1 {
 
 /* Pour les cookies */
 
-/* Style du bandeau de consentement aux cookies */
+/* Bandeau de consentement aux cookies */
 .cookie-consent-banner {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f8f9fa;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fff;
     color: #333;
     padding: 15px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 350px;
     font-family: Arial, sans-serif;
+    border: 2px solid #f8d7da; /* Bordure légèrement colorée */
 }
 
 .cookie-consent-banner.hidden {
     display: none;
 }
 
-.cookie-consent-banner p {
+.cookie-consent-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cookie-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.cookie-text {
+    text-align: left;
+}
+
+.cookie-text p {
     margin: 0;
     font-size: 14px;
+    line-height: 1.4;
+}
+
+.cookie-text p:first-child {
+    font-weight: bold;
+    color: #d9534f; /* Rouge pour attirer l'attention */
+}
+
+.learn-more {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 12px;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.learn-more:hover {
+    text-decoration: underline;
+}
+
+.cookie-consent-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .cookie-consent-actions button {
-    margin-left: 10px;
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 #accept-cookies {
@@ -324,7 +365,15 @@ h1 {
     color: white;
 }
 
+#accept-cookies:hover {
+    background-color: #218838;
+}
+
 #reject-cookies {
     background-color: #dc3545;
     color: white;
+}
+
+#reject-cookies:hover {
+    background-color: #c82333;
 }
