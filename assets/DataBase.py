@@ -41,37 +41,38 @@ regions_officielles = {
 
 # 🔹 Liste des entreprises à insérer
 companies = [
-    ("TotalEnergies", "Une des principales compagnies pétrolières et gazières mondiales.", "Énergie", "contact@totalenergies.com", "+33 1 47 44 45 46", 0.00, "Courbevoie"),
-    ("AXA", "Leader mondial de l'assurance et de la gestion d'actifs.", "Assurances", "service.client@axa.com", "+33 1 40 75 57 00", 0.00, "Paris"),
-    ("Carrefour", "L'un des plus grands groupes de distribution au monde.", "Distribution", "contact@carrefour.com", "+33 1 41 04 26 00", 0.00, "Massy"),
-    ("Crédit Agricole", "Première banque en France et l'une des plus grandes en Europe.", "Banque", "relation.client@credit-agricole.com", "+33 1 43 23 52 02", 0.00, "Montrouge"),
-    ("BNP Paribas", "Groupe bancaire international majeur.", "Banque", "contact@bnpparibas.com", "+33 1 40 14 45 46", 0.00, "Paris"),
-    ("EDF", "Principal producteur et fournisseur d'électricité en France.", "Énergie", "service.client@edf.fr", "+33 1 40 42 22 22", 0.00, "Paris"),
-    ("Engie", "Groupe énergétique mondial spécialisé dans les énergies renouvelables.", "Énergie", "contact@engie.com", "+33 1 44 22 00 00", 0.00, "Courbevoie"),
-    ("Renault", "Constructeur automobile français de renommée mondiale.", "Automobile", "service.client@renault.com", "+33 1 76 84 04 04", 0.00, "Boulogne-Billancourt"),
-    ("Stellantis", "Groupe automobile multinational issu de la fusion de PSA et FCA.", "Automobile", "contact@stellantis.com", "+33 1 70 96 00 00", 0.00, "Vélizy-Villacoublay"),
-    ("CMA CGM", "L'un des leaders mondiaux du transport maritime.", "Transport maritime", "contact@cma-cgm.com", "+33 4 88 91 90 00", 0.00, "Marseille"),
-    ("Vinci", "Groupe mondial de concessions et de construction.", "Construction", "contact@vinci.com", "+33 1 47 16 35 00", 0.00, "Rueil-Malmaison"),
-    ("Bouygues", "Groupe diversifié dans la construction, les médias et les télécoms.", "Construction, Télécoms", "contact@bouygues.com", "+33 1 44 20 10 00", 0.00, "Paris"),
-    ("LVMH", "Leader mondial de l'industrie du luxe.", "Luxe", "contact@lvmh.com", "+33 1 44 13 22 22", 0.00, "Paris"),
-    ("Société Générale", "L'une des principales banques européennes.", "Banque", "service.client@socgen.com", "+33 1 42 14 20 00", 0.00, "Paris"),
-    ("Saint-Gobain", "Leader mondial des matériaux de construction.", "Matériaux", "contact@saint-gobain.com", "+33 1 47 62 30 00", 0.00, "Courbevoie"),
-    ("Veolia", "Spécialiste mondial de la gestion optimisée des ressources.", "Services", "contact@veolia.com", "+33 1 85 57 70 00", 0.00, "Paris"),
-    ("Sanofi", "Leader mondial de la santé et des vaccins.", "Pharmaceutique", "contact@sanofi.com", "+33 1 53 77 40 00", 0.00, "Paris"),
-    ("Auchan", "Groupe de distribution présent dans plusieurs pays.", "Distribution", "contact@auchan.com", "+33 3 20 65 50 00", 0.00, "Croix"),
-    ("Airbus", "Leader mondial de l'aéronautique et de l'espace.", "Aéronautique", "contact@airbus.com", "+33 5 61 93 33 33", 0.00, "Blagnac"),
-    ("Orange", "Opérateur de télécommunications majeur en Europe.", "Télécommunications", "service.client@orange.com", "+33 1 44 44 22 22", 0.00, "Issy-les-Moulineaux"),
-    ("Alstom", "Spécialiste mondial des systèmes de transport intégrés.", "Transport", "contact@alstom.com", "+33 1 57 06 90 00", 0.00, "Saint-Ouen-sur-Seine"),
-    ("Danone", "Leader mondial des produits laitiers et de l'eau en bouteille.", "Agroalimentaire", "contact@danone.com", "+33 1 44 35 20 20", 0.00, "Paris"),
-    ("Michelin", "L'un des principaux fabricants de pneumatiques au monde.", "Pneumatiques", "contact@michelin.com", "+33 4 73 32 20 00", 0.00, "Clermont-Ferrand"),
-    ("Sodexo", "Leader mondial des services de qualité de vie.", "Services", "contact@sodexo.com", "+33 1 30 85 75 00", 0.00, "Issy-les-Moulineaux"),
-    ("Air Liquide", "Leader mondial des gaz industriels.", "Gaz", "contact@airliquide.com", "+33 1 40 62 55 55", 0.00, "Paris"),
-    ("Thales", "Leader mondial des technologies de pointe.", "Électronique", "contact@thalesgroup.com", "+33 1 57 77 80 00", 0.00, "Paris"),
-    ("Pernod Ricard", "Co-leader mondial des vins et spiritueux.", "Spiritueux", "contact@pernod-ricard.com", "+33 1 41 00 41 00", 0.00, "Paris"),
-    ("Kering", "Groupe mondial du luxe.", "Luxe", "contact@kering.com", "+33 1 45 64 61 00", 0.00, "Paris"),
-    ("Dassault Aviation", "Constructeur aéronautique français.", "Aéronautique", "contact@dassault-aviation.com", "+33 1 47 11 40 00", 0.00, "Saint-Cloud"),
-    ("Hermès", "Maison française de haute couture et de luxe.", "Luxe", "contact@hermes.com", "+33 1 40 17 47 17", 0.00, "Paris")
+    ("TotalEnergies", "Une des principales compagnies pétrolières et gazières mondiales.", "Énergie", "contact@totalenergies.com", "+33 1 47 44 45 46", 0.00, "2 Pl. Jean Millier, 92400 Courbevoie"),
+    ("AXA", "Leader mondial de l'assurance et de la gestion d'actifs.", "Assurances", "service.client@axa.com", "+33 1 40 75 57 00", 0.00, "25 Av. Matignon, 75008 Paris"),
+    ("Carrefour", "L'un des plus grands groupes de distribution au monde.", "Distribution", "contact@carrefour.com", "+33 1 41 04 26 00", 0.00, "93 Av. de Paris, 91300 Massy"),
+    ("Crédit Agricole", "Première banque en France et l'une des plus grandes en Europe.", "Banque", "relation.client@credit-agricole.com", "+33 1 43 23 52 02", 0.00, "12 Pl. des États-Unis, 92120 Montrouge"),
+    ("BNP Paribas", "Groupe bancaire international majeur.", "Banque", "contact@bnpparibas.com", "+33 1 40 14 45 46", 0.00, "16 Bd des Italiens, 75009 Paris"),
+    ("EDF", "Principal producteur et fournisseur d'électricité en France.", "Énergie", "service.client@edf.fr", "+33 1 40 42 22 22", 0.00, "22-30 Av. de Wagram, 75008 Paris"),
+    ("Engie", "Groupe énergétique mondial spécialisé dans les énergies renouvelables.", "Énergie", "contact@engie.com", "+33 1 44 22 00 00", 0.00, "1 Pl. Samuel de Champlain, 92400 Courbevoie"),
+    ("Renault", "Constructeur automobile français de renommée mondiale.", "Automobile", "service.client@renault.com", "+33 1 76 84 04 04", 0.00, "13-15 Quai le Gallo, 92100 Boulogne-Billancourt"),
+    ("Stellantis", "Groupe automobile multinational issu de la fusion de PSA et FCA.", "Automobile", "contact@stellantis.com", "+33 1 70 96 00 00", 0.00, "2-10 Bd de l'Europe, 78140 Vélizy-Villacoublay"),
+    ("CMA CGM", "L'un des leaders mondiaux du transport maritime.", "Transport maritime", "contact@cma-cgm.com", "+33 4 88 91 90 00", 0.00, "4 Quai d'Arenc, 13002 Marseille"),
+    ("Vinci", "Groupe mondial de concessions et de construction.", "Construction", "contact@vinci.com", "+33 1 47 16 35 00", 0.00, "1 Cours Ferdinand de Lesseps, 92851 Rueil-Malmaison"),
+    ("Bouygues", "Groupe diversifié dans la construction, les médias et les télécoms.", "Construction, Télécoms", "contact@bouygues.com", "+33 1 44 20 10 00", 0.00, "32 Av. Hoche, 75008 Paris"),
+    ("LVMH", "Leader mondial de l'industrie du luxe.", "Luxe", "contact@lvmh.com", "+33 1 44 13 22 22", 0.00, "22 Av. Montaigne, 75008 Paris"),
+    ("Société Générale", "L'une des principales banques européennes.", "Banque", "service.client@socgen.com", "+33 1 42 14 20 00", 0.00, "29 Bd Haussmann, 75009 Paris"),
+    ("Saint-Gobain", "Leader mondial des matériaux de construction.", "Matériaux", "contact@saint-gobain.com", "+33 1 47 62 30 00", 0.00, "12 Pl. de l'Iris, 92400 Courbevoie"),
+    ("Veolia", "Spécialiste mondial de la gestion optimisée des ressources.", "Services", "contact@veolia.com", "+33 1 85 57 70 00", 0.00, "21 Rue La Boétie, 75008 Paris"),
+    ("Sanofi", "Leader mondial de la santé et des vaccins.", "Pharmaceutique", "contact@sanofi.com", "+33 1 53 77 40 00", 0.00, "54 Rue La Boétie, 75008 Paris"),
+    ("Auchan", "Groupe de distribution présent dans plusieurs pays.", "Distribution", "contact@auchan.com", "+33 3 20 65 50 00", 0.00, "200 Rue de la Recherche, 59170 Croix"),
+    ("Airbus", "Leader mondial de l'aéronautique et de l'espace.", "Aéronautique", "contact@airbus.com", "+33 5 61 93 33 33", 0.00, "1 Rond-Point Maurice Bellonte, 31700 Blagnac"),
+    ("Orange", "Opérateur de télécommunications majeur en Europe.", "Télécommunications", "service.client@orange.com", "+33 1 44 44 22 22", 0.00, "111 Quai du Président Roosevelt, 92130 Issy-les-Moulineaux"),
+    ("Alstom", "Spécialiste mondial des systèmes de transport intégrés.", "Transport", "contact@alstom.com", "+33 1 57 06 90 00", 0.00, "48 Rue Albert Dhalenne, 93400 Saint-Ouen-sur-Seine"),
+    ("Danone", "Leader mondial des produits laitiers et de l'eau en bouteille.", "Agroalimentaire", "contact@danone.com", "+33 1 44 35 20 20", 0.00, "17 Bd Haussmann, 75009 Paris"),
+    ("Michelin", "L'un des principaux fabricants de pneumatiques au monde.", "Pneumatiques", "contact@michelin.com", "+33 4 73 32 20 00", 0.00, "23 Pl. des Carmes Déchaux, 63000 Clermont-Ferrand"),
+    ("Sodexo", "Leader mondial des services de qualité de vie.", "Services", "contact@sodexo.com", "+33 1 30 85 75 00", 0.00, "255 Quai de la Bataille de Stalingrad, 92130 Issy-les-Moulineaux"),
+    ("Air Liquide", "Leader mondial des gaz industriels.", "Gaz", "contact@airliquide.com", "+33 1 40 62 55 55", 0.00, "75 Quai d'Orsay, 75007 Paris"),
+    ("Thales", "Leader mondial des technologies de pointe.", "Électronique", "contact@thalesgroup.com", "+33 1 57 77 80 00", 0.00, "45 Rue de Villiers, 92200 Neuilly-sur-Seine"),
+    ("Pernod Ricard", "Co-leader mondial des vins et spiritueux.", "Spiritueux", "contact@pernod-ricard.com", "+33 1 41 00 41 00", 0.00, "5 Cours Paul Ricard, 75008 Paris"),
+    ("Kering", "Groupe mondial du luxe.", "Luxe", "contact@kering.com", "+33 1 45 64 61 00", 0.00, "40 Rue de Sèvres, 75007 Paris"),
+    ("Dassault Aviation", "Constructeur aéronautique français.", "Aéronautique", "contact@dassault-aviation.com", "+33 1 47 11 40 00", 0.00, "78 Quai Marcel Dassault, 92210 Saint-Cloud"),
+    ("Hermès", "Maison française de haute couture et de luxe.", "Luxe", "contact@hermes.com", "+33 1 40 17 47 17", 0.00, "24 Rue du Faubourg Saint-Honoré, 75008 Paris")
 ]
+
 
 # 🔹 Liste des utilisateurs à insérer
 users = [
@@ -1397,8 +1398,6 @@ offer_skills_mapping = {
     73: [2, 42, 15],    # Digital Manager Luxe – CDI, Temps plein, UX/UI Design & Marketing digital
     74: [2, 19, 22]     # Responsable RSE Luxe – CDI, Temps plein, Science environnementale & Gestion de projet
 }
-
-
 
 # 🔹 Liste des candidatures à insérer
 applications = [

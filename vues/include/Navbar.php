@@ -12,6 +12,7 @@ if ($role === 'admin' || $role === 'pilote') {
 }
 // Vérifier la page actuelle
 $current_page = basename($_SERVER['PHP_SELF']);
+$current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 ?>
 
 <header class="header">
@@ -30,7 +31,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <ul class="menu-left" id="navMenu">
             <li><a href="/vues/Discover.php" <?= ($current_page == 'Discover.php') ? 'class="active"' : '' ?>>Offre</a>
             </li>
-            <li><a href="/vues/Companies.php" <?= ($current_page == 'Companies.php') ? 'class="active"' : '' ?>>Entreprise</a></li>
+            <li><a href="/vues/Companies.php" <?= ($current_path == 'vues/Companies.php') ? 'class="active"' : '' ?>>Entreprise</a></li>
             <li><a href="/" <?= ($current_page == '/') ? 'class="active"' : '' ?>>À propos</a></li>
         </ul>
         <div class="menu-right">

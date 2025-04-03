@@ -30,7 +30,7 @@ $total_pages = isset($total_pages) ? $total_pages : 1; // Replace with actual lo
 
     <main>
     
-        <?php include 'include/FilterDiscovery.php'; ?>
+        <?php include 'include/Filter.php'; ?>
 
         <!-- Section des entreprises -->
         <div class="header-section">

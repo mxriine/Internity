@@ -138,8 +138,6 @@ if (in_array($current_file, ['Discover.php', 'Offers.php'])) {
     $offers = $offerModel->getPaginatedOffers($elements_par_page, $offset, $search, $location);
     $total_offers = $offerModel->getTotalPaginatedOffersCount($elements_par_page, $search, $location);
     $total_pages = ceil($total_offers / $elements_par_page); // Calcul du nombre total de pages
-
-    $offerss = $offerModel->getAllOffers(); // ou getPaginatedOffers si pagination
 }
 
 //

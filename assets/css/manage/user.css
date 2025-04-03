@@ -162,3 +162,23 @@ footer p {
 .btn-secondary:hover {
     background-color: #95a5a6;
 }
+
+.back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--CpBlack);
+    text-decoration: none;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 14px;
+    z-index: 1;
+}
+
+.back img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
