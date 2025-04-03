@@ -286,58 +286,59 @@ h1 {
 /* Bandeau de consentement aux cookies */
 .cookie-consent-banner {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 1.5rem; /* Espace en bas */
+    left: 1.5rem; /* Position à droite */
     background-color: #fff;
     color: #333;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem; /* Padding réduit */
+    border-radius: 0.75rem; /* Bordure arrondie légère */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Ombre légère */
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    max-width: 350px;
+    align-items: center; /* Centre tout le contenu horizontalement */
+    max-width: 300px; /* Largeur maximale fixée */
     font-family: Arial, sans-serif;
-    border: 2px solid #f8d7da; /* Bordure légèrement colorée */
 }
 
 .cookie-consent-banner.hidden {
     display: none;
 }
 
-.cookie-consent-content {
+.cookie-container {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments dans le cookie-container */
 }
 
-.cookie-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
+/* Bulle de dialogue */
+.speech-bubble {
+    position: relative;
+    background-color: #f8d7da; /* Fond rouge clair */
+    color: #721c24; /* Texte rouge foncé */
+    padding: 0.75rem; /* Padding réduit */
+    border-radius: 0.5rem; /* Bordure arrondie légère */
+    margin-bottom: 0.75rem; /* Espacement réduit */
+    text-align: center;
+    max-width: 100%; /* S'adapte à la largeur du conteneur */
 }
 
-.cookie-text {
-    text-align: left;
-}
-
-.cookie-text p {
+.speech-bubble p {
     margin: 0;
-    font-size: 14px;
+    font-size: 0.875rem; /* Taille de police réduite */
     line-height: 1.4;
 }
 
-.cookie-text p:first-child {
+.speech-bubble p:first-child {
     font-weight: bold;
-    color: #d9534f; /* Rouge pour attirer l'attention */
+    font-size: 1rem; /* Taille de police légèrement plus grande pour le titre */
 }
 
 .learn-more {
-    color: #007bff;
+    color: #721c24;
     text-decoration: none;
-    font-size: 12px;
-    margin-top: 5px;
+    font-size: 0.75rem; /* Taille de police réduite */
+    margin-top: 0.5rem; /* Espacement réduit */
     display: inline-block;
 }
 
@@ -345,18 +346,39 @@ h1 {
     text-decoration: underline;
 }
 
+/* Triangle de la bulle de dialogue */
+.speech-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem; /* Position sous la bulle */
+    left: 50%; /* Centré */
+    transform: translateX(-50%);
+    border-width: 0.5rem; /* Taille réduite */
+    border-style: solid;
+    border-color: #f8d7da transparent transparent transparent; /* Couleur de la pointe */
+}
+
+/* Image du cookie */
+.cookie-image {
+    width: 4rem; /* Taille réduite */
+    height: auto; /* Conserve les proportions */
+    margin-top: 0.75rem; /* Espacement réduit */
+}
+
+/* Boutons */
 .cookie-consent-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    justify-content: center; /* Centre les boutons horizontalement */
+    gap: 0.75rem; /* Espacement réduit entre les boutons */
+    margin-top: 0.75rem; /* Espacement réduit */
 }
 
 .cookie-consent-actions button {
-    padding: 8px 15px;
+    padding: 0.5rem 1rem; /* Padding réduit */
     border: none;
-    border-radius: 5px;
+    border-radius: 0.375rem; /* Bordure arrondie légère */
     cursor: pointer;
-    font-size: 14px;
+    font-size: 0.875rem; /* Taille de police réduite */
     transition: background-color 0.3s ease;
 }
 
@@ -376,4 +398,26 @@ h1 {
 
 #reject-cookies:hover {
     background-color: #c82333;
+}
+
+/* Media Queries pour les petits écrans */
+@media (max-width: 600px) {
+    .cookie-consent-banner {
+        bottom: 1rem; /* Réduit l'espace en bas */
+        right: 1rem; /* Réduit l'espace à droite */
+        padding: 0.75rem; /* Réduit le padding */
+    }
+
+    .speech-bubble {
+        font-size: 0.75rem; /* Réduit encore la taille du texte */
+    }
+
+    .cookie-image {
+        width: 3rem; /* Réduit encore la taille de l'image */
+    }
+
+    .cookie-consent-actions button {
+        font-size: 0.75rem; /* Réduit encore la taille des boutons */
+        padding: 0.375rem 0.75rem; /* Réduit encore le padding des boutons */
+    }
 }

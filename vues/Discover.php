@@ -99,13 +99,15 @@ require_once('../src/Controllers/Offer.php');
 
     <!-- Bandeau de consentement aux cookies -->
     <div id="cookie-consent-banner" class="cookie-consent-banner hidden">
-        <div class="cookie-consent-content">
-            <img src="/assets/images/COOKIE.png" alt="Cookie" class="cookie-image">
-            <div class="cookie-text">
+        <div class="cookie-container">
+            <!-- Bulle de dialogue -->
+            <div class="speech-bubble">
                 <p>Je mange tes cookies ! 🍪</p>
-                <p>Nous utilisons des cookies pour améliorer votre expérience et assurer le bon fonctionnement de notre site.</p>
+                <p>Nous utilisons des cookies pour améliorer ton expérience.</p>
                 <a href="/politique-de-cookies" target="_blank" class="learn-more">En savoir plus</a>
             </div>
+            <!-- Image du cookie -->
+            <img src="/assets/images/COOKIE.png" alt="Cookie" class="cookie-image">
         </div>
         <div class="cookie-consent-actions">
             <button id="accept-cookies">Accepter</button>
