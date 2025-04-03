@@ -31,7 +31,9 @@ require_once('../src/Controllers/Wishlist.php');
                     <img src="/assets/icons/star-circle.svg" alt="Favori">
                 </div>
             </div>
-            <div class="hero-title"><?= htmlspecialchars($offerDetails['offer_title'] ?? 'Offre inconnue') ?></div>
+            <div class="hero-title">
+                <?= htmlspecialchars($offerDetails['offer_title'] ?? 'Offre inconnue') ?>
+            </div>
         </div>
 
         <!-- Main Content Section -->
@@ -57,22 +59,57 @@ require_once('../src/Controllers/Wishlist.php');
                         <div class="card-title">
                             <?= htmlspecialchars($companiesDetails['company_name'] ?? 'Entreprise inconnue') ?>
                         </div>
-                        <button class="wishlist-toggle" id="addToWishlistButton"
-                            data-offer-id="<?= htmlspecialchars($offerDetails['offer_id'] ?? '') ?>"
-                            data-in-wishlist="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? '1' : '0' ?>"
-                            title="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? 'Retirer de la wishlist' : 'Ajouter à la wishlist' ?>">
-                            <img src="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? '/assets/images/CoeurRemplis.png' : '/assets/images/CoeurVide.png' ?>"
-                                alt="Icône wishlist" class="wishlist-heart">
+
+                        <!-- Bouton Cœur Dynamique -->
+                        <button class="wishlist-toggle" 
+                                id="addToWishlistButton"
+                                data-offer-id="<?= htmlspecialchars($offerDetails['offer_id'] ?? '') ?>"
+                                data-in-wishlist="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) ? '1' : '0' ?>"
+                                title="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) 
+                                            ? 'Retirer de la wishlist' 
+                                            : 'Ajouter à la wishlist' ?>">
+                            <img src="<?= in_array($offerDetails['offer_id'], array_column($wishlist, 'offer_id')) 
+                                            ? '/assets/images/CoeurRemplis.png' 
+                                            : '/assets/images/CoeurVide.png' ?>"
+                                 alt="Icône wishlist" 
+                                 class="wishlist-heart">
                         </button>
+
+                        <!-- Popup pour ajouter à la wishlist -->
+                        <div id="addToWishlistPopup" class="popup hidden">
+                            <div class="popup-content">
+                                <h2>
+                                    Vous avez ajouté l'offre 
+                                    <?= htmlspecialchars($offerDetails['offer_name'] ?? 'X') ?> 
+                                    à votre wishlist !
+                                </h2>
+                                <button id="closeAddToWishlistPopup" class="submit-rating">OK</button>
+                            </div>
+                        </div>
+
+                        <!-- Popup pour supprimer de la wishlist -->
+                        <div id="removeFromWishlistPopup" class="popup hidden">
+                            <div class="popup-content">
+                                <h2>
+                                    Vous avez supprimé l'offre 
+                                    <?= htmlspecialchars($offerDetails['offer_name'] ?? 'X') ?> 
+                                    de votre wishlist !
+                                </h2>
+                                <button id="closeRemoveFromWishlistPopup" class="submit-rating">OK</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">
                         <p><strong>Ville :</strong>
-                            <?= htmlspecialchars($companiesDetails['city'] ?? 'Non spécifiée') ?></p>
+                            <?= htmlspecialchars($companiesDetails['city'] ?? 'Non spécifiée') ?>
+                        </p>
                         <p><strong>Téléphone :</strong>
-                            <?= htmlspecialchars($companiesDetails['phone'] ?? 'Non spécifié') ?></p>
+                            <?= htmlspecialchars($companiesDetails['phone'] ?? 'Non spécifié') ?>
+                        </p>
                         <p><strong>Email :</strong>
-                            <?= htmlspecialchars($companiesDetails['email'] ?? 'Non spécifié') ?></p>
+                            <?= htmlspecialchars($companiesDetails['email'] ?? 'Non spécifié') ?>
+                        </p>
                         <p><strong>Compétences requises :</strong></p>
                         <ul>
                             <?php foreach ($skills as $skill): ?>
@@ -97,6 +134,7 @@ require_once('../src/Controllers/Wishlist.php');
             </div>
         </div>
     </main>
+
     <!-- Footer -->
     <footer style="position: fixed;">
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
@@ -111,12 +149,13 @@ require_once('../src/Controllers/Wishlist.php');
         </div>
     </div>
 
+    <!-- Popup pour supprimer de la wishlist -->
     <div id="removeFromWishlistPopup" class="popup hidden">
-            <div class="popup-content">
-                <h2>Vous avez supprimé l'offre X de votre wishlist !</h2>
-                <button id="closeRemoveFromWishlistPopup" class="submit-rating">OK</button>
-            </div>
+        <div class="popup-content">
+            <h2>Vous avez supprimé l'offre X de votre wishlist !</h2>
+            <button id="closeRemoveFromWishlistPopup" class="submit-rating">OK</button>
         </div>
+    </div>
 
     <!-- Inclusion du fichier JavaScript -->
     <script src="/assets/js/offer.js"></script>

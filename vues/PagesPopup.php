@@ -17,26 +17,6 @@
 
     <main>
 
-        <!-- BOUTON ÉVALUER -->
-        <div class="ButtonEvaluate">
-            <button class="button-evaluate" id="evaluateButton">Évaluer</button>
-        </div>
-
-        <!-- Popup pour l'évaluation -->
-        <div id="evaluationPopup" class="popup hidden">
-            <div class="popup-content">
-                <h2>Évaluez cette entreprise</h2>
-                <div class="stars-container" id="starsContainer">
-                    <img src="/assets/images/EtoileVide.png" alt="Étoile 1" data-value="1">
-                    <img src="/assets/images/EtoileVide.png" alt="Étoile 2" data-value="2">
-                    <img src="/assets/images/EtoileVide.png" alt="Étoile 3" data-value="3">
-                    <img src="/assets/images/EtoileVide.png" alt="Étoile 4" data-value="4">
-                    <img src="/assets/images/EtoileVide.png" alt="Étoile 5" data-value="5">
-                </div>
-                <p id="selectedRating"></p>
-                <button id="submitRating" class="submit-rating hidden">Soumettre</button>
-            </div>
-        </div>
 
         <!-- BOUTON AJOUTER À LA WISHLIST -->
         <div class="ButtonEvaluate">
