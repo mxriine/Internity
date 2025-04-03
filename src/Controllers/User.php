@@ -29,11 +29,6 @@ if ($promotion_id || $filtre_pilote) {
     $students = $userModel->getStudentsList($role, $user_id);
 }
 
-$error_message = '';
-if (empty($students)) {
-    $error_message = "Pas d'étudiants";
-}
-
 // =========================================
 // Pagination des Etudiants
 // =========================================
