@@ -96,10 +96,26 @@ require_once('../src/Controllers/Offer.php');
         </div>
     </main>
 
+
+    <!-- Bandeau de consentement aux cookies -->
+    <div id="cookie-consent-banner" class="cookie-consent-banner hidden">
+        <p>
+            Nous utilisons des cookies pour améliorer votre expérience et assurer le bon fonctionnement de notre site. 
+            <a href="/politique-de-cookies" target="_blank">En savoir plus</a>.
+        </p>
+        <div class="cookie-consent-actions">
+            <button id="accept-cookies">Accepter</button>
+            <button id="reject-cookies">Refuser</button>
+        </div>
+    </div> 
+
     <footer>
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
+
+    <script src="/assets/js/discover.js"></script>
+
 </body>
 
 </html>

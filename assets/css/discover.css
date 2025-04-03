@@ -279,3 +279,52 @@ h1 {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Pour les cookies */
+
+/* Style du bandeau de consentement aux cookies */
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 15px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.cookie-consent-banner.hidden {
+    display: none;
+}
+
+.cookie-consent-banner p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.cookie-consent-actions button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#accept-cookies {
+    background-color: #28a745;
+    color: white;
+}
+
+#reject-cookies {
+    background-color: #dc3545;
+    color: white;
+}
