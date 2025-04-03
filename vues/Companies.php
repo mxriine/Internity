@@ -25,7 +25,8 @@ $total_pages = isset($total_pages) ? $total_pages : 1; // Replace with actual lo
 
 <body>
     <!-- Barre de navigation -->
-    <?php require_once('include/Navbar.php'); ?>
+    
+        <?php require_once('include/Navbar.php'); ?>
 
     <main>
     

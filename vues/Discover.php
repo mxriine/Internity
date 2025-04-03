@@ -96,10 +96,32 @@ require_once('../src/Controllers/Offer.php');
         </div>
     </main>
 
+
+    <!-- Bandeau de consentement aux cookies -->
+    <div id="cookie-consent-banner" class="cookie-consent-banner hidden">
+        <div class="cookie-container">
+            <!-- Bulle de dialogue -->
+            <div class="speech-bubble">
+                <p>Je mange tes cookies ! 🍪</p>
+                <p>Nous utilisons des cookies pour améliorer ton expérience.</p>
+                <a href="/politique-de-cookies" target="_blank" class="learn-more">En savoir plus</a>
+            </div>
+            <!-- Image du cookie -->
+            <img src="/assets/images/COOKIE.png" alt="Cookie" class="cookie-image">
+        </div>
+        <div class="cookie-consent-actions">
+            <button id="accept-cookies">Accepter</button>
+            <button id="reject-cookies">Refuser</button>
+        </div>
+    </div>
+
     <footer>
         <a class="legal" href="/vues/MentionsLegales.php">Mentions légales</a>
         <p>© 2025 - Internity</p>
     </footer>
+
+    <script src="/assets/js/discover.js"></script>
+
 </body>
 
 </html>
