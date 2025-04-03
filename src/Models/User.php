@@ -222,4 +222,46 @@ class User
         $stmt = $this->pdo->prepare("DELETE FROM Pilotes WHERE user_id = ?");
         return $stmt->execute([$user_id]);
     }
+
+    public function getPaginatedStudents(int $limit, int $offset): array
+    {
+        $sql = "SELECT su.*, s.student_id, p.promotion_name, p.promotion_desc, pu.user_name AS pilote_name, pu.user_surname AS pilote_surname
+            FROM Students s
+            INNER JOIN Users su ON s.user_id = su.user_id
+            INNER JOIN Promotions p ON s.promotion_id = p.promotion_id
+            INNER JOIN Pilotes pi ON p.pilote_id = pi.pilote_id
+            INNER JOIN Users pu ON pi.user_id = pu.user_id
+            ORDER BY p.promotion_name ASC
+            LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPaginatedPilotes(int $limit, int $offset): array
+    {
+        $sql = "SELECT 
+                u.*, 
+                pi.pilote_id,
+                p.promotion_name, 
+                p.promotion_desc
+            FROM Pilotes pi
+            INNER JOIN Users u ON pi.user_id = u.user_id
+            LEFT JOIN Promotions p ON pi.pilote_id = p.pilote_id
+            ORDER BY p.promotion_name ASC
+            LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }

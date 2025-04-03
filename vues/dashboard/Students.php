@@ -87,19 +87,18 @@ require_once('../../src/Controllers/User.php');
 
         <div class="pagination">
             <?php if (isset($page_actuelle) && $page_actuelle > 1): ?>
-                <a
-                    href="?page=<?= $page_actuelle - 1 ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>">Précédent</a>
+                <a href="?page=<?= $page_actuelle - 1 ?>">Précédent</a>
             <?php endif; ?>
 
             <?php for ($i = 1; isset($total_pages) && $i <= $total_pages; $i++): ?>
-                <a href="?page=<?= $i ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>"
-                    class="<?= ($i === $page_actuelle) ? 'active' : '' ?>"><?= $i ?></a>
+                <a href="?page=<?= $i ?>" class="<?= ($i === $page_actuelle) ? 'active' : '' ?>"><?= $i ?></a>
             <?php endfor; ?>
 
             <?php if (isset($page_actuelle) && isset($total_pages) && $page_actuelle < $total_pages): ?>
-                <a
-                    href="?page=<?= $page_actuelle + 1 ?>&search=<?= urlencode($search ?? '') ?>&location=<?= urlencode($location ?? '') ?>">Suivant</a>
+                <a href="?page=<?= $page_actuelle + 1 ?>">Suivant</a>
             <?php endif; ?>
+        </div>
+
         </div>
     </main>
 </body>

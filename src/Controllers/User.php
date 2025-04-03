@@ -35,6 +35,35 @@ if (empty($students)) {
 }
 
 // =========================================
+// Pagination des Etudiants
+// =========================================
+if (in_array($current_file, ['Students.php'])) {
+    $limit = 5;
+    $page_actuelle = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+    $offset = ($page_actuelle - 1) * $limit;
+
+    $total_etudiants = $userModel->getUsersByRole('student');
+    $total_pages = ceil($total_etudiants / $limit);
+
+    $students = $userModel->getPaginatedStudents($limit, $offset);
+}
+
+// =========================================
+// Pagination des Pilotes
+// =========================================
+if (in_array($current_file, ['Pilotes.php'])) {
+    $limit = 5;
+    $page_actuelle = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+    $offset = ($page_actuelle - 1) * $limit;
+
+    $total_pilotes = $userModel->getUsersByRole('pilote');
+    $total_pages = ceil($total_pilotes / $limit);
+
+    $pilotes = $userModel->getPaginatedPilotes($limit, $offset);
+}
+
+
+// =========================================
 // SUPPRESSION UTILISATEUR
 // =========================================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['delete']) && isset($_POST['user_id'])) {
