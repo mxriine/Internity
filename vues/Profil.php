@@ -189,7 +189,7 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                                 <?= htmlspecialchars($item['city_name'] ?? 'Ville inconnue') . ', ' . htmlspecialchars($item['region_name'] ?? 'Région inconnue') ?>
                             </p>
 
-                            <button class="wishlist-button">Voir plus</button>
+                            <button class="wishlist-button" onclick="window.location.href='/vues/Offer.php?offer_id=<?= htmlspecialchars($item['offer_id']) ?>'">Voir plus</button>
                         </div>
                     <?php endforeach; ?>
                 </div>

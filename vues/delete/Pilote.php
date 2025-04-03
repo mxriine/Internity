@@ -19,9 +19,6 @@ require_once('../../src/Controllers/User.php');
 
 <body>
 
-    <!-- Navbar -->
-    <?php require_once('../include/Navbar.php'); ?>
-
     <main>
         <!-- Conteneur pour afficher les informations du compte -->
         <div class="create-account-container">

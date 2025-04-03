@@ -12,6 +12,11 @@ $role = $_SESSION['role'] ?? 'inconnu';
 $current_page = basename($_SERVER['PHP_SELF']);
 $current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
+// Permettre l'accès à MentionsLegales.php sans authentification
+if ($current_page === 'MentionsLegales.php') {
+    return; // Ne pas rediriger, permettre l'accès
+}
+
 // SECTION 3 : Redirection si l'utilisateur n'est pas authentifié
 if ($role === 'inconnu' && $current_page !== 'Login.php') {
     // Rediriger vers la page de login
