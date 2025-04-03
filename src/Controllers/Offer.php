@@ -123,7 +123,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-//
 // =========================================
 // SECTION 4 : Pagination des offres (/Discover.php ou /Offers.php)
 // =========================================
@@ -140,7 +139,6 @@ if (in_array($current_file, ['Discover.php', 'Offers.php'])) {
 
 }
 
-//
 // =========================================
 // SECTION 5 : Détails d'une offre (/Offer.php ou /Apply.php)
 // =========================================
