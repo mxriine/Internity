@@ -4,6 +4,7 @@ require_once('../src/Controllers/Login.php');
 require_once('../src/Controllers/CheckAuth.php');
 require_once('../src/Controllers/Application.php');
 require_once('../src/Controllers/Wishlist.php');
+require_once('../src/Controllers/User.php');
 
 $showSuccess = isset($_GET['success']) && $_GET['success'] == 1;
 
@@ -69,11 +70,13 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                         </div>
                         <div class="form-group">
                             <label for="pilote">Pilote :</label>
-                            <input type="pilote" id="pilote" name="pilote" value="Muriel Raynaud" disabled>
+                            <input type="pilote" id="pilote" name="pilote"
+                                value="<?= htmlspecialchars($userDetails['pilote_name'] ?? 'Aucun') . " " . htmlspecialchars($userDetails['pilote_surname'] ?? '') ?>"
+                                disabled>
                         </div>
                         <div class="form-group">
                             <label for="promotion">Promotion :</label>
-                            <input type="promotion" id="promotion" name="promotion" value="CPI A1" disabled>
+                            <input type="promotion" id="promotion" name="promotion" value="<?= htmlspecialchars($userDetails['promotion_name'] ?? 'Aucun')?>" disabled>
                         </div>
                         <!-- <button type="submit" class="submit-button">Mettre à jour mes informations</button> -->
                     </form>
@@ -109,14 +112,10 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                     <div class="info-row">
                         <label>Email :</label>
                         <span id="currentEmail"><?php echo htmlspecialchars($email); ?></span>
-                        <button id="editEmailButton" class="edit-button">Changer l'email</button>
                     </div>
                     <div class="info-row">
                         <label>Mot de passe :</label>
                         <span id="currentPassword">●●●●●●●●●●●●●●●</span>
-                        <img src="/assets/images/oeil.png" alt="Afficher/Masquer" id="togglePassword"
-                            class="password-toggle" style="cursor: pointer; width: 20px; margin-left: 10px;">
-                        <button id="editPasswordButton" class="edit-button">Changer le mot de passe</button>
                     </div>
                 </div>
 
@@ -189,7 +188,9 @@ $surname = isset($_SESSION['surname']) ? $_SESSION['surname'] : '';
                                 <?= htmlspecialchars($item['city_name'] ?? 'Ville inconnue') . ', ' . htmlspecialchars($item['region_name'] ?? 'Région inconnue') ?>
                             </p>
 
-                            <button class="wishlist-button" onclick="window.location.href='/vues/Offer.php?offer_id=<?= htmlspecialchars($item['offer_id']) ?>'">Voir plus</button>
+                            <button class="wishlist-button"
+                                onclick="window.location.href='/vues/Offer.php?offer_id=<?= htmlspecialchars($item['offer_id']) ?>'">Voir
+                                plus</button>
                         </div>
                     <?php endforeach; ?>
                 </div>

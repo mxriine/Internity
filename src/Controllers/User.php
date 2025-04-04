@@ -176,3 +176,17 @@ if (($current_file === 'Student.php' && isset($_GET['student_id'])) || ($current
         die("ID de l'utilisateur invalide.");
     }
 }
+
+
+if (($current_file === 'Profil.php' && isset($_SESSION['id']))) {
+    $id = isset($_SESSION['id']) ? intval($_SESSION['id']) : 0;
+
+    if ($id > 0) {
+        $userDetails = $userModel->getUserById($id);
+        if (!$userDetails) {
+            die(ucfirst($type) . " non trouvé.");
+        }
+    } else {
+        die("ID de l'utilisateur invalide.");
+    }
+}
